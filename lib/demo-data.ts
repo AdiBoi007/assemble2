@@ -318,3 +318,220 @@ function generateRandomLearningVelocity() {
 }
 
 export const DEMO_CANDIDATES: Candidate[] = generateCandidates(256)
+
+// --- PROSPECT / SALES DATA ---
+export interface Company {
+    id: string
+    name: string
+    domain: string
+    industry: string
+    fundingStage: string
+    employeeCount: string
+    intentScore: number
+    techStack: string[]
+    recentSignals: string[]
+}
+
+function generateCompanies(count: number): Company[] {
+    const companies: Company[] = []
+    const prefixes = ["Acme", "Nova", "Aether", "Quantum", "Nexus", "Vertex", "Synapse", "Omni", "Cerebral", "Sentient", "Vanguard", "Apex", "Zenith", "Strata", "Lumina"]
+    const suffixes = ["Neural", "Labs", "Matrix", "Data", "Compute", "AI", "Systems", "Net", "Logic", "Dynamics", "Networks", "Cloud", "Analytics", "Security", "Scale"]
+    const stages = ["Seed", "Series A", "Series B", "Series C", "Enterprise"]
+
+    // VIP Companies for demo purposes
+    companies.push({
+        id: "comp_vip_1",
+        name: "Anthropic",
+        domain: "anthropic.com",
+        industry: "AI Research",
+        fundingStage: "Series D",
+        employeeCount: "500-1000",
+        intentScore: 99,
+        techStack: ["React", "Python", "AWS", "CUDA"],
+        recentSignals: ["Scaling Inference Team", "Hiring 50+ engineers"]
+    });
+    companies.push({
+        id: "comp_vip_2",
+        name: "Scale AI",
+        domain: "scale.com",
+        industry: "Data Infrastructure",
+        fundingStage: "Series F",
+        employeeCount: "1000+",
+        intentScore: 95,
+        techStack: ["TypeScript", "Node.js", "Python", "PostgreSQL"],
+        recentSignals: ["New Product Line Launch", "Expanding GTM"]
+    });
+
+    for (let i = 0; i < count - 2; i++) {
+        const prefix = prefixes[Math.floor(Math.random() * prefixes.length)]
+        const suffix = suffixes[Math.floor(Math.random() * suffixes.length)]
+        const name = `${prefix} ${suffix}`
+        const stage = stages[Math.floor(Math.random() * stages.length)]
+
+        companies.push({
+            id: `comp_${i}`,
+            name: name,
+            domain: `${name.toLowerCase().replace(/ /g, '')}.com`,
+            industry: ["Enterprise AI", "DevTools", "Fintech", "Cybersecurity", "SaaS"][Math.floor(Math.random() * 5)],
+            fundingStage: stage,
+            employeeCount: stage === "Seed" ? "1-10" : stage === "Series A" ? "10-50" : (stage === "Series B" || stage === "Series C") ? "50-200" : "200+",
+            intentScore: 60 + Math.floor(Math.random() * 35),
+            techStack: ["React", "TypeScript", "Python", "Kubernetes", "AWS"].sort(() => 0.5 - Math.random()).slice(0, 3),
+            recentSignals: ["Rapid headcount growth", "New C-level hire", "Recent funding round"].sort(() => 0.5 - Math.random()).slice(0, 1)
+        })
+    }
+    return companies
+}
+
+export const DEMO_COMPANIES: Company[] = generateCompanies(150)
+
+// --- PMF ANALYSIS DATA ---
+export interface PMFResult {
+    id: string
+    title: string
+    description: string
+    category: "Market Gap" | "Competitor" | "ICP Profiling" | "Pricing Strategy"
+    confidenceScore: number
+    metrics: { label: string; value: string; trend: "up" | "down" | "flat" }[]
+    insights: string[]
+}
+
+export const PMF_DATA: PMFResult[] = [
+    {
+        id: "pmf_1",
+        title: "Mid-Market Enterprise Void",
+        description: "Analysis indicates a underserved segment in companies with 500-1000 employees needing SOC2 compliant DevTools.",
+        category: "Market Gap",
+        confidenceScore: 94,
+        metrics: [
+            { label: "Est. TAM", value: "$4.2B", trend: "up" },
+            { label: "Competitor Density", value: "Low", trend: "down" },
+            { label: "Willingness to Pay", value: "High", trend: "up" }
+        ],
+        insights: [
+            "Current incumbents lack self-serve onboarding in this sector.",
+            "Security compliance is the #1 dealbreaker for 82% of buyers.",
+            "Average sales cycle is 60% shorter than Fortune 500."
+        ]
+    },
+    {
+        id: "pmf_2",
+        title: "Competitor Analysis: Acme Corp",
+        description: "Acme dominates the top-tier enterprise, but vulnerable in flexible API integrations.",
+        category: "Competitor",
+        confidenceScore: 89,
+        metrics: [
+            { label: "Market Share", value: "34%", trend: "flat" },
+            { label: "Customer Churn", value: "12%", trend: "up" },
+            { label: "Feature Parity", value: "88%", trend: "flat" }
+        ],
+        insights: [
+            "Their API v2 rollout caused major architectural friction.",
+            "Extracting data takes 3x longer than our solution.",
+            "Pricing increases alienated smaller enterprise tiers."
+        ]
+    },
+    {
+        id: "pmf_3",
+        title: "CTO / VP Eng Persona Fit",
+        description: "Technical leaders prioritize speed-to-deployment over extensive feature customization.",
+        category: "ICP Profiling",
+        confidenceScore: 97,
+        metrics: [
+            { label: "Time to First Value", value: "< 2 Days", trend: "down" },
+            { label: "Buyer Authority", value: "High", trend: "flat" },
+            { label: "Retention Rate", value: "94%", trend: "up" }
+        ],
+        insights: [
+            "They hate talking to salespeople; prefer ungated docs.",
+            "ROI must be proven in a sandbox environment within 48h.",
+            "They index heavily on open-source ecosystem compatibility."
+        ]
+    }
+]
+
+// --- BRAIN QUERY DATA ---
+export interface BrainResult {
+    id: string
+    title: string
+    type: "Strategy Doc" | "Call Transcript" | "Market Report" | "Internal Wiki"
+    relevance: number
+    date: string
+    author: string
+    keyTakeaways: string[]
+}
+
+export const BRAIN_DATA: BrainResult[] = [
+    {
+        id: "brain_1",
+        title: "Q3 Defection Analysis: Why we lose to Nova Labs",
+        type: "Market Report",
+        relevance: 98,
+        date: "2026-01-15",
+        author: "Sarah Chen (RevOps)",
+        keyTakeaways: [
+            "Nova Labs pricing is 20% lower on tier 2.",
+            "Our missing SSO integration blocked 4 major deals.",
+            "Sales teams need stronger objection handling on latency claims."
+        ]
+    },
+    {
+        id: "brain_2",
+        title: "Call Transcript: Discovery w/ Vertex Systems",
+        type: "Call Transcript",
+        relevance: 85,
+        date: "2026-02-10",
+        author: "Gong AI",
+        keyTakeaways: [
+            "Prospect explicitly asked about SOC2 Type II compliance.",
+            "Current budget cycle ends in 3 weeks (high urgency).",
+            "Evaluated competitors but disliked manual data entry."
+        ]
+    },
+    {
+        id: "brain_3",
+        title: "Go-to-Market Playbook v4",
+        type: "Strategy Doc",
+        relevance: 92,
+        date: "2025-11-20",
+        author: "Alex Morgan (CMO)",
+        keyTakeaways: [
+            "Focus outbound efforts on recently funded Series B.",
+            "Lead with the 'Time to Value' metric in cold outreach.",
+            "Avoid pitching feature lists; pitch workflow transformation."
+        ]
+    },
+    {
+        id: "brain_4",
+        title: "Tech Stack Integration Requirements",
+        type: "Internal Wiki",
+        relevance: 78,
+        date: "2025-09-05",
+        author: "Dev Team",
+        keyTakeaways: [
+            "OAuth2 requires explicit scope whitelisting.",
+            "Webhooks support exponential backoff.",
+            "Rate limit is 10k req/min per tenant."
+        ]
+    }
+]
+
+// --- CHAT HISTORY DATA ---
+export interface HistoryItem {
+    id: string
+    query: string
+    mode: "prospecting" | "pmf_analysis" | "brain_query"
+    date: Date
+}
+
+export const MOCK_HISTORY: HistoryItem[] = [
+    { id: "hist_1", query: "Series B SaaS companies scaling ML teams...", mode: "prospecting", date: new Date(Date.now() - 1000 * 60 * 60 * 24 * 1) }, // 1 day ago
+    { id: "hist_2", query: "CTOs at YC alumni companies in fintech", mode: "prospecting", date: new Date(Date.now() - 1000 * 60 * 60 * 24 * 3) }, // 3 days ago
+    { id: "hist_3", query: "VP Eng hiring aggressively for DevOps", mode: "prospecting", date: new Date(Date.now() - 1000 * 60 * 60 * 24 * 7) }, // 7 days ago
+    { id: "hist_4", query: "Evaluate CRM solutions for mid-market manufacturing...", mode: "pmf_analysis", date: new Date(Date.now() - 1000 * 60 * 60 * 2) }, // 2 hours ago
+    { id: "hist_5", query: "MLOps vs DataOps overlap in European markets", mode: "pmf_analysis", date: new Date(Date.now() - 1000 * 60 * 60 * 24 * 2) }, // 2 days ago
+    { id: "hist_6", query: "Identify gaps in HR tech performance management", mode: "pmf_analysis", date: new Date(Date.now() - 1000 * 60 * 60 * 24 * 5) }, // 5 days ago
+    { id: "hist_7", query: "Summarize Acme Corp's objections from last quarter...", mode: "brain_query", date: new Date(Date.now() - 1000 * 60 * 30) }, // 30 minutes ago
+    { id: "hist_8", query: "What was our win rate vs Nova Labs in Q3?", mode: "brain_query", date: new Date(Date.now() - 1000 * 60 * 60 * 24 * 1) }, // 1 day ago
+    { id: "hist_9", query: "List top feature requests from churned deals", mode: "brain_query", date: new Date(Date.now() - 1000 * 60 * 60 * 24 * 4) } // 4 days ago
+]

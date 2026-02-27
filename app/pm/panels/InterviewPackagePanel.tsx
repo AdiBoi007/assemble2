@@ -3,40 +3,38 @@
 import React, { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import {
-    X, ClipboardList, Clock, Target, MessageSquare, ShieldCheck, BookOpen, Users,
-    ChevronDown, ChevronRight, AlertTriangle, CheckCircle2, Zap,
+    X, ClipboardList, Clock, MessageSquare, ShieldCheck, BookOpen, Users,
+    ChevronDown, ChevronRight, AlertTriangle, CheckCircle2, Zap, LayoutTemplate
 } from "lucide-react"
 import {
-    DEMO_INTERVIEW_PLAN,
-    DEMO_QUESTION_BANK, DIFFICULTY_CONFIG,
-    DEMO_FOLLOW_UPS, RESPONSE_QUALITY_CONFIG,
-    DEMO_VARIANTS,
-    DEMO_INTERVIEWER_GUIDANCE,
-    DEMO_CANDIDATE_INSTRUCTIONS,
+    DEMO_PLAYBOOK_PLAN,
+    DEMO_DISCOVERY_BANK, IMPACT_CONFIG,
+    DEMO_OBJECTION_HANDLING, REACTION_CONFIG,
+    DEMO_PERSONA_VARIANTS,
+    DEMO_BATTLECARD_GUIDANCE,
+    DEMO_SDR_BRIEFING,
 } from "@/lib/pm-interview-data"
 
-type Tab = 'plan' | 'questions' | 'followups' | 'anticheat' | 'guidance' | 'instructions'
+type Tab = 'blueprint' | 'discovery' | 'objections' | 'personas' | 'battlecard' | 'briefing'
 
 const TABS: { key: Tab; label: string; icon: React.ElementType }[] = [
-    { key: 'plan', label: 'Plan', icon: ClipboardList },
-    { key: 'questions', label: 'Questions', icon: MessageSquare },
-    { key: 'followups', label: 'Follow-ups', icon: Zap },
-    { key: 'anticheat', label: 'Anti-Cheat', icon: ShieldCheck },
-    { key: 'guidance', label: 'Guidance', icon: BookOpen },
-    { key: 'instructions', label: 'Instructions', icon: Users },
+    { key: 'blueprint', label: 'Call Blueprint', icon: LayoutTemplate },
+    { key: 'discovery', label: 'Discovery Qs', icon: MessageSquare },
+    { key: 'objections', label: 'Objections', icon: Zap },
+    { key: 'personas', label: 'Personas', icon: Users },
+    { key: 'battlecard', label: 'Battlecard', icon: ShieldCheck },
+    { key: 'briefing', label: 'SDR Briefing', icon: BookOpen },
 ]
 
 const SECTION_COLORS: Record<string, string> = {
     intro: 'border-violet-500/40 bg-violet-500/5',
     technical: 'border-blue-500/40 bg-blue-500/5',
     'system-design': 'border-amber-500/40 bg-amber-500/5',
-    behavioural: 'border-emerald-500/40 bg-emerald-500/5',
-    culture: 'border-rose-500/40 bg-rose-500/5',
     closing: 'border-zinc-500/40 bg-zinc-500/5',
 }
 
 export default function InterviewPackagePanel({ onClose }: { onClose: () => void }) {
-    const [tab, setTab] = useState<Tab>('plan')
+    const [tab, setTab] = useState<Tab>('blueprint')
     const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set())
 
     const toggleExpand = (id: string) => {
@@ -56,8 +54,8 @@ export default function InterviewPackagePanel({ onClose }: { onClose: () => void
                         <ClipboardList className="w-5 h-5 text-violet-400" />
                     </div>
                     <div>
-                        <h2 className="text-sm font-semibold text-white">Interview Package Generator</h2>
-                        <p className="text-[11px] text-white/40 uppercase tracking-wider">Structured Interview Plan</p>
+                        <h2 className="text-sm font-semibold text-white">Discovery Call Architect</h2>
+                        <p className="text-[11px] text-white/40 uppercase tracking-wider">Dynamic Sales Playbook</p>
                     </div>
                 </div>
                 <button onClick={onClose} className="w-8 h-8 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] flex items-center justify-center transition-colors">
@@ -66,14 +64,14 @@ export default function InterviewPackagePanel({ onClose }: { onClose: () => void
             </div>
 
             {/* Tabs */}
-            <div className="px-4 pt-3 pb-1 flex gap-1 overflow-x-auto border-b border-white/[0.06]">
+            <div className="px-4 pt-3 pb-1 flex gap-1 overflow-x-auto border-b border-white/[0.06] custom-scrollbar">
                 {TABS.map(t => (
                     <button
                         key={t.key}
                         onClick={() => setTab(t.key)}
                         className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-[11px] font-medium transition-all whitespace-nowrap ${tab === t.key
-                                ? 'bg-violet-500/15 text-violet-400 border border-violet-500/30'
-                                : 'text-white/40 hover:text-white/60 hover:bg-white/[0.04]'
+                            ? 'bg-violet-500/15 text-violet-400 border border-violet-500/30'
+                            : 'text-white/40 hover:text-white/60 hover:bg-white/[0.04]'
                             }`}
                     >
                         <t.icon className="w-3.5 h-3.5" />
@@ -83,7 +81,7 @@ export default function InterviewPackagePanel({ onClose }: { onClose: () => void
             </div>
 
             {/* Content */}
-            <div className="flex-1 overflow-y-auto px-6 py-5 space-y-4">
+            <div className="flex-1 overflow-y-auto px-6 py-5 space-y-4 custom-scrollbar">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={tab}
@@ -92,12 +90,12 @@ export default function InterviewPackagePanel({ onClose }: { onClose: () => void
                         exit={{ opacity: 0, y: -8 }}
                         transition={{ duration: 0.2 }}
                     >
-                        {tab === 'plan' && <PlanTab />}
-                        {tab === 'questions' && <QuestionsTab expandedItems={expandedItems} toggleExpand={toggleExpand} />}
-                        {tab === 'followups' && <FollowupsTab />}
-                        {tab === 'anticheat' && <AntiCheatTab />}
-                        {tab === 'guidance' && <GuidanceTab expandedItems={expandedItems} toggleExpand={toggleExpand} />}
-                        {tab === 'instructions' && <InstructionsTab expandedItems={expandedItems} toggleExpand={toggleExpand} />}
+                        {tab === 'blueprint' && <BlueprintTab />}
+                        {tab === 'discovery' && <DiscoveryTab expandedItems={expandedItems} toggleExpand={toggleExpand} />}
+                        {tab === 'objections' && <ObjectionsTab />}
+                        {tab === 'personas' && <PersonasTab />}
+                        {tab === 'battlecard' && <BattlecardTab expandedItems={expandedItems} toggleExpand={toggleExpand} />}
+                        {tab === 'briefing' && <BriefingTab expandedItems={expandedItems} toggleExpand={toggleExpand} />}
                     </motion.div>
                 </AnimatePresence>
             </div>
@@ -105,17 +103,17 @@ export default function InterviewPackagePanel({ onClose }: { onClose: () => void
     )
 }
 
-/* ─── Plan Tab ──────────────────────────────────────────────────────────────── */
-function PlanTab() {
-    const plan = DEMO_INTERVIEW_PLAN
+/* ─── Blueprint Tab ──────────────────────────────────────────────────────────────── */
+function BlueprintTab() {
+    const plan = DEMO_PLAYBOOK_PLAN
     const totalMinutes = plan.sections.reduce((s, sec) => s + sec.durationMinutes, 0)
 
     return (
-        <div className="space-y-4">
+        <div className="space-y-4 animate-fade-in">
             <div className="flex items-center justify-between">
                 <div>
                     <h3 className="text-sm font-semibold text-white">{plan.roleTitle}</h3>
-                    <p className="text-[11px] text-white/40 mt-0.5">{plan.totalDuration}</p>
+                    <p className="text-[11px] text-emerald-400/80 mt-0.5">{plan.totalDuration} • Targeted for VP Eng</p>
                 </div>
                 <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-violet-500/10 border border-violet-500/20">
                     <Clock className="w-3 h-3 text-violet-400" />
@@ -132,14 +130,14 @@ function PlanTab() {
                                 <span className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-[10px] font-bold text-white/60">{i + 1}</span>
                                 <div>
                                     <h4 className="text-[13px] font-semibold text-white">{sec.title}</h4>
-                                    {sec.interviewer && <p className="text-[10px] text-white/40 mt-0.5">Interviewer: {sec.interviewer}</p>}
+                                    {sec.interviewer && <p className="text-[10px] text-white/40 mt-0.5">Assigned to: {sec.interviewer}</p>}
                                 </div>
                             </div>
                             <span className="text-[10px] text-white/50 font-mono bg-white/[0.06] px-2 py-0.5 rounded">{sec.duration}</span>
                         </div>
 
                         <div className="space-y-2 mb-3">
-                            <p className="text-[10px] text-white/30 uppercase tracking-wider font-medium">Objectives</p>
+                            <p className="text-[10px] text-white/30 uppercase tracking-wider font-medium">Call Objectives</p>
                             <div className="flex flex-wrap gap-1.5">
                                 {sec.objectives.map((obj, j) => (
                                     <span key={j} className="text-[10px] text-white/60 bg-white/[0.06] px-2 py-0.5 rounded-full">{obj}</span>
@@ -148,7 +146,7 @@ function PlanTab() {
                         </div>
 
                         <div className="space-y-1.5">
-                            <p className="text-[10px] text-white/30 uppercase tracking-wider font-medium">Sample Probes</p>
+                            <p className="text-[10px] text-white/30 uppercase tracking-wider font-medium">Scripted Probes</p>
                             {sec.probes.slice(0, 2).map((p, j) => (
                                 <p key={j} className="text-[11px] text-white/50 pl-3 border-l-2 border-white/10">{p}</p>
                             ))}
@@ -165,31 +163,31 @@ function PlanTab() {
     )
 }
 
-/* ─── Questions Tab ─────────────────────────────────────────────────────────── */
-function QuestionsTab({ expandedItems, toggleExpand }: { expandedItems: Set<string>; toggleExpand: (id: string) => void }) {
-    const categories = ['technical', 'domain', 'soft', 'leadership'] as const
+/* ─── Discovery Tab ─────────────────────────────────────────────────────────── */
+function DiscoveryTab({ expandedItems, toggleExpand }: { expandedItems: Set<string>; toggleExpand: (id: string) => void }) {
+    const categories = ['pain', 'budget', 'authority', 'timeline'] as const
     const catConfig: Record<string, { label: string; color: string }> = {
-        technical: { label: 'Technical', color: 'text-blue-400' },
-        domain: { label: 'Domain', color: 'text-amber-400' },
-        soft: { label: 'Soft Skills', color: 'text-emerald-400' },
-        leadership: { label: 'Leadership', color: 'text-violet-400' },
+        pain: { label: 'Pain Identification', color: 'text-blue-400' },
+        budget: { label: 'Budget & Cost', color: 'text-amber-400' },
+        authority: { label: 'Authority Mapping', color: 'text-emerald-400' },
+        timeline: { label: 'Timeline & Urgency', color: 'text-violet-400' },
     }
 
     return (
-        <div className="space-y-5">
+        <div className="space-y-5 animate-fade-in">
             <div className="flex items-center justify-between">
-                <h3 className="text-sm font-semibold text-white">Competency Question Bank</h3>
-                <span className="text-[10px] text-white/40">{DEMO_QUESTION_BANK.length} questions</span>
+                <h3 className="text-sm font-semibold text-white">BANT Discovery Bank</h3>
+                <span className="text-[10px] text-white/40">{DEMO_DISCOVERY_BANK.length} questions</span>
             </div>
 
             {categories.map(cat => {
-                const qs = DEMO_QUESTION_BANK.filter(q => q.category === cat)
+                const qs = DEMO_DISCOVERY_BANK.filter(q => q.category === cat)
                 if (!qs.length) return null
                 return (
                     <div key={cat} className="space-y-2">
                         <h4 className={`text-[11px] font-semibold uppercase tracking-wider ${catConfig[cat].color}`}>{catConfig[cat].label}</h4>
                         {qs.map(q => {
-                            const dc = DIFFICULTY_CONFIG[q.difficulty]
+                            const dc = IMPACT_CONFIG[q.impact]
                             const isOpen = expandedItems.has(q.id)
                             return (
                                 <div key={q.id} className="rounded-xl border border-white/[0.08] bg-white/[0.02] overflow-hidden">
@@ -212,13 +210,13 @@ function QuestionsTab({ expandedItems, toggleExpand }: { expandedItems: Set<stri
                                             className="px-4 pb-3 border-t border-white/[0.06] pt-3 space-y-2"
                                         >
                                             <div>
-                                                <p className="text-[10px] text-emerald-400/80 font-medium mb-1">✅ Expected Signals</p>
+                                                <p className="text-[10px] text-emerald-400/80 font-medium mb-1">✅ Buying Signals (Green Flags)</p>
                                                 {q.expectedSignals.map((s, i) => (
                                                     <p key={i} className="text-[11px] text-white/50 pl-3 border-l border-emerald-500/20 mb-1">{s}</p>
                                                 ))}
                                             </div>
                                             <div>
-                                                <p className="text-[10px] text-red-400/80 font-medium mb-1">🚩 Red Flags</p>
+                                                <p className="text-[10px] text-red-400/80 font-medium mb-1">🚩 Deal Risk (Red Flags)</p>
                                                 {q.redFlags.map((f, i) => (
                                                     <p key={i} className="text-[11px] text-white/50 pl-3 border-l border-red-500/20 mb-1">{f}</p>
                                                 ))}
@@ -235,38 +233,37 @@ function QuestionsTab({ expandedItems, toggleExpand }: { expandedItems: Set<stri
     )
 }
 
-/* ─── Follow-ups Tab ────────────────────────────────────────────────────────── */
-function FollowupsTab() {
-    const grouped = DEMO_FOLLOW_UPS.reduce((acc, fu) => {
+/* ─── Objections Tab ────────────────────────────────────────────────────────── */
+function ObjectionsTab() {
+    const grouped = DEMO_OBJECTION_HANDLING.reduce((acc, fu) => {
         if (!acc[fu.baseQuestion]) acc[fu.baseQuestion] = []
         acc[fu.baseQuestion].push(fu)
         return acc
-    }, {} as Record<string, typeof DEMO_FOLLOW_UPS>)
+    }, {} as Record<string, typeof DEMO_OBJECTION_HANDLING>)
 
     return (
-        <div className="space-y-5">
+        <div className="space-y-5 animate-fade-in">
             <div>
-                <h3 className="text-sm font-semibold text-white">Dynamic Follow-up Generator</h3>
-                <p className="text-[11px] text-white/40 mt-0.5">Adapts based on candidate response quality</p>
+                <h3 className="text-sm font-semibold text-white">Dynamic Objection Handling</h3>
+                <p className="text-[11px] text-white/40 mt-0.5">Adapts based on prospect's tone and reaction</p>
             </div>
 
             {Object.entries(grouped).map(([question, followUps]) => (
                 <div key={question} className="rounded-xl border border-white/[0.08] bg-white/[0.02] overflow-hidden">
                     <div className="px-4 py-3 border-b border-white/[0.06]">
-                        <p className="text-[10px] text-white/30 uppercase tracking-wider font-medium mb-1">Base Question</p>
+                        <p className="text-[10px] text-white/30 uppercase tracking-wider font-medium mb-1">Common Objection</p>
                         <p className="text-[12px] text-white/70 font-medium">{question}</p>
                     </div>
                     <div className="p-3 space-y-2">
                         {followUps.map(fu => {
-                            const rc = RESPONSE_QUALITY_CONFIG[fu.responseQuality]
+                            const rc = REACTION_CONFIG[fu.reaction]
                             return (
                                 <div key={fu.id} className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-3">
                                     <div className="flex items-center gap-2 mb-2">
                                         <span className={`text-[9px] font-medium px-1.5 py-0.5 rounded ${rc.color}`}>{rc.icon} {rc.label} Response</span>
-                                        <span className="text-[9px] text-white/20">Depth {fu.depth}</span>
                                     </div>
                                     <p className="text-[11px] text-white/60 mb-1.5">{fu.followUp}</p>
-                                    <p className="text-[10px] text-white/30 italic">{fu.purpose}</p>
+                                    <p className="text-[10px] text-white/30 italic">Strategy: {fu.purpose}</p>
                                 </div>
                             )
                         })}
@@ -277,30 +274,30 @@ function FollowupsTab() {
     )
 }
 
-/* ─── Anti-Cheat Tab ────────────────────────────────────────────────────────── */
-function AntiCheatTab() {
-    const grouped = DEMO_VARIANTS.reduce((acc, v) => {
+/* ─── Personas Tab ────────────────────────────────────────────────────────── */
+function PersonasTab() {
+    const grouped = DEMO_PERSONA_VARIANTS.reduce((acc, v) => {
         if (!acc[v.originalId]) acc[v.originalId] = []
         acc[v.originalId].push(v)
         return acc
-    }, {} as Record<string, typeof DEMO_VARIANTS>)
+    }, {} as Record<string, typeof DEMO_PERSONA_VARIANTS>)
 
-    const original = DEMO_QUESTION_BANK.reduce((acc, q) => {
+    const original = DEMO_DISCOVERY_BANK.reduce((acc, q) => {
         acc[q.id] = q
         return acc
-    }, {} as Record<string, (typeof DEMO_QUESTION_BANK)[number]>)
+    }, {} as Record<string, (typeof DEMO_DISCOVERY_BANK)[number]>)
 
     return (
-        <div className="space-y-5">
+        <div className="space-y-5 animate-fade-in">
             <div>
-                <h3 className="text-sm font-semibold text-white">Anti-Cheat Question Variants</h3>
-                <p className="text-[11px] text-white/40 mt-0.5">Isomorphic versions prevent memorisation and leakage</p>
+                <h3 className="text-sm font-semibold text-white">Persona Context Variants</h3>
+                <p className="text-[11px] text-white/40 mt-0.5">Modify your pitch based on who joins the call</p>
             </div>
 
             {Object.entries(grouped).map(([origId, variants]) => (
                 <div key={origId} className="rounded-xl border border-white/[0.08] bg-white/[0.02] overflow-hidden">
                     <div className="px-4 py-3 border-b border-white/[0.06]">
-                        <p className="text-[10px] text-white/30 uppercase tracking-wider font-medium mb-1">Original</p>
+                        <p className="text-[10px] text-white/30 uppercase tracking-wider font-medium mb-1">Original Discovery Probe</p>
                         <p className="text-[12px] text-white/70 font-medium">{original[origId]?.question || origId}</p>
                     </div>
                     <div className="p-3 grid gap-2">
@@ -308,17 +305,9 @@ function AntiCheatTab() {
                             <div key={v.id} className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-3">
                                 <div className="flex items-center justify-between mb-2">
                                     <span className="text-[10px] font-semibold text-violet-400">{v.variantLabel}</span>
-                                    <div className="flex items-center gap-1.5">
-                                        {v.isIsomorphic && <span className="text-[9px] text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded">✓ Isomorphic</span>}
-                                        {v.difficultyDelta !== 0 && (
-                                            <span className={`text-[9px] px-1.5 py-0.5 rounded ${v.difficultyDelta > 0 ? 'text-red-400 bg-red-500/10' : 'text-emerald-400 bg-emerald-500/10'}`}>
-                                                {v.difficultyDelta > 0 ? '↑ Harder' : '↓ Easier'}
-                                            </span>
-                                        )}
-                                    </div>
                                 </div>
                                 <p className="text-[11px] text-white/60 mb-1.5">{v.question}</p>
-                                <p className="text-[10px] text-white/30">Context: {v.context}</p>
+                                <p className="text-[10px] text-emerald-400/80">Context: {v.context}</p>
                             </div>
                         ))}
                     </div>
@@ -328,16 +317,16 @@ function AntiCheatTab() {
     )
 }
 
-/* ─── Guidance Tab ──────────────────────────────────────────────────────────── */
-function GuidanceTab({ expandedItems, toggleExpand }: { expandedItems: Set<string>; toggleExpand: (id: string) => void }) {
+/* ─── Battlecard Tab ──────────────────────────────────────────────────────────── */
+function BattlecardTab({ expandedItems, toggleExpand }: { expandedItems: Set<string>; toggleExpand: (id: string) => void }) {
     return (
-        <div className="space-y-5">
+        <div className="space-y-5 animate-fade-in">
             <div>
-                <h3 className="text-sm font-semibold text-white">Interviewer Guidance Pack</h3>
-                <p className="text-[11px] text-white/40 mt-0.5">Expected answers, probing strategies, and scoring</p>
+                <h3 className="text-sm font-semibold text-white">Decision Criteria Battlecard</h3>
+                <p className="text-[11px] text-white/40 mt-0.5">Scoring rules for deal progression</p>
             </div>
 
-            {DEMO_INTERVIEWER_GUIDANCE.map(g => {
+            {DEMO_BATTLECARD_GUIDANCE.map(g => {
                 const isOpen = expandedItems.has(g.id)
                 return (
                     <div key={g.id} className="rounded-xl border border-white/[0.08] bg-white/[0.02] overflow-hidden">
@@ -347,10 +336,6 @@ function GuidanceTab({ expandedItems, toggleExpand }: { expandedItems: Set<strin
                         </button>
                         {isOpen && (
                             <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} className="px-4 pb-4 space-y-3 border-t border-white/[0.06] pt-3">
-                                <div>
-                                    <p className="text-[10px] text-blue-400/80 font-medium mb-1">📝 Expected Answer</p>
-                                    <p className="text-[11px] text-white/50">{g.expectedAnswer}</p>
-                                </div>
                                 <div>
                                     <p className="text-[10px] text-violet-400/80 font-medium mb-1">🎯 Probing Strategy</p>
                                     {g.probingStrategy.map((s, i) => (
@@ -372,7 +357,7 @@ function GuidanceTab({ expandedItems, toggleExpand }: { expandedItems: Set<strin
                                     </div>
                                 </div>
                                 <div>
-                                    <p className="text-[10px] text-amber-400/80 font-medium mb-1.5">📊 Scoring</p>
+                                    <p className="text-[10px] text-amber-400/80 font-medium mb-1.5">📊 MEDDIC Score</p>
                                     <div className="space-y-1">
                                         {g.scoringCriteria.map(sc => (
                                             <div key={sc.score} className="flex items-center gap-2">
@@ -391,16 +376,16 @@ function GuidanceTab({ expandedItems, toggleExpand }: { expandedItems: Set<strin
     )
 }
 
-/* ─── Instructions Tab ──────────────────────────────────────────────────────── */
-function InstructionsTab({ expandedItems, toggleExpand }: { expandedItems: Set<string>; toggleExpand: (id: string) => void }) {
+/* ─── Briefing Tab ──────────────────────────────────────────────────────── */
+function BriefingTab({ expandedItems, toggleExpand }: { expandedItems: Set<string>; toggleExpand: (id: string) => void }) {
     return (
-        <div className="space-y-5">
+        <div className="space-y-5 animate-fade-in">
             <div>
-                <h3 className="text-sm font-semibold text-white">Candidate Instructions</h3>
-                <p className="text-[11px] text-white/40 mt-0.5">Auto-generated briefs for each interview section</p>
+                <h3 className="text-sm font-semibold text-white">SDR Briefing</h3>
+                <p className="text-[11px] text-white/40 mt-0.5">Auto-generated pre-call recon instructions</p>
             </div>
 
-            {DEMO_CANDIDATE_INSTRUCTIONS.map(ci => {
+            {DEMO_SDR_BRIEFING.map(ci => {
                 const isOpen = expandedItems.has(ci.id)
                 return (
                     <div key={ci.id} className="rounded-xl border border-white/[0.08] bg-white/[0.02] overflow-hidden">
@@ -409,7 +394,7 @@ function InstructionsTab({ expandedItems, toggleExpand }: { expandedItems: Set<s
                                 {isOpen ? <ChevronDown className="w-3.5 h-3.5 text-white/30 shrink-0" /> : <ChevronRight className="w-3.5 h-3.5 text-white/30 shrink-0" />}
                                 <div>
                                     <p className="text-[12px] text-white/70 font-medium">{ci.section}</p>
-                                    <p className="text-[10px] text-white/30 mt-0.5">Time limit: {ci.timeLimit}</p>
+                                    <p className="text-[10px] text-emerald-400/50 mt-0.5">Time limit: {ci.timeLimit}</p>
                                 </div>
                             </div>
                         </button>
@@ -426,21 +411,17 @@ function InstructionsTab({ expandedItems, toggleExpand }: { expandedItems: Set<s
                                 </div>
                                 <div className="grid grid-cols-2 gap-3">
                                     <div>
-                                        <p className="text-[10px] text-emerald-400/80 font-medium mb-1">✅ Do</p>
+                                        <p className="text-[10px] text-emerald-400/80 font-medium mb-1">✅ Target actions</p>
                                         {ci.doList.map((d, i) => (
                                             <p key={i} className="text-[10px] text-white/40 mb-0.5">{d}</p>
                                         ))}
                                     </div>
                                     <div>
-                                        <p className="text-[10px] text-red-400/80 font-medium mb-1">❌ Don&apos;t</p>
+                                        <p className="text-[10px] text-red-400/80 font-medium mb-1">❌ Avoid</p>
                                         {ci.dontList.map((d, i) => (
                                             <p key={i} className="text-[10px] text-white/40 mb-0.5">{d}</p>
                                         ))}
                                     </div>
-                                </div>
-                                <div className="rounded-lg bg-blue-500/5 border border-blue-500/20 p-3">
-                                    <p className="text-[10px] text-blue-400/80 font-medium mb-1">📋 How You&apos;ll Be Evaluated</p>
-                                    <p className="text-[11px] text-white/50">{ci.evaluationPreview}</p>
                                 </div>
                             </motion.div>
                         )}

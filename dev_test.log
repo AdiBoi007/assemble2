@@ -1,0 +1,10 @@
+   ▲ Next.js 16.0.10 (Turbopack)
+   - Local:         http://localhost:3005
+   - Network:       http://10.129.58.4:3005
+
+ ✓ Starting...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ ✓ Ready in 525ms
+ GET /chat 200 in 2.0s (compile: 1785ms, render: 230ms)
+ HEAD /chat 200 in 35ms (compile: 3ms, render: 32ms)
+[?25h
