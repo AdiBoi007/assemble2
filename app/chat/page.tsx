@@ -7,6 +7,7 @@ import { ArrowUpRight, Brain, BarChart3, Bot, Terminal } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Inter } from "next/font/google"
 import { OmniLogo } from "@/components/omni-logo"
+import Image from "next/image"
 import { parseCentralAgentIntent, AgentMode } from "@/app/pm/lib/agent-core"
 import { SALES_PMF_DATA, SALES_RADAR_STREAMS, SALES_REVENUE_DATA, SALES_AGENTS, SALES_RESEARCH_DATA, SALES_OUTREACH_DATA, SALES_FORECAST_DATA, SALES_POACHING_DATA, SALES_OBJECTION_DATA, SALES_PRICING_DATA, SALES_FOLLOW_UP_DATA, SALES_LEAD_SCORING_DATA, SALES_WAR_ROOM_DATA, SALES_INTEGRATIONS_DATA } from "@/lib/sales-engine-data"
 import { PMFEngine } from "@/components/sales/pmf-engine"
@@ -87,7 +88,7 @@ function AgentChatCore() {
     }
 
     return (
-        <div className={cn("flex h-screen w-full bg-[#050505] text-white overflow-hidden font-sans selection:bg-white/20", font.className)}>
+        <div className={cn("flex h-screen w-full bg-black text-white overflow-hidden font-sans selection:bg-white/20", font.className)}>
 
             {/* Ambient Background Glows */}
             <div className="absolute top-[-20%] left-[-10%] w-[40%] h-[40%] bg-white/5 rounded-full blur-[120px] pointer-events-none opacity-50" />
@@ -98,14 +99,14 @@ function AgentChatCore() {
 
                 {/* Header */}
                 <div className="h-16 px-6 shrink-0 border-b border-white/[0.04] flex items-center gap-3 bg-white/[0.01] backdrop-blur-md">
-                    <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center drop-shadow-md">
-                        <OmniLogo size={20} className="text-black" />
+                    <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center drop-shadow-md overflow-hidden">
+                        <Image src="/logo.jpg" alt="Agent Icon" width={32} height={32} className="w-full h-full object-cover" />
                     </div>
                     <div>
                         <h2 className="text-sm font-bold tracking-tight text-white/90">Central Growth Agent</h2>
                         <div className="flex items-center gap-1.5 mt-0.5">
-                            <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.8)]" />
-                            <span className="text-[10px] uppercase tracking-widest text-indigo-400/80 font-bold">Online & Tracking</span>
+                            <div className="w-1.5 h-1.5 rounded-full bg-zinc-800 shadow-[0_0_8px_rgba(99,102,241,0.8)]" />
+                            <span className="text-[10px] uppercase tracking-widest text-zinc-300/80 font-bold">Online & Tracking</span>
                         </div>
                     </div>
                 </div>
@@ -123,18 +124,18 @@ function AgentChatCore() {
                             )}
                         >
                             {!msg.isStep && (
-                                <span className={cn("text-[10px] uppercase tracking-widest mb-1.5 px-1 font-semibold", msg.role === "user" ? "text-white/30" : "text-indigo-400/80")}>
+                                <span className={cn("text-[10px] uppercase tracking-widest mb-1.5 px-1 font-semibold", msg.role === "user" ? "text-white/30" : "text-zinc-300/80")}>
                                     {msg.role === "user" ? "You" : "Growth Agent"}
                                 </span>
                             )}
                             <div className={cn(
                                 "px-5 py-3.5 rounded-[1.5rem] text-[13px] leading-relaxed font-medium whitespace-pre-wrap shadow-lg",
                                 msg.isStep
-                                    ? "bg-white/[0.01] border border-white/5 text-indigo-400 font-mono text-[11px] shadow-none !py-2.5 !rounded-lg"
+                                    ? "bg-white/[0.01] border border-white/5 text-zinc-300 font-mono text-[11px] shadow-none !py-2.5 !rounded-lg"
                                     : msg.role === "user"
                                         ? "bg-white/10 text-white border border-white/20 rounded-tr-sm backdrop-blur-md"
                                         : msg.tone === "hot"
-                                            ? "bg-indigo-500/5 border border-indigo-500/30 text-white/90 rounded-tl-sm backdrop-blur-md shadow-[0_0_15px_rgba(99,102,241,0.15)]"
+                                            ? "bg-white/5 border border-white/30 text-white/90 rounded-tl-sm backdrop-blur-md shadow-[0_0_15px_rgba(99,102,241,0.15)]"
                                             : msg.tone === "cold"
                                                 ? "bg-black border border-white/20 text-white/80 rounded-tl-sm backdrop-blur-md italic font-mono"
                                                 : "bg-white/[0.05] border border-white/[0.08] text-white/90 rounded-tl-sm backdrop-blur-md"
@@ -147,7 +148,7 @@ function AgentChatCore() {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.3 }}
                                     onClick={() => setInputValue(`Execute: ${msg.nextAction}`)}
-                                    className="mt-3 ml-2 px-4 py-2 text-[11px] font-bold tracking-widest uppercase bg-white/10 hover:bg-indigo-500 text-white hover:text-white border border-white/20 hover:border-indigo-500 rounded-lg transition-all duration-300 shadow-md flex items-center gap-2"
+                                    className="mt-3 ml-2 px-4 py-2 text-[11px] font-bold tracking-widest uppercase bg-white/10 hover:bg-zinc-800 text-white hover:text-white border border-white/20 hover:border-white/10 rounded-lg transition-all duration-300 shadow-md flex items-center gap-2"
                                 >
                                     {msg.nextAction} <ArrowUpRight className="w-3 h-3" />
                                 </motion.button>
@@ -182,7 +183,7 @@ function AgentChatCore() {
                             disabled={!inputValue.trim() || isTyping}
                             className={cn(
                                 "absolute right-2 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200",
-                                inputValue.trim() && !isTyping ? "bg-indigo-500 text-white hover:scale-105 shadow-[0_0_10px_rgba(99,102,241,0.5)]" : "bg-white/10 text-white/30"
+                                inputValue.trim() && !isTyping ? "bg-zinc-800 text-white hover:scale-105 shadow-[0_0_10px_rgba(99,102,241,0.5)]" : "bg-white/10 text-white/30"
                             )}
                         >
                             <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
@@ -190,16 +191,16 @@ function AgentChatCore() {
                     </form>
                     <div className="flex items-center justify-center gap-6 mt-4 text-[10px] text-white/40 font-semibold uppercase tracking-widest">
                         <button type="button" onClick={() => setInputValue("Analyze PMF for DevTools")} className="flex items-center gap-2 hover:text-white transition-colors group">
-                            <Brain className="w-3.5 h-3.5 text-white/30 group-hover:text-indigo-400 transition-colors" /> PMF Analysis
+                            <Brain className="w-3.5 h-3.5 text-white/30 group-hover:text-zinc-300 transition-colors" /> PMF Analysis
                         </button>
                         <button type="button" onClick={() => setInputValue("Show active pipeline")} className="flex items-center gap-2 hover:text-white transition-colors group">
-                            <BarChart3 className="w-3.5 h-3.5 text-white/30 group-hover:text-indigo-400 transition-colors" /> Live Pipeline
+                            <BarChart3 className="w-3.5 h-3.5 text-white/30 group-hover:text-zinc-300 transition-colors" /> Live Pipeline
                         </button>
                         <button type="button" onClick={() => setInputValue("Check agent status")} className="flex items-center gap-2 hover:text-white transition-colors group">
-                            <Bot className="w-3.5 h-3.5 text-white/30 group-hover:text-indigo-400 transition-colors" /> Growth Team
+                            <Bot className="w-3.5 h-3.5 text-white/30 group-hover:text-zinc-300 transition-colors" /> Growth Team
                         </button>
-                        <button type="button" onClick={() => setInputValue("Initiate War Room macro")} className="flex items-center gap-2 hover:text-red-400 transition-colors group">
-                            <Terminal className="w-3.5 h-3.5 text-white/30 group-hover:text-red-500 transition-colors" /> War Room
+                        <button type="button" onClick={() => setInputValue("Initiate War Room macro")} className="flex items-center gap-2 hover:text-neutral-400 transition-colors group">
+                            <Terminal className="w-3.5 h-3.5 text-white/30 group-hover:text-neutral-400 transition-colors" /> War Room
                         </button>
                     </div>
                 </div>
@@ -221,7 +222,7 @@ function AgentChatCore() {
                                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                                 className="relative flex items-center justify-center p-8 rounded-full bg-white/[0.02] border border-white/[0.05] shadow-[0_0_60px_rgba(255,255,255,0.05)]"
                             >
-                                <OmniLogo size={80} className="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]" />
+                                <OmniLogo size={80} className="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] z-10" />
                                 <div className="absolute inset-0 rounded-full border border-white/10 opacity-50 animate-[spin_10s_linear_infinite]" />
                                 <div className="absolute inset-[-20px] rounded-full border border-dashed border-white/5 opacity-30 animate-[spin_20s_linear_infinite_reverse]" />
                             </motion.div>
@@ -259,7 +260,7 @@ function AgentChatCore() {
 
 export default function CentralAgentCommandCenter() {
     return (
-        <Suspense fallback={<div className="flex h-screen w-full bg-[#050505] items-center justify-center text-indigo-400">Initializing Growth Neural Net...</div>}>
+        <Suspense fallback={<div className="flex h-screen w-full bg-black items-center justify-center text-zinc-300">Initializing Growth Neural Net...</div>}>
             <AgentChatCore />
         </Suspense>
     )

@@ -26,8 +26,8 @@ export function ResearchDeepDive({ data }: { data: ResearchData }) {
         >
             <div className="mb-6 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-xl bg-blue-500/10 border border-blue-500/20">
-                        <Globe className="w-5 h-5 text-blue-400" />
+                    <div className="p-2 rounded-xl bg-white/10 border border-white/20">
+                        <Globe className="w-5 h-5 text-zinc-300" />
                     </div>
                     <div>
                         <h2 className="text-xl font-bold tracking-tight">Research Deep Dive</h2>
@@ -53,7 +53,7 @@ export function ResearchDeepDive({ data }: { data: ResearchData }) {
                     <div className="text-[10px] font-bold tracking-widest uppercase text-white/40 mb-2 flex items-center gap-1.5">
                         <Activity className="w-3 h-3" /> High-Intent Accounts
                     </div>
-                    <div className="text-2xl font-black text-emerald-400">{data.identifiedAccounts}</div>
+                    <div className="text-2xl font-black text-zinc-300">{data.identifiedAccounts}</div>
                 </div>
             </div>
 
@@ -62,8 +62,8 @@ export function ResearchDeepDive({ data }: { data: ResearchData }) {
                 <div className="space-y-3">
                     {data.highIntentSignals.map((item, i) => (
                         <div key={i} className="p-4 rounded-[1.2rem] bg-white/[0.02] border border-white/[0.05] flex items-start gap-4 backdrop-blur-md">
-                            <div className="flex flex-col items-center justify-center p-2 rounded-lg bg-blue-500/10 border border-blue-500/20 w-12 shrink-0">
-                                <span className="text-xs font-black text-blue-400">{item.score}</span>
+                            <div className="flex flex-col items-center justify-center p-2 rounded-lg bg-white/10 border border-white/20 w-12 shrink-0">
+                                <span className="text-xs font-black text-zinc-300">{item.score}</span>
                             </div>
                             <div className="pt-0.5">
                                 <h4 className="text-sm font-bold text-white/90 mb-1">{item.company}</h4>

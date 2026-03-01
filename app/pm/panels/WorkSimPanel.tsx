@@ -33,7 +33,7 @@ export default function WorkSimPanel({ onClose }: { onClose: () => void }) {
                     <div className="w-10 h-10 rounded-2xl flex items-center justify-center"
                         style={{ background: 'linear-gradient(135deg, rgba(59,130,246,0.15) 0%, rgba(59,130,246,0.05) 100%)' }}
                     >
-                        <Target className="w-5 h-5 text-blue-400/80" />
+                        <Target className="w-5 h-5 text-zinc-300/80" />
                     </div>
                     <div>
                         <h2 className="text-[15px] font-semibold text-white/90 tracking-[-0.01em]">Job Simulation Engine</h2>
@@ -115,7 +115,7 @@ function RoleDNATab({ data }: { data: RoleDNA }) {
                     <h1 className="text-2xl font-light text-white/90 tracking-tight">{data.title}</h1>
                     <p className="text-sm text-white/30 mt-1">Level {data.level} · Role DNA Decomposition</p>
                 </div>
-                <div className="px-3 py-1 rounded-full border border-blue-500/20 bg-blue-500/5 text-[10px] text-blue-400 uppercase tracking-widest font-semibold">
+                <div className="px-3 py-1 rounded-full border border-white/20 bg-white/5 text-[10px] text-zinc-300 uppercase tracking-widest font-semibold">
                     Analysis Complete
                 </div>
             </div>
@@ -144,10 +144,10 @@ function RoleDNATab({ data }: { data: RoleDNA }) {
                     <div className="grid gap-3">
                         {data.failureModes.map((fm, i) => (
                             <GridCard key={fm.id} delay={0.2 + i * 0.1} className="relative overflow-hidden group">
-                                <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-red-500/50 to-red-500/10" />
+                                <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-zinc-500/50 to-zinc-500/10" />
                                 <h3 className="text-sm font-medium text-white/80 flex items-center gap-2">
                                     {fm.title}
-                                    {fm.riskLevel === 'critical' && <span className="text-[9px] bg-red-500/20 text-red-400 px-1.5 py-0.5 rounded uppercase tracking-wider">Critical</span>}
+                                    {fm.riskLevel === 'critical' && <span className="text-[9px] bg-neutral-500/20 text-neutral-400 px-1.5 py-0.5 rounded uppercase tracking-wider">Critical</span>}
                                 </h3>
                                 <p className="text-xs text-white/40 mt-1 leading-relaxed">{fm.description}</p>
                             </GridCard>
@@ -166,11 +166,11 @@ function RoleDNATab({ data }: { data: RoleDNA }) {
                                 <div key={i}>
                                     <div className="flex justify-between text-xs mb-1.5">
                                         <span className="text-white/60 font-medium">{trait.trait}</span>
-                                        <span className="text-blue-400/60 font-mono">{trait.value}%</span>
+                                        <span className="text-zinc-300/60 font-mono">{trait.value}%</span>
                                     </div>
                                     <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
                                         <motion.div initial={{ width: 0 }} animate={{ width: `${trait.value}%` }} transition={{ delay: 0.6 + i * 0.1, duration: 1 }}
-                                            className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full"
+                                            className="h-full bg-gradient-to-r from-zinc-500 to-zinc-500 rounded-full"
                                         />
                                     </div>
                                     <p className="text-[10px] text-white/20 mt-1">{trait.description}</p>
@@ -183,14 +183,14 @@ function RoleDNATab({ data }: { data: RoleDNA }) {
                 <div className="col-span-2 space-y-4">
                     <SectionLabel>Signal Profiling</SectionLabel>
                     <div className="grid grid-cols-2 gap-4 h-full">
-                        <GridCard delay={0.5} className="bg-emerald-500/[0.02] border-emerald-500/10!">
-                            <h4 className="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                        <GridCard delay={0.5} className="bg-zinc-800/[0.02] border-white/10!">
+                            <h4 className="text-xs font-bold text-zinc-300 uppercase tracking-widest mb-3 flex items-center gap-2">
                                 <CheckCircle className="w-3 h-3" /> Good Profile
                             </h4>
                             <p className="text-sm text-white/60 leading-relaxed">"{data.goodProfile}"</p>
                         </GridCard>
-                        <GridCard delay={0.6} className="bg-red-500/[0.02] border-red-500/10!">
-                            <h4 className="text-xs font-bold text-red-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                        <GridCard delay={0.6} className="bg-neutral-800/[0.02] border-neutral-500/10!">
+                            <h4 className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-3 flex items-center gap-2">
                                 <AlertTriangle className="w-3 h-3" /> Bad Profile
                             </h4>
                             <p className="text-sm text-white/60 leading-relaxed">"{data.badProfile}"</p>
@@ -218,16 +218,16 @@ function SimulationTab({ nodes }: { nodes: AdaptiveNode[] }) {
                     <div className="absolute left-[11px] top-6 bottom-6 w-0.5 bg-gradient-to-b from-white/10 to-transparent" />
                     {nodes.map((node, i) => {
                         const isActive = activeNodeId === node.id
-                        const color = node.type === 'chaos' ? 'text-red-400 border-red-500/30 bg-red-500/5'
-                            : node.type === 'stretch' ? 'text-amber-400 border-amber-500/30 bg-amber-500/5'
-                                : 'text-blue-400 border-blue-500/30 bg-blue-500/5'
+                        const color = node.type === 'chaos' ? 'text-neutral-400 border-neutral-500/30 bg-neutral-500/5'
+                            : node.type === 'stretch' ? 'text-stone-300 border-white/30 bg-white/5'
+                                : 'text-zinc-300 border-white/30 bg-white/5'
 
                         return (
                             <motion.button key={node.id} onClick={() => setActiveNodeId(node.id)}
                                 initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.1 }}
                                 className={`relative flex items-start gap-4 mb-8 w-full text-left group`}
                             >
-                                <div className={`z-10 w-6 h-6 rounded-full border-2 bg-[#0c0c0f] flex items-center justify-center shrink-0 transition-all duration-300 ${isActive ? 'border-white scale-110 shadow-[0_0_10px_rgba(255,255,255,0.2)]' : 'border-white/10 group-hover:border-white/30'}`}>
+                                <div className={`z-10 w-6 h-6 rounded-full border-2 bg-zinc-800 flex items-center justify-center shrink-0 transition-all duration-300 ${isActive ? 'border-white scale-110 shadow-[0_0_10px_rgba(255,255,255,0.2)]' : 'border-white/10 group-hover:border-white/30'}`}>
                                     <div className={`w-2 h-2 rounded-full ${isActive ? 'bg-white' : 'bg-white/20'}`} />
                                 </div>
                                 <div className={`flex-1 p-3 rounded-xl border transition-all duration-300 ${isActive ? 'bg-white/[0.04] border-white/10' : 'bg-transparent border-transparent hover:bg-white/[0.02]'}`}>
@@ -246,12 +246,12 @@ function SimulationTab({ nodes }: { nodes: AdaptiveNode[] }) {
             </div>
 
             {/* Right: Simulation Environment Preview */}
-            <div className="flex-1 flex flex-col h-full rounded-2xl border border-white/5 bg-[#0a0a0c] overflow-hidden">
+            <div className="flex-1 flex flex-col h-full rounded-2xl border border-white/5 bg-zinc-800 overflow-hidden">
                 <div className="h-10 border-b border-white/5 bg-white/[0.02] flex items-center px-4 gap-2">
                     <div className="flex gap-1.5">
-                        <div className="w-2.5 h-2.5 rounded-full bg-red-500/20" />
-                        <div className="w-2.5 h-2.5 rounded-full bg-amber-500/20" />
-                        <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/20" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-neutral-500/20" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
                     </div>
                     <div className="h-4 w-px bg-white/5 mx-2" />
                     <span className="text-[10px] text-white/30 font-mono">Job Simulator v2.0</span>
@@ -264,7 +264,7 @@ function SimulationTab({ nodes }: { nodes: AdaptiveNode[] }) {
                                 <h3 className="text-lg font-light text-white/90 mb-2">{activeNode.description}</h3>
                                 <div className="flex flex-wrap gap-2">
                                     {activeNode.constraints.map((c, i) => (
-                                        <span key={i} className="text-[10px] bg-red-500/10 text-red-400/80 px-2 py-1 rounded border border-red-500/20">
+                                        <span key={i} className="text-[10px] bg-neutral-500/10 text-neutral-400/80 px-2 py-1 rounded border border-neutral-500/20">
                                             🛑 Constraint: {c}
                                         </span>
                                     ))}
@@ -273,7 +273,7 @@ function SimulationTab({ nodes }: { nodes: AdaptiveNode[] }) {
 
                             <div className="space-y-4">
                                 {activeNode.assets.map((asset, i) => (
-                                    <div key={i} className="rounded-lg border border-white/10 bg-[#050505] overflow-hidden">
+                                    <div key={i} className="rounded-lg border border-white/10 bg-zinc-800 overflow-hidden">
                                         <div className="px-3 py-2 bg-white/5 border-b border-white/5 flex items-center justify-between">
                                             <span className="text-xs text-white/50 font-mono flex items-center gap-2">
                                                 {asset.type === 'code' ? <FileCode className="w-3.5 h-3.5" />
@@ -321,13 +321,13 @@ function InstrumentationTab({ data }: { data: { signals: any[], probes: any[] } 
                                     <span className="text-[10px] font-mono text-white/20">Weight: {sig.weight}/10</span>
                                 </div>
                                 <div className="grid grid-cols-2 gap-3 mt-3">
-                                    <div className="p-2 rounded bg-emerald-500/5 border border-emerald-500/10">
-                                        <p className="text-[9px] text-emerald-400/60 uppercase font-bold mb-1">Pass Signal</p>
-                                        <p className="text-[11px] text-emerald-100/60 leading-tight">{sig.positiveIndicator}</p>
+                                    <div className="p-2 rounded bg-white/5 border border-white/10">
+                                        <p className="text-[9px] text-zinc-300/60 uppercase font-bold mb-1">Pass Signal</p>
+                                        <p className="text-[11px] text-zinc-400/60 leading-tight">{sig.positiveIndicator}</p>
                                     </div>
-                                    <div className="p-2 rounded bg-red-500/5 border border-red-500/10">
-                                        <p className="text-[9px] text-red-400/60 uppercase font-bold mb-1">Fail Signal</p>
-                                        <p className="text-[11px] text-red-100/60 leading-tight">{sig.negativeIndicator}</p>
+                                    <div className="p-2 rounded bg-neutral-500/5 border border-neutral-500/10">
+                                        <p className="text-[9px] text-neutral-400/60 uppercase font-bold mb-1">Fail Signal</p>
+                                        <p className="text-[11px] text-zinc-400/60 leading-tight">{sig.negativeIndicator}</p>
                                     </div>
                                 </div>
                             </div>
@@ -340,14 +340,14 @@ function InstrumentationTab({ data }: { data: { signals: any[], probes: any[] } 
             <div className="col-span-2 space-y-6">
                 <SectionLabel>Black Box Probes (Async)</SectionLabel>
                 <div className="relative pl-4">
-                    <div className="absolute left-[7px] top-0 bottom-0 w-0.5 bg-dashed bg-gradient-to-b from-purple-500/30 to-transparent" />
+                    <div className="absolute left-[7px] top-0 bottom-0 w-0.5 bg-dashed bg-gradient-to-b from-white/30 to-transparent" />
                     {data.probes.map((probe, i) => (
                         <GridCard key={i} delay={0.4 + i * 0.1} className="mb-4 ml-2 relative">
-                            <div className="absolute -left-[23px] top-6 w-3 h-3 rounded-full bg-[#0c0c0f] border-2 border-purple-500 flex items-center justify-center">
-                                <div className="w-1 h-1 bg-purple-500 rounded-full" />
+                            <div className="absolute -left-[23px] top-6 w-3 h-3 rounded-full bg-zinc-800 border-2 border-white/10 flex items-center justify-center">
+                                <div className="w-1 h-1 bg-zinc-800 rounded-full" />
                             </div>
                             <div className="mb-2">
-                                <span className="text-[9px] bg-purple-500/10 text-purple-400 px-2 py-0.5 rounded border border-purple-500/20 uppercase tracking-wider">
+                                <span className="text-[9px] bg-white/10 text-zinc-300 px-2 py-0.5 rounded border border-white/20 uppercase tracking-wider">
                                     Trigger: {probe.trigger}
                                 </span>
                             </div>
@@ -379,9 +379,9 @@ function DecisionTab({ brief }: { brief: HiringBrief }) {
                         <h1 className="text-2xl font-light text-white mb-1">{brief.candidateName}</h1>
                         <p className="text-sm text-white/40">{brief.role}</p>
                     </div>
-                    <div className={`text-right px-6 py-3 rounded-xl border ${isHire ? 'bg-emerald-500/10 border-emerald-500/20' : 'bg-red-500/10 border-red-500/20'}`}>
-                        <p className={`text-xs font-bold uppercase tracking-widest ${isHire ? 'text-emerald-400' : 'text-red-400'}`}>Recommendation</p>
-                        <p className={`text-xl font-semibold mt-1 ${isHire ? 'text-emerald-100' : 'text-red-100'}`}>
+                    <div className={`text-right px-6 py-3 rounded-xl border ${isHire ? 'bg-white/10 border-white/20' : 'bg-neutral-500/10 border-neutral-500/20'}`}>
+                        <p className={`text-xs font-bold uppercase tracking-widest ${isHire ? 'text-zinc-300' : 'text-neutral-400'}`}>Recommendation</p>
+                        <p className={`text-xl font-semibold mt-1 ${isHire ? 'text-zinc-400' : 'text-zinc-400'}`}>
                             {brief.recommendation.replace('_', ' ').toUpperCase()}
                         </p>
                     </div>
@@ -414,9 +414,9 @@ function DecisionTab({ brief }: { brief: HiringBrief }) {
                         <GridCard key={i} delay={0.2 + i * 0.1} className="py-4">
                             <div className="flex justify-between items-center mb-2">
                                 <h4 className="text-xs font-semibold text-white/80">{risk.area}</h4>
-                                <span className={`text-[9px] px-1.5 py-0.5 rounded uppercase tracking-wider ${risk.risk === 'low' ? 'bg-emerald-500/10 text-emerald-400'
-                                        : risk.risk === 'medium' ? 'bg-amber-500/10 text-amber-400'
-                                            : 'bg-red-500/10 text-red-400'
+                                <span className={`text-[9px] px-1.5 py-0.5 rounded uppercase tracking-wider ${risk.risk === 'low' ? 'bg-white/10 text-zinc-300'
+                                        : risk.risk === 'medium' ? 'bg-white/10 text-stone-300'
+                                            : 'bg-neutral-500/10 text-neutral-400'
                                     }`}>{risk.risk} Risk</span>
                             </div>
                             <p className="text-[11px] text-white/40 leading-relaxed">{risk.description}</p>
@@ -434,7 +434,7 @@ function DecisionTab({ brief }: { brief: HiringBrief }) {
                                 <div className="flex gap-0.5">
                                     {[1, 2, 3].map(bar => (
                                         <div key={bar} className={`w-1.5 h-2 rounded-sm ${(env.fit === 'high' && bar <= 3) || (env.fit === 'medium' && bar <= 2) || (env.fit === 'low' && bar <= 1)
-                                                ? 'bg-blue-400' : 'bg-white/10'
+                                                ? 'bg-zinc-800' : 'bg-white/10'
                                             }`} />
                                     ))}
                                 </div>
@@ -451,10 +451,10 @@ function DecisionTab({ brief }: { brief: HiringBrief }) {
                         <GridCard key={i} delay={0.4 + i * 0.1} className="py-4">
                             <div className="flex justify-between items-baseline mb-1">
                                 <h4 className="text-xs font-semibold text-white/80">{cap.skill}</h4>
-                                <span className="text-xs font-mono text-blue-400">{cap.score}/100</span>
+                                <span className="text-xs font-mono text-zinc-300">{cap.score}/100</span>
                             </div>
                             <div className="h-1 bg-white/5 rounded-full overflow-hidden mb-2">
-                                <div className="h-full bg-blue-500/50 rounded-full" style={{ width: `${cap.score}%` }} />
+                                <div className="h-full bg-white/50 rounded-full" style={{ width: `${cap.score}%` }} />
                             </div>
                             <p className="text-[10px] text-white/30 leading-snug">"{cap.evidence}"</p>
                         </GridCard>

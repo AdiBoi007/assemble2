@@ -43,9 +43,9 @@
   --surface-elevated: oklch(0.12 0 0);
 
   --chart-1: oklch(1 0 0);
-  --chart-2: var(--slate-blue);
-  --chart-3: var(--amber-gold);
-  --chart-4: var(--cool-gray);
+  --chart-2: var(--primary);
+  --chart-3: var(--muted);
+  --chart-4: var(--muted);
   --chart-5: oklch(0.5 0 0);
 
   /* Increased border radius for more roundness */
@@ -89,9 +89,9 @@
   --surface: oklch(0.08 0 0);
   --surface-elevated: oklch(0.12 0 0);
   --chart-1: oklch(1 0 0);
-  --chart-2: var(--slate-blue);
-  --chart-3: var(--amber-gold);
-  --chart-4: var(--cool-gray);
+  --chart-2: var(--primary);
+  --chart-3: var(--muted);
+  --chart-4: var(--muted);
   --chart-5: oklch(0.5 0 0);
   --sidebar: oklch(0.04 0 0);
   --sidebar-foreground: oklch(1 0 0);
@@ -104,7 +104,7 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-outfit), "Outfit", "Comfortaa", "Inter", sans-serif;
+  --font-sans: var(--font-comfortaa), "Comfortaa", sans-serif;
   --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -120,16 +120,16 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  --color-slate-blue: var(--slate-blue);
-  --color-amber-gold: var(--amber-gold);
-  --color-cool-gray: var(--cool-gray);
+  --color-slate-blue: var(--primary);
+  --color-amber-gold: var(--muted);
+  --color-cool-gray: var(--muted);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-success: var(--success);
-  --color-warning: var(--warning);
+  --color-success: var(--primary);
+  --color-warning: var(--muted);
   --color-surface: var(--surface);
   --color-surface-elevated: var(--surface-elevated);
   --color-chart-1: var(--chart-1);
@@ -145,10 +145,10 @@
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-core-orange: #FF6B00;
 }
 
 @layer base {
@@ -157,8 +157,7 @@
   }
 
   body {
-    /* Ultra black weight by default - 900 for maximum thickness */
-    @apply bg-background text-foreground font-black antialiased;
+    @apply bg-background text-foreground tracking-tight antialiased;
   }
 }
 

@@ -53,28 +53,28 @@ const TIER_CONFIG: Record<
     label: "Unicorn",
     shortLabel: "U",
     description: "Perfect match. Extremely rare.",
-    bgColor: "bg-violet-500/10",
-    textColor: "text-violet-400",
-    borderColor: "border-violet-500/30",
-    badgeBg: "bg-violet-500/20",
+    bgColor: "bg-white/10",
+    textColor: "text-zinc-300",
+    borderColor: "border-white/30",
+    badgeBg: "bg-white/20",
   },
   rising_star: {
     label: "Rising Star",
     shortLabel: "RS",
     description: "Proven track record. High potential.",
-    bgColor: "bg-amber-500/10",
-    textColor: "text-amber-400",
-    borderColor: "border-amber-500/30",
-    badgeBg: "bg-amber-500/20",
+    bgColor: "bg-white/10",
+    textColor: "text-stone-300",
+    borderColor: "border-white/30",
+    badgeBg: "bg-white/20",
   },
   hidden_gem: {
     label: "Hidden Gem",
     shortLabel: "HG",
     description: "Underrated talent. Great value.",
-    bgColor: "bg-cyan-500/10",
-    textColor: "text-cyan-400",
-    borderColor: "border-cyan-500/30",
-    badgeBg: "bg-cyan-500/20",
+    bgColor: "bg-white/10",
+    textColor: "text-zinc-300",
+    borderColor: "border-white/30",
+    badgeBg: "bg-white/20",
   },
   sleeper: {
     label: "Sleeper",
@@ -88,20 +88,20 @@ const TIER_CONFIG: Record<
 }
 
 const STATUS_CONFIG = {
-  discovered: { label: "New", color: "bg-blue-500/20 text-blue-400 border-blue-500/30" },
-  researching: { label: "Researching", color: "bg-violet-500/20 text-violet-400 border-violet-500/30" },
-  outreach_sent: { label: "Contacted", color: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
-  responded: { label: "Responded", color: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30" },
-  interviewing: { label: "Interviewing", color: "bg-cyan-500/20 text-cyan-400 border-cyan-500/30" },
-  offer_sent: { label: "Offer Sent", color: "bg-pink-500/20 text-pink-400 border-pink-500/30" },
+  discovered: { label: "New", color: "bg-white/20 text-zinc-300 border-white/30" },
+  researching: { label: "Researching", color: "bg-white/20 text-zinc-300 border-white/30" },
+  outreach_sent: { label: "Contacted", color: "bg-white/20 text-stone-300 border-white/30" },
+  responded: { label: "Responded", color: "bg-white/20 text-zinc-300 border-white/30" },
+  interviewing: { label: "Interviewing", color: "bg-white/20 text-zinc-300 border-white/30" },
+  offer_sent: { label: "Offer Sent", color: "bg-white/20 text-zinc-300 border-white/30" },
   closed: { label: "Closed", color: "bg-success/20 text-success border-success/30" },
 }
 
 const OPENNESS_CONFIG = {
-  likely: { label: "Likely Open", color: "text-emerald-400" },
-  possible: { label: "Possibly Open", color: "text-amber-400" },
+  likely: { label: "Likely Open", color: "text-zinc-300" },
+  possible: { label: "Possibly Open", color: "text-stone-300" },
   unknown: { label: "Unknown", color: "text-muted-foreground" },
-  unlikely: { label: "Unlikely", color: "text-red-400" },
+  unlikely: { label: "Unlikely", color: "text-neutral-400" },
 }
 
 function TalentCard({
@@ -167,7 +167,7 @@ function TalentCard({
             key={skill.skill}
             className={cn(
               "text-[10px] px-1.5 py-0.5 rounded",
-              skill.strength >= 0.9 ? "bg-emerald-500/20 text-emerald-400" : "bg-muted text-muted-foreground",
+              skill.strength >= 0.9 ? "bg-white/20 text-zinc-300" : "bg-muted text-muted-foreground",
             )}
           >
             {skill.skill}
@@ -181,7 +181,7 @@ function TalentCard({
       {/* Why Reach Out Preview */}
       {candidate.whyReachOut?.[0] && (
         <div className="text-xs text-muted-foreground mb-3 line-clamp-2">
-          <span className="text-amber-400 font-medium">Why now:</span> {candidate.whyReachOut[0]}
+          <span className="text-stone-300 font-medium">Why now:</span> {candidate.whyReachOut[0]}
         </div>
       )}
 
@@ -328,13 +328,13 @@ P.S. ${candidate.aiSuggestions.find((s) => s.category === "approach")?.insight |
             {/* What They Bring */}
             <div className="bg-black/30 rounded-xl p-4 border border-border">
               <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-                <Zap className="w-4 h-4 text-amber-400" />
+                <Zap className="w-4 h-4 text-stone-300" />
                 What They Bring
               </h3>
               <ul className="space-y-2">
                 {candidate.whatTheyBring.map((item, i) => (
                   <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                    <Check className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                    <Check className="w-4 h-4 text-zinc-300 flex-shrink-0 mt-0.5" />
                     {item}
                   </li>
                 ))}
@@ -344,13 +344,13 @@ P.S. ${candidate.aiSuggestions.find((s) => s.category === "approach")?.insight |
             {/* Unique Strengths */}
             <div className="bg-black/30 rounded-xl p-4 border border-border">
               <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-                <Star className="w-4 h-4 text-violet-400" />
+                <Star className="w-4 h-4 text-zinc-300" />
                 Unique Strengths
               </h3>
               <ul className="space-y-2">
                 {candidate.uniqueStrengths.map((item, i) => (
                   <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                    <Sparkles className="w-4 h-4 text-violet-400 flex-shrink-0 mt-0.5" />
+                    <Sparkles className="w-4 h-4 text-zinc-300 flex-shrink-0 mt-0.5" />
                     {item}
                   </li>
                 ))}
@@ -361,14 +361,14 @@ P.S. ${candidate.aiSuggestions.find((s) => s.category === "approach")?.insight |
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-black/30 rounded-xl p-4 border border-border">
                 <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2">
-                  <Target className="w-4 h-4 text-emerald-400" />
+                  <Target className="w-4 h-4 text-zinc-300" />
                   Potential Impact
                 </h3>
                 <p className="text-sm text-muted-foreground">{candidate.potentialImpact}</p>
               </div>
               <div className="bg-black/30 rounded-xl p-4 border border-border">
                 <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-cyan-400" />
+                  <Clock className="w-4 h-4 text-zinc-300" />
                   Ramp-Up Time
                 </h3>
                 <p className="text-sm text-muted-foreground">{candidate.rampUpTime}</p>
@@ -388,9 +388,9 @@ P.S. ${candidate.aiSuggestions.find((s) => s.category === "approach")?.insight |
                           className={cn(
                             "h-full rounded-full",
                             skill.strength >= 0.9
-                              ? "bg-emerald-500"
+                              ? "bg-zinc-800"
                               : skill.strength >= 0.7
-                                ? "bg-amber-500"
+                                ? "bg-stone-800"
                                 : "bg-muted-foreground",
                           )}
                           style={{ width: `${skill.strength * 100}%` }}
@@ -405,7 +405,7 @@ P.S. ${candidate.aiSuggestions.find((s) => s.category === "approach")?.insight |
                 <div className="mt-3 pt-3 border-t border-border/50">
                   <span className="text-xs text-muted-foreground">Missing: </span>
                   {candidate.missingSkills.map((skill) => (
-                    <span key={skill} className="text-xs text-red-400 mr-2">
+                    <span key={skill} className="text-xs text-neutral-400 mr-2">
                       {skill}
                     </span>
                   ))}
@@ -417,7 +417,7 @@ P.S. ${candidate.aiSuggestions.find((s) => s.category === "approach")?.insight |
             {candidate.estimatedSalary && (
               <div className="bg-black/30 rounded-xl p-4 border border-border">
                 <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <DollarSign className="w-4 h-4 text-emerald-400" />
+                  <DollarSign className="w-4 h-4 text-zinc-300" />
                   Compensation Intel
                 </h3>
                 <div className="grid grid-cols-3 gap-4">
@@ -477,9 +477,9 @@ P.S. ${candidate.aiSuggestions.find((s) => s.category === "approach")?.insight |
           {/* Experience Tab */}
           <TabsContent value="experience" className="mt-6 space-y-6">
             {/* Current Role */}
-            <div className="bg-black/30 rounded-xl p-4 border border-emerald-500/30">
+            <div className="bg-black/30 rounded-xl p-4 border border-white/30">
               <div className="flex items-center gap-2 mb-2">
-                <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30">Current</Badge>
+                <Badge className="bg-white/20 text-zinc-300 border-white/30">Current</Badge>
                 <span className="text-xs text-muted-foreground">{candidate.tenure}</span>
               </div>
               <h3 className="font-semibold text-foreground">{candidate.currentRole}</h3>
@@ -489,7 +489,7 @@ P.S. ${candidate.aiSuggestions.find((s) => s.category === "approach")?.insight |
               <ul className="mt-3 space-y-1">
                 {candidate.highlights.map((h, i) => (
                   <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                    <Check className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                    <Check className="w-4 h-4 text-zinc-300 flex-shrink-0 mt-0.5" />
                     {h}
                   </li>
                 ))}
@@ -518,13 +518,13 @@ P.S. ${candidate.aiSuggestions.find((s) => s.category === "approach")?.insight |
             {/* Notable Achievements */}
             <div className="bg-black/30 rounded-xl p-4 border border-border">
               <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-                <Award className="w-4 h-4 text-amber-400" />
+                <Award className="w-4 h-4 text-stone-300" />
                 Notable Achievements
               </h3>
               <ul className="space-y-2">
                 {candidate.notableAchievements.map((a, i) => (
                   <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                    <Star className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
+                    <Star className="w-4 h-4 text-stone-300 flex-shrink-0 mt-0.5" />
                     {a}
                   </li>
                 ))}
@@ -538,9 +538,9 @@ P.S. ${candidate.aiSuggestions.find((s) => s.category === "approach")?.insight |
                 variant="outline"
                 className={cn(
                   candidate.careerTrajectory === "rapid_growth"
-                    ? "border-emerald-500/30 text-emerald-400"
+                    ? "border-white/30 text-zinc-300"
                     : candidate.careerTrajectory === "steady"
-                      ? "border-amber-500/30 text-amber-400"
+                      ? "border-white/30 text-stone-300"
                       : "border-border text-muted-foreground",
                 )}
               >
@@ -558,14 +558,14 @@ P.S. ${candidate.aiSuggestions.find((s) => s.category === "approach")?.insight |
           {/* Why Reach Out Tab */}
           <TabsContent value="whyreach" className="mt-6 space-y-6">
             {/* Timing Signals */}
-            <div className="bg-black/30 rounded-xl p-4 border border-amber-500/30">
+            <div className="bg-black/30 rounded-xl p-4 border border-white/30">
               <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-                <Clock className="w-4 h-4 text-amber-400" />
+                <Clock className="w-4 h-4 text-stone-300" />
                 Timing Signals
               </h3>
               <ul className="space-y-2">
                 {candidate.timingSignals.map((signal, i) => (
-                  <li key={i} className="text-sm text-amber-400/90 flex items-start gap-2">
+                  <li key={i} className="text-sm text-stone-300/90 flex items-start gap-2">
                     <AlertTriangle className="w-4 h-4 flex-shrink-0 mt-0.5" />
                     {signal}
                   </li>
@@ -576,13 +576,13 @@ P.S. ${candidate.aiSuggestions.find((s) => s.category === "approach")?.insight |
             {/* Why Reach Out */}
             <div className="bg-black/30 rounded-xl p-4 border border-border">
               <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-                <MessageSquare className="w-4 h-4 text-cyan-400" />
+                <MessageSquare className="w-4 h-4 text-zinc-300" />
                 Why Reach Out Now
               </h3>
               <ul className="space-y-2">
                 {candidate.whyReachOut.map((reason, i) => (
                   <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                    <ArrowRight className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                    <ArrowRight className="w-4 h-4 text-zinc-300 flex-shrink-0 mt-0.5" />
                     {reason}
                   </li>
                 ))}
@@ -592,13 +592,13 @@ P.S. ${candidate.aiSuggestions.find((s) => s.category === "approach")?.insight |
             {/* Pitch Points */}
             <div className="bg-black/30 rounded-xl p-4 border border-border">
               <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-                <Target className="w-4 h-4 text-emerald-400" />
+                <Target className="w-4 h-4 text-zinc-300" />
                 Key Pitch Points
               </h3>
               <ul className="space-y-2">
                 {candidate.pitchPoints.map((point, i) => (
                   <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                    <Check className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                    <Check className="w-4 h-4 text-zinc-300 flex-shrink-0 mt-0.5" />
                     {point}
                   </li>
                 ))}
@@ -608,16 +608,16 @@ P.S. ${candidate.aiSuggestions.find((s) => s.category === "approach")?.insight |
             {/* Potential Objections */}
             <div className="bg-black/30 rounded-xl p-4 border border-border">
               <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-                <Shield className="w-4 h-4 text-red-400" />
+                <Shield className="w-4 h-4 text-neutral-400" />
                 Potential Objections & Counters
               </h3>
               <div className="space-y-4">
                 {candidate.potentialObjections.map((obj, i) => (
                   <div key={i} className="space-y-2">
-                    <div className="text-sm text-red-400/90">
+                    <div className="text-sm text-neutral-400/90">
                       <span className="font-medium">Objection:</span> "{obj.objection}"
                     </div>
-                    <div className="text-sm text-emerald-400/90 pl-4 border-l-2 border-emerald-500/30">
+                    <div className="text-sm text-zinc-300/90 pl-4 border-l-2 border-white/30">
                       <span className="font-medium">Counter:</span> "{obj.counter}"
                     </div>
                   </div>
@@ -628,9 +628,9 @@ P.S. ${candidate.aiSuggestions.find((s) => s.category === "approach")?.insight |
 
           {/* AI Insights Tab */}
           <TabsContent value="aiinsights" className="mt-6 space-y-6">
-            <div className="bg-gradient-to-r from-violet-500/10 to-cyan-500/10 rounded-xl p-4 border border-violet-500/30">
+            <div className="bg-gradient-to-r from-white/10 to-white/10 rounded-xl p-4 border border-white/30">
               <div className="flex items-center gap-2 mb-3">
-                <Sparkles className="w-5 h-5 text-violet-400 flex-shrink-0" />
+                <Sparkles className="w-5 h-5 text-zinc-300 flex-shrink-0" />
                 <h3 className="font-semibold text-foreground">AI-Powered Insights</h3>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed">
@@ -644,12 +644,12 @@ P.S. ${candidate.aiSuggestions.find((s) => s.category === "approach")?.insight |
                 className={cn(
                   "bg-black/30 rounded-xl p-4 border",
                   suggestion.category === "opportunity"
-                    ? "border-emerald-500/30"
+                    ? "border-white/30"
                     : suggestion.category === "risk"
-                      ? "border-red-500/30"
+                      ? "border-neutral-500/30"
                       : suggestion.category === "timing"
-                        ? "border-amber-500/30"
-                        : "border-cyan-500/30",
+                        ? "border-white/30"
+                        : "border-white/30",
                 )}
               >
                 <div className="flex items-center justify-between mb-3 gap-4">
@@ -658,12 +658,12 @@ P.S. ${candidate.aiSuggestions.find((s) => s.category === "approach")?.insight |
                     className={cn(
                       "flex-shrink-0",
                       suggestion.category === "opportunity"
-                        ? "border-emerald-500/30 text-emerald-400"
+                        ? "border-white/30 text-zinc-300"
                         : suggestion.category === "risk"
-                          ? "border-red-500/30 text-red-400"
+                          ? "border-neutral-500/30 text-neutral-400"
                           : suggestion.category === "timing"
-                            ? "border-amber-500/30 text-amber-400"
-                            : "border-cyan-500/30 text-cyan-400",
+                            ? "border-white/30 text-stone-300"
+                            : "border-white/30 text-zinc-300",
                     )}
                   >
                     {suggestion.category.charAt(0).toUpperCase() + suggestion.category.slice(1)}
@@ -679,7 +679,7 @@ P.S. ${candidate.aiSuggestions.find((s) => s.category === "approach")?.insight |
             {/* Outreach Angle */}
             <div className="bg-black/30 rounded-xl p-4 border border-border">
               <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2">
-                <Lightbulb className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                <Lightbulb className="w-4 h-4 text-stone-300 flex-shrink-0" />
                 Recommended Approach
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{candidate.outreachAngle}</p>
@@ -691,7 +691,7 @@ P.S. ${candidate.aiSuggestions.find((s) => s.category === "approach")?.insight |
             <div className="bg-black/30 rounded-xl p-4 border border-border">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-semibold text-foreground flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-cyan-400" />
+                  <Mail className="w-4 h-4 text-zinc-300" />
                   AI-Generated Outreach Email
                 </h3>
                 {!generatedEmail && (
@@ -819,13 +819,13 @@ export function TalentRadar() {
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-violet-500/20 flex items-center justify-center">
-            <Radar className="w-5 h-5 text-violet-400" />
+          <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
+            <Radar className="w-5 h-5 text-zinc-300" />
           </div>
           <div>
             <h2 className="text-lg font-bold text-foreground flex items-center gap-2">
               Talent Radar
-              <Badge className="bg-violet-500/20 text-violet-400 border-violet-500/30 text-[10px]">AI-Powered</Badge>
+              <Badge className="bg-white/20 text-zinc-300 border-white/30 text-[10px]">AI-Powered</Badge>
             </h2>
             <p className="text-xs text-muted-foreground">
               {candidates.length} passive candidates discovered • {tierCounts.unicorn} unicorn

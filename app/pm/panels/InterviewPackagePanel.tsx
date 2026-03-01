@@ -27,9 +27,9 @@ const TABS: { key: Tab; label: string; icon: React.ElementType }[] = [
 ]
 
 const SECTION_COLORS: Record<string, string> = {
-    intro: 'border-violet-500/40 bg-violet-500/5',
-    technical: 'border-blue-500/40 bg-blue-500/5',
-    'system-design': 'border-amber-500/40 bg-amber-500/5',
+    intro: 'border-white/40 bg-white/5',
+    technical: 'border-white/40 bg-white/5',
+    'system-design': 'border-white/40 bg-white/5',
     closing: 'border-zinc-500/40 bg-zinc-500/5',
 }
 
@@ -50,8 +50,8 @@ export default function InterviewPackagePanel({ onClose }: { onClose: () => void
             {/* Header */}
             <div className="px-6 py-5 border-b border-white/[0.06] flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-violet-500/15 border border-violet-500/30 flex items-center justify-center">
-                        <ClipboardList className="w-5 h-5 text-violet-400" />
+                    <div className="w-10 h-10 rounded-xl bg-white/15 border border-white/30 flex items-center justify-center">
+                        <ClipboardList className="w-5 h-5 text-zinc-300" />
                     </div>
                     <div>
                         <h2 className="text-sm font-semibold text-white">Discovery Call Architect</h2>
@@ -70,7 +70,7 @@ export default function InterviewPackagePanel({ onClose }: { onClose: () => void
                         key={t.key}
                         onClick={() => setTab(t.key)}
                         className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-[11px] font-medium transition-all whitespace-nowrap ${tab === t.key
-                            ? 'bg-violet-500/15 text-violet-400 border border-violet-500/30'
+                            ? 'bg-white/15 text-zinc-300 border border-white/30'
                             : 'text-white/40 hover:text-white/60 hover:bg-white/[0.04]'
                             }`}
                     >
@@ -113,11 +113,11 @@ function BlueprintTab() {
             <div className="flex items-center justify-between">
                 <div>
                     <h3 className="text-sm font-semibold text-white">{plan.roleTitle}</h3>
-                    <p className="text-[11px] text-emerald-400/80 mt-0.5">{plan.totalDuration} • Targeted for VP Eng</p>
+                    <p className="text-[11px] text-zinc-300/80 mt-0.5">{plan.totalDuration} • Targeted for VP Eng</p>
                 </div>
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-violet-500/10 border border-violet-500/20">
-                    <Clock className="w-3 h-3 text-violet-400" />
-                    <span className="text-[10px] text-violet-400 font-medium">{totalMinutes} min total</span>
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 border border-white/20">
+                    <Clock className="w-3 h-3 text-zinc-300" />
+                    <span className="text-[10px] text-zinc-300 font-medium">{totalMinutes} min total</span>
                 </div>
             </div>
 
@@ -154,7 +154,7 @@ function BlueprintTab() {
 
                         {/* Duration bar */}
                         <div className="mt-3 h-1 rounded-full bg-white/[0.06] overflow-hidden">
-                            <div className="h-full rounded-full bg-gradient-to-r from-violet-500/60 to-violet-500/20" style={{ width: `${(sec.durationMinutes / totalMinutes) * 100}%` }} />
+                            <div className="h-full rounded-full bg-gradient-to-r from-white/60 to-white/20" style={{ width: `${(sec.durationMinutes / totalMinutes) * 100}%` }} />
                         </div>
                     </div>
                 ))}
@@ -167,10 +167,10 @@ function BlueprintTab() {
 function DiscoveryTab({ expandedItems, toggleExpand }: { expandedItems: Set<string>; toggleExpand: (id: string) => void }) {
     const categories = ['pain', 'budget', 'authority', 'timeline'] as const
     const catConfig: Record<string, { label: string; color: string }> = {
-        pain: { label: 'Pain Identification', color: 'text-blue-400' },
-        budget: { label: 'Budget & Cost', color: 'text-amber-400' },
-        authority: { label: 'Authority Mapping', color: 'text-emerald-400' },
-        timeline: { label: 'Timeline & Urgency', color: 'text-violet-400' },
+        pain: { label: 'Pain Identification', color: 'text-zinc-300' },
+        budget: { label: 'Budget & Cost', color: 'text-stone-300' },
+        authority: { label: 'Authority Mapping', color: 'text-zinc-300' },
+        timeline: { label: 'Timeline & Urgency', color: 'text-zinc-300' },
     }
 
     return (
@@ -210,15 +210,15 @@ function DiscoveryTab({ expandedItems, toggleExpand }: { expandedItems: Set<stri
                                             className="px-4 pb-3 border-t border-white/[0.06] pt-3 space-y-2"
                                         >
                                             <div>
-                                                <p className="text-[10px] text-emerald-400/80 font-medium mb-1">✅ Buying Signals (Green Flags)</p>
+                                                <p className="text-[10px] text-zinc-300/80 font-medium mb-1">✅ Buying Signals (Green Flags)</p>
                                                 {q.expectedSignals.map((s, i) => (
-                                                    <p key={i} className="text-[11px] text-white/50 pl-3 border-l border-emerald-500/20 mb-1">{s}</p>
+                                                    <p key={i} className="text-[11px] text-white/50 pl-3 border-l border-white/20 mb-1">{s}</p>
                                                 ))}
                                             </div>
                                             <div>
-                                                <p className="text-[10px] text-red-400/80 font-medium mb-1">🚩 Deal Risk (Red Flags)</p>
+                                                <p className="text-[10px] text-neutral-400/80 font-medium mb-1">🚩 Deal Risk (Red Flags)</p>
                                                 {q.redFlags.map((f, i) => (
-                                                    <p key={i} className="text-[11px] text-white/50 pl-3 border-l border-red-500/20 mb-1">{f}</p>
+                                                    <p key={i} className="text-[11px] text-white/50 pl-3 border-l border-neutral-500/20 mb-1">{f}</p>
                                                 ))}
                                             </div>
                                         </motion.div>
@@ -304,10 +304,10 @@ function PersonasTab() {
                         {variants.map(v => (
                             <div key={v.id} className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-3">
                                 <div className="flex items-center justify-between mb-2">
-                                    <span className="text-[10px] font-semibold text-violet-400">{v.variantLabel}</span>
+                                    <span className="text-[10px] font-semibold text-zinc-300">{v.variantLabel}</span>
                                 </div>
                                 <p className="text-[11px] text-white/60 mb-1.5">{v.question}</p>
-                                <p className="text-[10px] text-emerald-400/80">Context: {v.context}</p>
+                                <p className="text-[10px] text-zinc-300/80">Context: {v.context}</p>
                             </div>
                         ))}
                     </div>
@@ -337,27 +337,27 @@ function BattlecardTab({ expandedItems, toggleExpand }: { expandedItems: Set<str
                         {isOpen && (
                             <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} className="px-4 pb-4 space-y-3 border-t border-white/[0.06] pt-3">
                                 <div>
-                                    <p className="text-[10px] text-violet-400/80 font-medium mb-1">🎯 Probing Strategy</p>
+                                    <p className="text-[10px] text-zinc-300/80 font-medium mb-1">🎯 Probing Strategy</p>
                                     {g.probingStrategy.map((s, i) => (
-                                        <p key={i} className="text-[11px] text-white/50 pl-3 border-l border-violet-500/20 mb-1">{s}</p>
+                                        <p key={i} className="text-[11px] text-white/50 pl-3 border-l border-white/20 mb-1">{s}</p>
                                     ))}
                                 </div>
                                 <div className="grid grid-cols-2 gap-3">
                                     <div>
-                                        <p className="text-[10px] text-emerald-400/80 font-medium mb-1">✅ Green Flags</p>
+                                        <p className="text-[10px] text-zinc-300/80 font-medium mb-1">✅ Green Flags</p>
                                         {g.greenFlags.map((f, i) => (
-                                            <p key={i} className="text-[10px] text-white/40 mb-0.5 flex items-start gap-1"><CheckCircle2 className="w-3 h-3 text-emerald-500/60 shrink-0 mt-0.5" />{f}</p>
+                                            <p key={i} className="text-[10px] text-white/40 mb-0.5 flex items-start gap-1"><CheckCircle2 className="w-3 h-3 text-zinc-300/60 shrink-0 mt-0.5" />{f}</p>
                                         ))}
                                     </div>
                                     <div>
-                                        <p className="text-[10px] text-red-400/80 font-medium mb-1">🚩 Red Flags</p>
+                                        <p className="text-[10px] text-neutral-400/80 font-medium mb-1">🚩 Red Flags</p>
                                         {g.redFlags.map((f, i) => (
-                                            <p key={i} className="text-[10px] text-white/40 mb-0.5 flex items-start gap-1"><AlertTriangle className="w-3 h-3 text-red-500/60 shrink-0 mt-0.5" />{f}</p>
+                                            <p key={i} className="text-[10px] text-white/40 mb-0.5 flex items-start gap-1"><AlertTriangle className="w-3 h-3 text-neutral-400/60 shrink-0 mt-0.5" />{f}</p>
                                         ))}
                                     </div>
                                 </div>
                                 <div>
-                                    <p className="text-[10px] text-amber-400/80 font-medium mb-1.5">📊 MEDDIC Score</p>
+                                    <p className="text-[10px] text-stone-300/80 font-medium mb-1.5">📊 MEDDIC Score</p>
                                     <div className="space-y-1">
                                         {g.scoringCriteria.map(sc => (
                                             <div key={sc.score} className="flex items-center gap-2">
@@ -394,7 +394,7 @@ function BriefingTab({ expandedItems, toggleExpand }: { expandedItems: Set<strin
                                 {isOpen ? <ChevronDown className="w-3.5 h-3.5 text-white/30 shrink-0" /> : <ChevronRight className="w-3.5 h-3.5 text-white/30 shrink-0" />}
                                 <div>
                                     <p className="text-[12px] text-white/70 font-medium">{ci.section}</p>
-                                    <p className="text-[10px] text-emerald-400/50 mt-0.5">Time limit: {ci.timeLimit}</p>
+                                    <p className="text-[10px] text-zinc-300/50 mt-0.5">Time limit: {ci.timeLimit}</p>
                                 </div>
                             </div>
                         </button>
@@ -411,13 +411,13 @@ function BriefingTab({ expandedItems, toggleExpand }: { expandedItems: Set<strin
                                 </div>
                                 <div className="grid grid-cols-2 gap-3">
                                     <div>
-                                        <p className="text-[10px] text-emerald-400/80 font-medium mb-1">✅ Target actions</p>
+                                        <p className="text-[10px] text-zinc-300/80 font-medium mb-1">✅ Target actions</p>
                                         {ci.doList.map((d, i) => (
                                             <p key={i} className="text-[10px] text-white/40 mb-0.5">{d}</p>
                                         ))}
                                     </div>
                                     <div>
-                                        <p className="text-[10px] text-red-400/80 font-medium mb-1">❌ Avoid</p>
+                                        <p className="text-[10px] text-neutral-400/80 font-medium mb-1">❌ Avoid</p>
                                         {ci.dontList.map((d, i) => (
                                             <p key={i} className="text-[10px] text-white/40 mb-0.5">{d}</p>
                                         ))}

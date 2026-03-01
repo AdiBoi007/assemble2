@@ -69,11 +69,11 @@ export default function SandboxArchitectView() {
     }
 
     return (
-        <div className="flex h-full w-full bg-[#000000] text-white overflow-hidden font-sans selection:bg-indigo-500/30">
+        <div className="flex h-full w-full bg-[#000000] text-white overflow-hidden font-sans selection:bg-white/30">
 
             {/* Ambient Background Glows */}
-            <div className="absolute top-[-20%] left-[-10%] w-[40%] h-[40%] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none opacity-50" />
-            <div className="absolute bottom-[-20%] right-[-10%] w-[40%] h-[40%] bg-violet-500/10 rounded-full blur-[120px] pointer-events-none opacity-50" />
+            <div className="absolute top-[-20%] left-[-10%] w-[40%] h-[40%] bg-white/10 rounded-full blur-[120px] pointer-events-none opacity-50" />
+            <div className="absolute bottom-[-20%] right-[-10%] w-[40%] h-[40%] bg-white/10 rounded-full blur-[120px] pointer-events-none opacity-50" />
             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(255,255,255,0.015)_1px,_transparent_1px)] bg-[size:32px_32px] pointer-events-none opacity-40" />
 
             {/* ─── LEFT PANE: NEURAL CHAT INTERFACE (40%) ─── */}
@@ -82,14 +82,14 @@ export default function SandboxArchitectView() {
                 {/* Header */}
                 <div className="h-16 px-6 shrink-0 border-b border-white/[0.04] flex items-center justify-between bg-white/[0.01] backdrop-blur-md">
                     <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center drop-shadow-md">
-                            <Cpu className="w-4 h-4 text-indigo-400" />
+                        <div className="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center drop-shadow-md">
+                            <Cpu className="w-4 h-4 text-zinc-300" />
                         </div>
                         <div>
                             <h2 className="text-sm font-bold tracking-tight text-white/90">Assessment Architect</h2>
                             <div className="flex items-center gap-1.5 mt-0.5">
-                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(48,209,88,0.8)]" />
-                                <span className="text-[10px] uppercase tracking-widest text-emerald-500/80 font-bold">Builder Online</span>
+                                <div className="w-1.5 h-1.5 rounded-full bg-zinc-800 shadow-[0_0_8px_rgba(48,209,88,0.8)]" />
+                                <span className="text-[10px] uppercase tracking-widest text-zinc-300/80 font-bold">Builder Online</span>
                             </div>
                         </div>
                     </div>
@@ -124,9 +124,9 @@ export default function SandboxArchitectView() {
                         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex flex-col mr-auto items-start max-w-[85%]">
                             <span className="text-[10px] text-white/30 uppercase tracking-widest mb-1.5 px-1 font-semibold">Architect</span>
                             <div className="px-5 py-4 rounded-[1.5rem] bg-white/[0.05] border border-white/[0.08] rounded-tl-sm backdrop-blur-md flex items-center gap-1.5">
-                                <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0 }} className="w-1.5 h-1.5 rounded-full bg-indigo-400/50" />
-                                <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.2 }} className="w-1.5 h-1.5 rounded-full bg-indigo-400/50" />
-                                <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.4 }} className="w-1.5 h-1.5 rounded-full bg-indigo-400/50" />
+                                <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0 }} className="w-1.5 h-1.5 rounded-full bg-zinc-800/50" />
+                                <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.2 }} className="w-1.5 h-1.5 rounded-full bg-zinc-800/50" />
+                                <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.4 }} className="w-1.5 h-1.5 rounded-full bg-zinc-800/50" />
                             </div>
                         </motion.div>
                     )}
@@ -149,7 +149,7 @@ export default function SandboxArchitectView() {
                             onChange={(e) => setInput(e.target.value)}
                             onKeyDown={(e) => e.key === "Enter" && handleSend()}
                             placeholder="Describe the role to architect..."
-                            className="w-full bg-white/[0.05] border border-white/[0.1] rounded-[1.5rem] py-3.5 pl-5 pr-12 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-indigo-500/50 focus:bg-white/[0.08] transition-all backdrop-blur-xl shadow-inner"
+                            className="w-full bg-white/[0.05] border border-white/[0.1] rounded-[1.5rem] py-3.5 pl-5 pr-12 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/50 focus:bg-white/[0.08] transition-all backdrop-blur-xl shadow-inner"
                             disabled={isTyping}
                         />
                         <button
@@ -186,7 +186,7 @@ export default function SandboxArchitectView() {
                         {/* Blueprint Toolbar */}
                         <div className="h-16 flex items-center justify-between px-8 border-b border-white/[0.04] bg-white/[0.01] backdrop-blur-md">
                             <div className="flex items-center gap-4">
-                                <div className="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-[10px] font-bold text-indigo-400 uppercase tracking-widest font-mono">
+                                <div className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[10px] font-bold text-zinc-300 uppercase tracking-widest font-mono">
                                     Generated Blueprint
                                 </div>
                                 <div className="text-[10px] text-white/40 font-mono tracking-widest uppercase">ID: {Date.now().toString().slice(-6)}</div>
@@ -195,7 +195,7 @@ export default function SandboxArchitectView() {
                                 <button className="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-white/60 hover:text-white hover:bg-white/5 bg-transparent border border-white/5 transition-colors">
                                     Save Draft
                                 </button>
-                                <button onClick={handleExport} className="flex items-center gap-1.5 px-4 py-1.5 bg-indigo-500 hover:bg-indigo-400 text-white rounded-full text-xs font-bold uppercase tracking-widest border border-indigo-400/50 shadow-[0_0_15px_rgba(99,102,241,0.4)] transition-all">
+                                <button onClick={handleExport} className="flex items-center gap-1.5 px-4 py-1.5 bg-zinc-800 hover:bg-zinc-800 text-white rounded-full text-xs font-bold uppercase tracking-widest border border-white/50 shadow-[0_0_15px_rgba(99,102,241,0.4)] transition-all">
                                     <Terminal className="w-3.5 h-3.5" /> Deploy
                                 </button>
                             </div>
@@ -208,10 +208,10 @@ export default function SandboxArchitectView() {
                                 {/* Header Card */}
                                 <div className="p-8 rounded-[1.5rem] bg-white/[0.02] border border-white/[0.05] relative overflow-hidden group hover:border-white/[0.1] transition-colors">
                                     <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                                        <FileText className="w-32 h-32 text-indigo-400" />
+                                        <FileText className="w-32 h-32 text-zinc-300" />
                                     </div>
                                     <div className="relative z-10">
-                                        <div className="text-[10px] text-indigo-400 font-bold mb-2 uppercase tracking-widest">Target Configuration</div>
+                                        <div className="text-[10px] text-zinc-300 font-bold mb-2 uppercase tracking-widest">Target Configuration</div>
                                         <h1 className="text-4xl font-black text-white tracking-tight mb-4">{blueprint.role}</h1>
                                         <div className="flex items-center gap-3 mb-8">
                                             <Badge icon={Cpu} label={blueprint.seniority} color="emerald" />
@@ -238,11 +238,11 @@ export default function SandboxArchitectView() {
                                         </div>
                                     </div>
 
-                                    <div className="p-6 rounded-[1.5rem] bg-emerald-500/[0.03] border border-emerald-500/10">
-                                        <h3 className="text-[10px] font-bold text-emerald-500/60 uppercase tracking-widest mb-4 flex items-center gap-2">
+                                    <div className="p-6 rounded-[1.5rem] bg-zinc-800/[0.03] border border-white/10">
+                                        <h3 className="text-[10px] font-bold text-zinc-300/60 uppercase tracking-widest mb-4 flex items-center gap-2">
                                             <CheckCircle2 className="w-3.5 h-3.5" /> Proof Definition
                                         </h3>
-                                        <p className="text-sm text-emerald-400/80 font-medium leading-relaxed">
+                                        <p className="text-sm text-zinc-300/80 font-medium leading-relaxed">
                                             "{blueprint.proofDefinition}"
                                         </p>
                                     </div>
@@ -251,7 +251,7 @@ export default function SandboxArchitectView() {
                                 {/* Task Flow Timeline */}
                                 <div className="pt-6">
                                     <div className="flex items-center gap-3 mb-6">
-                                        <Activity className="w-4 h-4 text-indigo-400" />
+                                        <Activity className="w-4 h-4 text-zinc-300" />
                                         <h3 className="text-[10px] font-bold text-white/60 uppercase tracking-widest">Simulation Timeline</h3>
                                     </div>
 
@@ -263,10 +263,10 @@ export default function SandboxArchitectView() {
                                             <div key={i} className="relative pl-14 group">
                                                 {/* Node */}
                                                 <div className={cn(
-                                                    "absolute left-0 top-3 w-10 h-10 rounded-full flex items-center justify-center bg-[#050505] z-10 transition-colors duration-300 border border-white/[0.1]",
-                                                    task.type === 'chaos' ? "text-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.2)]" :
-                                                        task.type === 'stretch' ? "text-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.2)]" :
-                                                            "text-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.2)]"
+                                                    "absolute left-0 top-3 w-10 h-10 rounded-full flex items-center justify-center bg-zinc-800 z-10 transition-colors duration-300 border border-white/[0.1]",
+                                                    task.type === 'chaos' ? "text-stone-300 shadow-[0_0_15px_rgba(245,158,11,0.2)]" :
+                                                        task.type === 'stretch' ? "text-zinc-300 shadow-[0_0_15px_rgba(168,85,247,0.2)]" :
+                                                            "text-zinc-300 shadow-[0_0_15px_rgba(16,185,129,0.2)]"
                                                 )}>
                                                     <span className="font-bold text-sm tracking-tighter">{i + 1}</span>
                                                 </div>
@@ -279,22 +279,22 @@ export default function SandboxArchitectView() {
                                                     </div>
                                                     <div className="flex gap-2 mb-4 relative z-10">
                                                         <span className={cn("text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full",
-                                                            task.type === 'chaos' ? "bg-amber-500/10 text-amber-500 border border-amber-500/20" :
-                                                                task.type === 'stretch' ? "bg-purple-500/10 text-purple-400 border border-purple-500/20" :
-                                                                    "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                                                            task.type === 'chaos' ? "bg-white/10 text-stone-300 border border-white/20" :
+                                                                task.type === 'stretch' ? "bg-white/10 text-zinc-300 border border-white/20" :
+                                                                    "bg-white/10 text-zinc-300 border border-white/20"
                                                         )}>{task.type} PHASE</span>
                                                     </div>
                                                     <p className="text-sm font-medium text-white/60 leading-relaxed mb-6 relative z-10">{task.description}</p>
 
                                                     {/* Failure Modes */}
-                                                    <div className="p-4 rounded-xl bg-red-500/[0.02] border border-red-500/[0.05] relative z-10">
-                                                        <div className="text-[10px] text-red-500 font-bold uppercase tracking-widest mb-2 flex items-center gap-2">
+                                                    <div className="p-4 rounded-xl bg-neutral-800/[0.02] border border-neutral-800/[0.05] relative z-10">
+                                                        <div className="text-[10px] text-neutral-400 font-bold uppercase tracking-widest mb-2 flex items-center gap-2">
                                                             <AlertOctagon className="w-3 h-3" /> Failure Protocol
                                                         </div>
                                                         <div className="space-y-1.5">
                                                             {task.failureModes.map((fm, idx) => (
                                                                 <div key={idx} className="text-xs font-medium text-white/50 flex items-start gap-2">
-                                                                    <span className="text-red-500/50 mt-0.5">•</span> {fm}
+                                                                    <span className="text-neutral-400/50 mt-0.5">•</span> {fm}
                                                                 </div>
                                                             ))}
                                                         </div>
@@ -303,9 +303,9 @@ export default function SandboxArchitectView() {
                                                     {/* Decorative background glow for card based on type */}
                                                     <div className={cn(
                                                         "absolute top-0 right-0 w-32 h-32 rounded-full blur-[60px] opacity-10 pointer-events-none -translate-y-1/2 translate-x-1/2",
-                                                        task.type === 'chaos' ? "bg-amber-500" :
-                                                            task.type === 'stretch' ? "bg-purple-500" :
-                                                                "bg-emerald-500"
+                                                        task.type === 'chaos' ? "bg-stone-800" :
+                                                            task.type === 'stretch' ? "bg-zinc-800" :
+                                                                "bg-zinc-800"
                                                     )} />
                                                 </div>
                                             </div>
@@ -325,9 +325,9 @@ export default function SandboxArchitectView() {
 
 function ActionChip({ onClick, label, color }: { onClick: () => void, label: string, color: string }) {
     const colors: Record<string, string> = {
-        red: "bg-red-500/10 border-red-500/20 text-red-400 hover:bg-red-500/20",
-        blue: "bg-blue-500/10 border-blue-500/20 text-blue-400 hover:bg-blue-500/20",
-        purple: "bg-purple-500/10 border-purple-500/20 text-purple-400 hover:bg-purple-500/20",
+        red: "bg-neutral-500/10 border-neutral-500/20 text-neutral-400 hover:bg-neutral-500/20",
+        blue: "bg-white/10 border-white/20 text-zinc-300 hover:bg-white/20",
+        purple: "bg-white/10 border-white/20 text-zinc-300 hover:bg-white/20",
     }
     return (
         <button
@@ -344,9 +344,9 @@ function ActionChip({ onClick, label, color }: { onClick: () => void, label: str
 
 function Badge({ icon: Icon, label, color }: { icon: any, label: string, color: string }) {
     const colors: Record<string, string> = {
-        emerald: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-        blue: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-        purple: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+        emerald: "bg-white/10 text-zinc-300 border-white/20",
+        blue: "bg-white/10 text-zinc-300 border-white/20",
+        purple: "bg-white/10 text-zinc-300 border-white/20",
     }
     return (
         <div className={cn("flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[11px] font-bold uppercase tracking-widest shadow-sm", colors[color])}>

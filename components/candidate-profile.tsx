@@ -73,7 +73,7 @@ export function CandidateProfile({ candidate, onClose, analysis, onAutoContact }
                                     href={`https://github.com/${candidate.username}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="hover:text-emerald-400 transition-colors flex items-center gap-1"
+                                    className="hover:text-zinc-300 transition-colors flex items-center gap-1"
                                 >
                                     <Zap className="w-3 h-3" /> @{candidate.username}
                                 </a>
@@ -90,16 +90,16 @@ export function CandidateProfile({ candidate, onClose, analysis, onAutoContact }
                 <div className="px-8 pb-6 space-y-2">
                     <div className="text-[10px] uppercase tracking-wider text-white/40">Languages</div>
                     <div className="flex h-1.5 w-full rounded-full overflow-hidden">
-                        <div className="bg-[#E11584] w-[35%]" />
-                        <div className="bg-[#00ADD8] w-[25%]" />
-                        <div className="bg-[#F1E05A] w-[20%]" />
-                        <div className="bg-[#E34C26] w-[20%]" />
+                        <div className="bg-zinc-800 w-[35%]" />
+                        <div className="bg-zinc-800 w-[25%]" />
+                        <div className="bg-zinc-800 w-[20%]" />
+                        <div className="bg-zinc-800 w-[20%]" />
                     </div>
                     <div className="flex gap-4 text-[10px] text-white/40 font-medium">
-                        <div className="flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-[#E11584]" /> C++ 35%</div>
-                        <div className="flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-[#00ADD8]" /> Go 25%</div>
-                        <div className="flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-[#F1E05A]" /> JS 20%</div>
-                        <div className="flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-[#E34C26]" /> HTML 20%</div>
+                        <div className="flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-zinc-800" /> C++ 35%</div>
+                        <div className="flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-zinc-800" /> Go 25%</div>
+                        <div className="flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-zinc-800" /> JS 20%</div>
+                        <div className="flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-zinc-800" /> HTML 20%</div>
                     </div>
                 </div>
 
@@ -117,28 +117,28 @@ export function CandidateProfile({ candidate, onClose, analysis, onAutoContact }
                     <div className="text-[9px] uppercase tracking-wider text-white/20 mb-3">This Year</div>
                     <div className="grid grid-cols-4 gap-4 mb-6">
                         <div className="flex items-center gap-3">
-                            <GitCommit className="w-4 h-4 text-orange-500" />
+                            <GitCommit className="w-4 h-4 text-stone-300" />
                             <div>
                                 <div className="text-xl font-light text-white">{candidate.stats?.commits || 0}</div>
                                 <div className="text-[9px] uppercase tracking-wider text-white/30">Commits</div>
                             </div>
                         </div>
                         <div className="flex items-center gap-3">
-                            <Code2 className="w-4 h-4 text-blue-500" />
+                            <Code2 className="w-4 h-4 text-zinc-300" />
                             <div>
                                 <div className="text-xl font-light text-white">{candidate.stats?.prs || 0}</div>
                                 <div className="text-[9px] uppercase tracking-wider text-white/30">PRs</div>
                             </div>
                         </div>
                         <div className="flex items-center gap-3">
-                            <Circle className="w-4 h-4 text-emerald-500" />
+                            <Circle className="w-4 h-4 text-zinc-300" />
                             <div>
                                 <div className="text-xl font-light text-white">{candidate.stats?.issues || 0}</div>
                                 <div className="text-[9px] uppercase tracking-wider text-white/30">Issues</div>
                             </div>
                         </div>
                         <div className="flex items-center gap-3">
-                            <Eye className="w-4 h-4 text-purple-500" />
+                            <Eye className="w-4 h-4 text-zinc-300" />
                             <div>
                                 <div className="text-xl font-light text-white">{candidate.stats?.reviews || 0}</div>
                                 <div className="text-[9px] uppercase tracking-wider text-white/30">Reviews</div>
@@ -154,7 +154,7 @@ export function CandidateProfile({ candidate, onClose, analysis, onAutoContact }
                                 <span className="text-xs text-white/60 group-hover:text-white/80">{repo.name}</span>
                                 <div className="flex items-center gap-2">
                                     <div className="h-1 w-16 bg-white/10 rounded-full overflow-hidden">
-                                        <div className="h-full bg-orange-500" style={{ width: `${i === 0 ? 80 : i === 1 ? 60 : 40}%` }} />
+                                        <div className="h-full bg-stone-800" style={{ width: `${i === 0 ? 80 : i === 1 ? 60 : 40}%` }} />
                                     </div>
                                     <span className="text-xs text-white/40 w-6 text-right">{repo.stars || (i * 10 + 15)}</span>
                                 </div>
@@ -166,11 +166,11 @@ export function CandidateProfile({ candidate, onClose, analysis, onAutoContact }
                 {/* Signals */}
                 <div className="px-8 pb-8 bg-[#0A0A0A]">
                     <div className="flex items-center gap-2 mb-4">
-                        <Zap className="w-4 h-4 text-orange-500" />
+                        <Zap className="w-4 h-4 text-stone-300" />
                         <span className="text-[10px] uppercase tracking-widest text-white/40">Signals</span>
                     </div>
                     <div className="flex items-center gap-4 p-4 bg-white/5 rounded">
-                        <Code2 className="w-6 h-6 text-orange-500" />
+                        <Code2 className="w-6 h-6 text-stone-300" />
                         <div>
                             <div className="text-2xl font-light text-white">{Math.floor((candidate.stats?.prs || 0) * 0.3)}</div>
                             <div className="text-[10px] uppercase tracking-wider text-white/30">External PRs Merged</div>
@@ -185,7 +185,7 @@ export function CandidateProfile({ candidate, onClose, analysis, onAutoContact }
                             onClick={() => setActiveTab('technical')}
                             className={cn(
                                 "flex-1 py-3 text-[10px] font-medium tracking-widest uppercase transition-colors",
-                                activeTab === 'technical' ? "text-orange-500" : "text-white/30 hover:text-white"
+                                activeTab === 'technical' ? "text-stone-300" : "text-white/30 hover:text-white"
                             )}
                         >
                             Technical Expertise ({candidate.extendedSkills?.technical?.length || 5})
@@ -194,7 +194,7 @@ export function CandidateProfile({ candidate, onClose, analysis, onAutoContact }
                             onClick={() => setActiveTab('domain')}
                             className={cn(
                                 "flex-1 py-3 text-[10px] font-medium tracking-widest uppercase transition-colors",
-                                activeTab === 'domain' ? "text-orange-500" : "text-white/30 hover:text-white"
+                                activeTab === 'domain' ? "text-stone-300" : "text-white/30 hover:text-white"
                             )}
                         >
                             Domain Expertise ({candidate.extendedSkills?.domain?.length || 4})
@@ -206,7 +206,7 @@ export function CandidateProfile({ candidate, onClose, analysis, onAutoContact }
                             (activeTab === 'technical' ? candidate.extendedSkills.technical : candidate.extendedSkills.domain)?.map((skill: any, i: number) => (
                                 <div key={i} className="space-y-4">
                                     <div className="flex items-center justify-between group cursor-pointer">
-                                        <span className="text-white font-medium group-hover:text-orange-500 transition-colors">{skill.name}</span>
+                                        <span className="text-white font-medium group-hover:text-stone-300 transition-colors">{skill.name}</span>
                                         <div className="flex gap-1">
                                             {skill.tags.map((tag: string, j: number) => (
                                                 <span key={j} className="px-1.5 py-0.5 text-[10px] text-white/40 rounded uppercase">{tag}</span>
@@ -224,7 +224,7 @@ export function CandidateProfile({ candidate, onClose, analysis, onAutoContact }
                                             <div className="flex gap-2">
                                                 {skill.evidence.map((ev: any, l: number) => (
                                                     <a key={l} href={ev.url} target="_blank" rel="noopener noreferrer" className="bg-white/5 hover:bg-white/10 px-2 py-1 rounded flex items-center gap-2 transition-colors">
-                                                        <span className="text-[10px] font-mono text-emerald-500">{ev.label}</span>
+                                                        <span className="text-[10px] font-mono text-zinc-300">{ev.label}</span>
                                                     </a>
                                                 ))}
                                             </div>
@@ -253,7 +253,7 @@ export function CandidateProfile({ candidate, onClose, analysis, onAutoContact }
 
                 {/* Recent Interests */}
                 {candidate.recentInterests ? (
-                    <div className="px-8 pb-8 bg-[#0C0C0C]">
+                    <div className="px-8 pb-8 bg-zinc-800">
                         <div className="flex items-center justify-between mb-6 pt-6">
                             <span className="text-[10px] uppercase tracking-widest text-white/40">Recent Interests</span>
                             <div className="flex gap-2">
@@ -266,14 +266,14 @@ export function CandidateProfile({ candidate, onClose, analysis, onAutoContact }
                         <div className="space-y-6">
                             <div className="space-y-2">
                                 <div className="flex justify-between items-end">
-                                    <div className="flex items-center gap-2 text-orange-500">
+                                    <div className="flex items-center gap-2 text-stone-300">
                                         <Zap className="w-4 h-4" />
                                         <span className="text-sm font-medium tracking-wide uppercase">Interests</span>
                                     </div>
                                     <span className="text-xl font-light text-white">{candidate.recentInterests.score}</span>
                                 </div>
                                 <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
-                                    <div className="h-full bg-orange-500 w-full" />
+                                    <div className="h-full bg-stone-800 w-full" />
                                 </div>
                             </div>
 
@@ -306,10 +306,10 @@ export function CandidateProfile({ candidate, onClose, analysis, onAutoContact }
                         </div>
                     </div>
                 ) : (
-                    <div className="px-8 pb-8 bg-[#0C0C0C]">
+                    <div className="px-8 pb-8 bg-zinc-800">
                         <div className="flex justify-between items-center mb-6 pt-6">
                             <div className="flex items-center gap-2">
-                                <Terminal className="w-4 h-4 text-orange-500" />
+                                <Terminal className="w-4 h-4 text-stone-300" />
                                 <span className="text-[10px] uppercase tracking-widest text-white/70">Coding Patterns</span>
                             </div>
                             <span className="text-[10px] text-white/30">1,027 commits analyzed</span>
@@ -319,7 +319,7 @@ export function CandidateProfile({ candidate, onClose, analysis, onAutoContact }
                                 <span className="text-[9px] uppercase tracking-wider text-white/20 block mb-2">By Day</span>
                                 <div className="grid grid-cols-7 gap-1 h-8">
                                     {[...Array(7)].map((_, i) => (
-                                        <div key={i} className={`rounded-sm ${i === 1 ? 'bg-orange-600' : 'bg-white/5'}`} />
+                                        <div key={i} className={`rounded-sm ${i === 1 ? 'bg-stone-800' : 'bg-white/5'}`} />
                                     ))}
                                 </div>
                             </div>
@@ -334,8 +334,8 @@ export function CandidateProfile({ candidate, onClose, analysis, onAutoContact }
                             <div className="flex items-center gap-2">
                                 <div className={cn(
                                     "transition-colors",
-                                    candidate.learningVelocity.trend === "accelerating" ? "text-emerald-500" :
-                                        candidate.learningVelocity.trend === "steady" ? "text-orange-500" : "text-red-500"
+                                    candidate.learningVelocity.trend === "accelerating" ? "text-zinc-300" :
+                                        candidate.learningVelocity.trend === "steady" ? "text-stone-300" : "text-neutral-400"
                                 )}>
                                     <TrendingUp className="w-4 h-4" />
                                 </div>
@@ -344,9 +344,9 @@ export function CandidateProfile({ candidate, onClose, analysis, onAutoContact }
                             <div className="flex items-center gap-2">
                                 <span className={cn(
                                     "text-xs px-2 py-0.5 rounded uppercase tracking-wide",
-                                    candidate.learningVelocity.trend === "accelerating" ? "bg-emerald-500/10 text-emerald-500" :
-                                        candidate.learningVelocity.trend === "steady" ? "bg-orange-500/10 text-orange-500" :
-                                            "bg-red-500/10 text-red-500"
+                                    candidate.learningVelocity.trend === "accelerating" ? "bg-white/10 text-zinc-300" :
+                                        candidate.learningVelocity.trend === "steady" ? "bg-white/10 text-stone-300" :
+                                            "bg-neutral-500/10 text-neutral-400"
                                 )}>
                                     {candidate.learningVelocity.trend}
                                 </span>
@@ -359,8 +359,8 @@ export function CandidateProfile({ candidate, onClose, analysis, onAutoContact }
                                 <div
                                     className={cn(
                                         "h-full transition-all",
-                                        candidate.learningVelocity.trend === "accelerating" ? "bg-emerald-500" :
-                                            candidate.learningVelocity.trend === "steady" ? "bg-orange-500" : "bg-red-500"
+                                        candidate.learningVelocity.trend === "accelerating" ? "bg-zinc-800" :
+                                            candidate.learningVelocity.trend === "steady" ? "bg-stone-800" : "bg-neutral-800"
                                     )}
                                     style={{ width: `${candidate.learningVelocity.score}%` }}
                                 />
@@ -382,7 +382,7 @@ export function CandidateProfile({ candidate, onClose, analysis, onAutoContact }
                                 <div className="space-y-2">
                                     {candidate.learningVelocity.recentMilestones.map((milestone: string, i: number) => (
                                         <div key={i} className="flex items-start gap-2 text-xs text-white/60">
-                                            <div className="w-1 h-1 rounded-full bg-emerald-500 mt-1.5 shrink-0" />
+                                            <div className="w-1 h-1 rounded-full bg-zinc-800 mt-1.5 shrink-0" />
                                             <span>{milestone}</span>
                                         </div>
                                     ))}
@@ -402,8 +402,8 @@ export function CandidateProfile({ candidate, onClose, analysis, onAutoContact }
                             <span>Exploration Focus</span>
                             <span>Execution Focus</span>
                         </div>
-                        <div className="bg-orange-900/20 relative">
-                            <div className="absolute inset-0 bg-orange-600/20 m-1 rounded" />
+                        <div className="bg-zinc-900/20 relative">
+                            <div className="absolute inset-0 bg-white/20 m-1 rounded" />
                         </div>
                         <div />
                         <div />

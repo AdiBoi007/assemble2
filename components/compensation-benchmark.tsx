@@ -214,9 +214,9 @@ export function CompensationBenchmark({
   }
 
   const confidenceColor = {
-    LOW: "bg-rose-500/20 text-rose-400 border-rose-500/30",
-    MEDIUM: "bg-amber-500/20 text-amber-400 border-amber-500/30",
-    HIGH: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
+    LOW: "bg-neutral-500/20 text-neutral-400 border-neutral-500/30",
+    MEDIUM: "bg-white/20 text-stone-300 border-white/30",
+    HIGH: "bg-white/20 text-zinc-300 border-white/30",
   }
 
   return (
@@ -224,7 +224,7 @@ export function CompensationBenchmark({
       <CardHeader className="cursor-pointer select-none" onClick={() => setIsExpanded(!isExpanded)}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <DollarSign className="h-5 w-5 text-emerald-400" />
+            <DollarSign className="h-5 w-5 text-zinc-300" />
             <CardTitle className="text-lg font-display">Compensation Benchmark</CardTitle>
             <Badge variant="outline" className="text-xs">
               Optional
@@ -358,7 +358,7 @@ export function CompensationBenchmark({
                     variant={selectedSkills.includes(skill) ? "default" : "outline"}
                     className={`cursor-pointer transition-colors ${
                       selectedSkills.includes(skill)
-                        ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30"
+                        ? "bg-white/20 text-zinc-300 border-white/30"
                         : "hover:bg-muted"
                     }`}
                     onClick={() => {
@@ -378,7 +378,7 @@ export function CompensationBenchmark({
 
           {/* Action Buttons */}
           <div className="flex items-center gap-3">
-            <Button onClick={handleEstimate} disabled={isLoading} className="bg-emerald-600 hover:bg-emerald-700">
+            <Button onClick={handleEstimate} disabled={isLoading} className="bg-zinc-800 hover:bg-zinc-700">
               {isLoading ? (
                 <>
                   <Loader2 className="h-4 w-4 mr-2 animate-spin" />
@@ -400,7 +400,7 @@ export function CompensationBenchmark({
                     variant="outline"
                     size="icon"
                     onClick={() => fileInputRef.current?.click()}
-                    className={customData.length > 0 ? "border-emerald-500/50 text-emerald-400" : ""}
+                    className={customData.length > 0 ? "border-white/50 text-zinc-300" : ""}
                   >
                     <Upload className="h-4 w-4" />
                   </Button>
@@ -414,7 +414,7 @@ export function CompensationBenchmark({
             {customData.length > 0 && (
               <Badge
                 variant="outline"
-                className="gap-1 bg-emerald-500/10 text-emerald-400 border-emerald-500/30 cursor-pointer"
+                className="gap-1 bg-white/10 text-zinc-300 border-white/30 cursor-pointer"
                 onClick={() => setShowCsvPreview(!showCsvPreview)}
               >
                 <FileSpreadsheet className="h-3 w-3" />
@@ -424,7 +424,7 @@ export function CompensationBenchmark({
           </div>
 
           {csvError && (
-            <div className="flex items-center gap-2 p-3 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-400">
+            <div className="flex items-center gap-2 p-3 rounded-lg bg-neutral-500/10 border border-neutral-500/30 text-neutral-400">
               <AlertCircle className="h-4 w-4" />
               <span className="text-sm">{csvError}</span>
             </div>
@@ -434,7 +434,7 @@ export function CompensationBenchmark({
             <div className="p-4 rounded-lg bg-background/50 border border-border/50 space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <FileSpreadsheet className="h-4 w-4 text-emerald-400" />
+                  <FileSpreadsheet className="h-4 w-4 text-zinc-300" />
                   <span className="font-medium text-sm">Custom Salary Data</span>
                 </div>
                 <Button
@@ -492,7 +492,7 @@ export function CompensationBenchmark({
 
           {/* Error */}
           {error && (
-            <div className="flex items-center gap-2 p-3 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-400">
+            <div className="flex items-center gap-2 p-3 rounded-lg bg-neutral-500/10 border border-neutral-500/30 text-neutral-400">
               <AlertCircle className="h-4 w-4" />
               <span className="text-sm">{error}</span>
             </div>
@@ -509,7 +509,7 @@ export function CompensationBenchmark({
                     <div className="text-sm text-muted-foreground">
                       P10: <span className="text-foreground">{formatCurrency(result.p10, result.currency)}</span>
                     </div>
-                    <div className="text-2xl font-bold text-emerald-400">
+                    <div className="text-2xl font-bold text-zinc-300">
                       {formatCurrency(result.p50, result.currency)}
                     </div>
                     <div className="text-sm text-muted-foreground">
@@ -523,10 +523,10 @@ export function CompensationBenchmark({
 
               {/* Visual Bar */}
               <div className="relative h-3 bg-muted rounded-full overflow-hidden">
-                <div className="absolute left-[10%] right-[10%] h-full bg-gradient-to-r from-emerald-600/50 via-emerald-500 to-emerald-600/50 rounded-full" />
-                <div className="absolute left-[10%] top-0 -translate-x-1/2 h-full w-0.5 bg-emerald-400/50" />
-                <div className="absolute left-[50%] top-0 -translate-x-1/2 h-full w-1 bg-emerald-400" />
-                <div className="absolute left-[90%] top-0 -translate-x-1/2 h-full w-0.5 bg-emerald-400/50" />
+                <div className="absolute left-[10%] right-[10%] h-full bg-gradient-to-r from-white/50 via-zinc-500 to-white/50 rounded-full" />
+                <div className="absolute left-[10%] top-0 -translate-x-1/2 h-full w-0.5 bg-zinc-800/50" />
+                <div className="absolute left-[50%] top-0 -translate-x-1/2 h-full w-1 bg-zinc-800" />
+                <div className="absolute left-[90%] top-0 -translate-x-1/2 h-full w-0.5 bg-zinc-800/50" />
               </div>
 
               {/* Confidence Reason */}
@@ -542,7 +542,7 @@ export function CompensationBenchmark({
                   <ul className="space-y-1">
                     {result.drivers.map((driver, i) => (
                       <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <CheckCircle className="h-3 w-3 text-emerald-400" />
+                        <CheckCircle className="h-3 w-3 text-zinc-300" />
                         {driver}
                       </li>
                     ))}

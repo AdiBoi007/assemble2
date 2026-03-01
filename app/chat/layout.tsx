@@ -7,7 +7,7 @@ export default function ChatLayout({
     children: React.ReactNode
 }) {
     return (
-        <div className="h-screen flex bg-[#050505] text-white overflow-hidden font-sans">
+        <div className="h-screen flex bg-black text-white overflow-hidden font-sans">
             <PMSidebar />
             {children}
         </div>

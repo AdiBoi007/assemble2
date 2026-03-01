@@ -119,13 +119,13 @@ export function OutreachPanel({ onClose, candidates }: OutreachPanelProps) {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300, mass: 0.8 }}
-            className="fixed inset-y-0 right-0 w-[700px] bg-[#080808] shadow-2xl z-[100] flex flex-col font-mono text-xs overflow-hidden"
+            className="fixed inset-y-0 right-0 w-[700px] bg-zinc-800 shadow-2xl z-[100] flex flex-col font-mono text-xs overflow-hidden"
         >
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 shrink-0 bg-[#0A0A0A]">
                 <div className="flex items-center gap-3">
-                    <div className="p-1.5 bg-orange-500/10 rounded">
-                        <Zap className="w-4 h-4 text-orange-500" />
+                    <div className="p-1.5 bg-cyan-500/10 rounded border border-cyan-500/30 shadow-[0_0_15px_rgba(34,211,238,0.2)]">
+                        <Zap className="w-4 h-4 text-cyan-400" />
                     </div>
                     <div>
                         <div className="text-white/90 text-sm font-medium">{campaign.name}</div>
@@ -147,10 +147,10 @@ export function OutreachPanel({ onClose, candidates }: OutreachPanelProps) {
             <div className="grid grid-cols-5 gap-px bg-white/[0.03] shrink-0">
                 {[
                     { label: "Total", value: campaign.stats.total, color: "text-white/70" },
-                    { label: "Sent", value: campaign.stats.sent, color: "text-amber-400" },
-                    { label: "Opened", value: campaign.stats.opened, color: "text-emerald-400" },
-                    { label: "Replied", value: campaign.stats.replied, color: "text-purple-400" },
-                    { label: "Bounced", value: campaign.stats.bounced, color: "text-red-400" },
+                    { label: "Sent", value: campaign.stats.sent, color: "text-stone-300" },
+                    { label: "Opened", value: campaign.stats.opened, color: "text-zinc-300" },
+                    { label: "Replied", value: campaign.stats.replied, color: "text-zinc-300" },
+                    { label: "Bounced", value: campaign.stats.bounced, color: "text-neutral-400" },
                 ].map(stat => (
                     <div key={stat.label} className="bg-[#0A0A0A] px-4 py-3 text-center">
                         <div className={cn("text-lg font-light", stat.color)}>{stat.value}</div>
@@ -163,25 +163,25 @@ export function OutreachPanel({ onClose, candidates }: OutreachPanelProps) {
             <div className="flex items-center gap-6 px-6 py-3 bg-[#0A0A0A] shrink-0">
                 <div className="flex items-center gap-2">
                     <div className="h-1 w-20 bg-white/10 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 transition-all" style={{ width: `${openRate}%` }} />
+                        <div className="h-full bg-zinc-800 transition-all" style={{ width: `${openRate}%` }} />
                     </div>
-                    <span className="text-[10px] text-emerald-400 font-medium">{openRate}% open rate</span>
+                    <span className="text-[10px] text-zinc-300 font-medium">{openRate}% open rate</span>
                 </div>
                 <div className="flex items-center gap-2">
                     <div className="h-1 w-20 bg-white/10 rounded-full overflow-hidden">
-                        <div className="h-full bg-purple-500 transition-all" style={{ width: `${replyRate}%` }} />
+                        <div className="h-full bg-zinc-800 transition-all" style={{ width: `${replyRate}%` }} />
                     </div>
-                    <span className="text-[10px] text-purple-400 font-medium">{replyRate}% reply rate</span>
+                    <span className="text-[10px] text-zinc-300 font-medium">{replyRate}% reply rate</span>
                 </div>
                 <div className="flex-1" />
                 <div className="flex items-center gap-2">
                     {campaign.status === "active" && (
-                        <Button variant="ghost" size="sm" onClick={handlePause} className="h-7 text-[10px] uppercase tracking-wider text-amber-400 hover:bg-amber-500/10">
+                        <Button variant="ghost" size="sm" onClick={handlePause} className="h-7 text-[10px] uppercase tracking-wider text-stone-300 hover:bg-white/10">
                             <Pause className="w-3 h-3 mr-1.5" /> Pause
                         </Button>
                     )}
                     {campaign.status === "paused" && (
-                        <Button variant="ghost" size="sm" onClick={handlePause} className="h-7 text-[10px] uppercase tracking-wider text-emerald-400 hover:bg-emerald-500/10">
+                        <Button variant="ghost" size="sm" onClick={handlePause} className="h-7 text-[10px] uppercase tracking-wider text-zinc-300 hover:bg-white/10">
                             <Play className="w-3 h-3 mr-1.5" /> Resume
                         </Button>
                     )}
@@ -200,7 +200,7 @@ export function OutreachPanel({ onClose, candidates }: OutreachPanelProps) {
                         className={cn(
                             "flex items-center gap-2 px-4 py-3 text-[10px] uppercase tracking-wider font-medium transition-colors",
                             activeView === tab.key || (tab.key === "overview" && activeView === "preview")
-                                ? "text-orange-500 border-b border-orange-500"
+                                ? "text-stone-300 border-b border-white/10"
                                 : "text-white/30 hover:text-white/60"
                         )}
                     >
@@ -277,7 +277,7 @@ export function OutreachPanel({ onClose, candidates }: OutreachPanelProps) {
                                             <Button
                                                 variant="ghost"
                                                 size="icon"
-                                                className="h-6 w-6 text-white/30 hover:text-red-400 hover:bg-red-500/10"
+                                                className="h-6 w-6 text-white/30 hover:text-neutral-400 hover:bg-neutral-500/10"
                                                 onClick={() => handleRemoveCandidate(msg.id)}
                                             >
                                                 <Trash2 className="w-3 h-3" />
@@ -292,7 +292,7 @@ export function OutreachPanel({ onClose, candidates }: OutreachPanelProps) {
                                 <Button
                                     onClick={handleLaunch}
                                     disabled={launching || campaign.status === "active"}
-                                    className="flex-1 h-10 bg-orange-500 hover:bg-orange-600 text-black font-medium text-xs uppercase tracking-wider rounded-lg"
+                                    className="flex-1 h-10 bg-cyan-500 hover:bg-cyan-600 text-black font-medium text-xs uppercase tracking-wider rounded-lg shadow-[0_0_15px_rgba(34,211,238,0.4)]"
                                 >
                                     {launching ? (
                                         <motion.div
@@ -389,19 +389,19 @@ export function OutreachPanel({ onClose, candidates }: OutreachPanelProps) {
                                     <div className="space-y-1.5">
                                         {selectedMessage.sentAt && (
                                             <div className="flex items-center gap-2 text-[10px] text-white/40">
-                                                <Send className="w-3 h-3 text-amber-400" />
+                                                <Send className="w-3 h-3 text-stone-300" />
                                                 Sent {new Date(selectedMessage.sentAt).toLocaleString()}
                                             </div>
                                         )}
                                         {selectedMessage.openedAt && (
                                             <div className="flex items-center gap-2 text-[10px] text-white/40">
-                                                <MailOpen className="w-3 h-3 text-emerald-400" />
+                                                <MailOpen className="w-3 h-3 text-zinc-300" />
                                                 Opened {new Date(selectedMessage.openedAt).toLocaleString()}
                                             </div>
                                         )}
                                         {selectedMessage.repliedAt && (
                                             <div className="flex items-center gap-2 text-[10px] text-white/40">
-                                                <Reply className="w-3 h-3 text-purple-400" />
+                                                <Reply className="w-3 h-3 text-zinc-300" />
                                                 Replied {new Date(selectedMessage.repliedAt).toLocaleString()}
                                             </div>
                                         )}
@@ -412,17 +412,17 @@ export function OutreachPanel({ onClose, candidates }: OutreachPanelProps) {
                             {/* Actions */}
                             <div className="flex items-center gap-3 pt-4">
                                 {selectedMessage.status === "draft" && (
-                                    <Button className="flex-1 h-9 bg-orange-500 hover:bg-orange-600 text-black text-[10px] uppercase tracking-wider font-medium">
+                                    <Button className="flex-1 h-9 bg-cyan-500 hover:bg-cyan-600 text-black text-[10px] uppercase tracking-wider font-medium shadow-[0_0_10px_rgba(34,211,238,0.3)]">
                                         <Send className="w-3 h-3 mr-2" /> Send Now
                                     </Button>
                                 )}
                                 {selectedMessage.status === "scheduled" && (
-                                    <Button className="flex-1 h-9 bg-blue-500 hover:bg-blue-600 text-white text-[10px] uppercase tracking-wider font-medium">
+                                    <Button className="flex-1 h-9 bg-zinc-800 hover:bg-zinc-800 text-white text-[10px] uppercase tracking-wider font-medium">
                                         <Clock className="w-3 h-3 mr-2" /> Scheduled for {selectedMessage.scheduledAt ? new Date(selectedMessage.scheduledAt).toLocaleDateString() : "TBD"}
                                     </Button>
                                 )}
                                 {selectedMessage.status === "replied" && (
-                                    <Button className="flex-1 h-9 bg-purple-500/20 hover:bg-purple-500/30 text-purple-400 text-[10px] uppercase tracking-wider font-medium">
+                                    <Button className="flex-1 h-9 bg-white/20 hover:bg-white/30 text-zinc-300 text-[10px] uppercase tracking-wider font-medium">
                                         <MailCheck className="w-3 h-3 mr-2" /> View Reply Thread
                                     </Button>
                                 )}
@@ -465,7 +465,7 @@ export function OutreachPanel({ onClose, candidates }: OutreachPanelProps) {
                                         transition={{ delay: i * 0.05 }}
                                         className={cn(
                                             "rounded-lg overflow-hidden transition-colors cursor-pointer",
-                                            selectedStep === i ? "bg-white/[0.05] ring-1 ring-orange-500/30" : "bg-white/[0.02] hover:bg-white/[0.04]"
+                                            selectedStep === i ? "bg-white/[0.05] ring-1 ring-zinc-500/30" : "bg-white/[0.02] hover:bg-white/[0.04]"
                                         )}
                                         onClick={() => setSelectedStep(i)}
                                     >
@@ -473,7 +473,7 @@ export function OutreachPanel({ onClose, candidates }: OutreachPanelProps) {
                                         <div className="flex items-center gap-3 px-4 py-3">
                                             <div className={cn(
                                                 "w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-medium",
-                                                selectedStep === i ? "bg-orange-500 text-black" : "bg-white/10 text-white/40"
+                                                selectedStep === i ? "bg-stone-800 text-black" : "bg-white/10 text-white/40"
                                             )}>
                                                 {i + 1}
                                             </div>

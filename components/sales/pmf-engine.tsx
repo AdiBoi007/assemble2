@@ -24,17 +24,17 @@ export function PMFEngine({ data }: { data: PMFData }) {
             {/* Header */}
             <div className="mb-6 flex items-center justify-between shrink-0">
                 <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#FF6B00]/10 border border-[#FF6B00]/30 flex items-center justify-center shadow-[0_0_15px_rgba(255,107,0,0.2)]">
-                        <Shield className="w-5 h-5 text-[#FF6B00]" />
+                    <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+                        <Shield className="w-5 h-5 text-emerald-400" />
                     </div>
                     <div>
                         <h2 className="text-lg font-bold tracking-tight text-white">Validation Engine</h2>
-                        <p className="text-[11px] text-[#FF6B00]/80 font-mono uppercase tracking-widest mt-0.5">PMF Simulation Active</p>
+                        <p className="text-[11px] text-zinc-300/80 font-mono uppercase tracking-widest mt-0.5">PMF Simulation Active</p>
                     </div>
                 </div>
                 <div className="text-right flex items-center gap-4">
                     <div className="flex flex-col items-end">
-                        <span className="text-3xl font-black text-white">{data.score}<span className="text-[#FF6B00] text-xl">/100</span></span>
+                        <span className="text-3xl font-black text-white">{data.score}<span className="text-zinc-300 text-xl">/100</span></span>
                         <span className="text-[9px] uppercase tracking-widest text-white/40 font-bold">PMF Score</span>
                     </div>
                 </div>
@@ -51,7 +51,7 @@ export function PMFEngine({ data }: { data: PMFData }) {
                         <ul className="space-y-3">
                             {data.targetAudiences.map((aud, i) => (
                                 <li key={i} className="flex items-start gap-2">
-                                    <CheckCircle2 className="w-3.5 h-3.5 text-[#FF6B00]/70 mt-0.5 shrink-0" />
+                                    <CheckCircle2 className="w-3.5 h-3.5 text-zinc-300/70 mt-0.5 shrink-0" />
                                     <span className="text-xs text-white/80 font-medium leading-relaxed">{aud}</span>
                                 </li>
                             ))}
@@ -65,7 +65,7 @@ export function PMFEngine({ data }: { data: PMFData }) {
                         <ul className="space-y-3">
                             {data.messagingHooks.map((hook, i) => (
                                 <li key={i} className="flex items-start gap-2">
-                                    <span className="text-xs font-bold text-[#FF6B00] mt-0.5 shrink-0">0{i + 1}.</span>
+                                    <span className="text-xs font-bold text-zinc-300 mt-0.5 shrink-0">0{i + 1}.</span>
                                     <span className="text-xs text-white/80 italic leading-relaxed">"{hook}"</span>
                                 </li>
                             ))}
@@ -79,7 +79,7 @@ export function PMFEngine({ data }: { data: PMFData }) {
                     <div className="grid grid-cols-3 gap-3">
                         {data.acquisitionChannels.map((ch, i) => (
                             <div key={i} className="p-3 rounded-xl bg-black border border-white/10">
-                                <p className="text-[11px] font-bold text-[#FF6B00] mb-1.5">{ch.name}</p>
+                                <p className="text-[11px] font-bold text-zinc-300 mb-1.5">{ch.name}</p>
                                 <p className="text-[10px] text-white/50 leading-relaxed">{ch.validation}</p>
                             </div>
                         ))}
@@ -87,8 +87,8 @@ export function PMFEngine({ data }: { data: PMFData }) {
                 </div>
 
                 {/* Pricing */}
-                <div className="p-5 rounded-2xl bg-white/[0.02] border border-[#FF6B00]/10 relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF6B00]/5 rounded-full blur-[40px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+                <div className="p-5 rounded-2xl bg-white/[0.02] border border-emerald-500/10 relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-[40px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                     <div className="flex items-center gap-2 mb-4 relative z-10">
                         <DollarSign className="w-4 h-4 text-white/50" />
                         <h3 className="text-xs font-bold uppercase tracking-widest text-white/50">Pricing Bounds</h3>
@@ -105,10 +105,10 @@ export function PMFEngine({ data }: { data: PMFData }) {
                 </div>
 
                 {/* 30-Day GTM */}
-                <div className="p-5 rounded-2xl bg-[#FF6B00]/[0.02] border border-[#FF6B00]/20">
+                <div className="p-5 rounded-2xl bg-zinc-800/[0.02] border border-emerald-500/20">
                     <div className="flex items-center gap-2 mb-5">
-                        <Rocket className="w-4 h-4 text-[#FF6B00]" />
-                        <h3 className="text-xs font-bold uppercase tracking-widest text-[#FF6B00]">30-Day Execution GTM</h3>
+                        <Rocket className="w-4 h-4 text-emerald-400" />
+                        <h3 className="text-xs font-bold uppercase tracking-widest text-emerald-400">30-Day Execution GTM</h3>
                     </div>
                     <div className="space-y-6">
                         {data.gtmPlan.map((phase, i) => (
@@ -116,10 +116,10 @@ export function PMFEngine({ data }: { data: PMFData }) {
                                 {/* Timeline Line */}
                                 {i !== data.gtmPlan.length - 1 && <div className="absolute left-1.5 top-6 bottom-[-1.5rem] w-[1px] bg-white/10" />}
                                 <div className="flex gap-4">
-                                    <div className="w-3 h-3 rounded-full bg-[#FF6B00] shadow-[0_0_8px_rgba(255,107,0,0.6)] mt-1 shrink-0 relative z-10" />
+                                    <div className="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)] mt-1 shrink-0 relative z-10" />
                                     <div>
                                         <div className="flex flex-wrap items-baseline gap-2 mb-2">
-                                            <span className="text-[10px] font-mono text-[#FF6B00]/80 bg-[#FF6B00]/10 px-1.5 py-0.5 rounded">{phase.phase}</span>
+                                            <span className="text-[10px] font-mono text-zinc-300/80 bg-zinc-800/10 px-1.5 py-0.5 rounded">{phase.phase}</span>
                                             <span className="text-sm font-bold text-white">{phase.title}</span>
                                         </div>
                                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">

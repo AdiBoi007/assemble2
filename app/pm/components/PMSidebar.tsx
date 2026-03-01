@@ -40,18 +40,18 @@ export default function PMSidebar() {
     const [isExpanded, setIsExpanded] = useState(false)
 
     const navItems = [
-        { label: "Command Core", icon: Command, href: "/chat", exact: true, color: "text-[#FF6B00]", bg: "bg-[#FF6B00]", shadow: "shadow-[0_0_12px_rgba(255,107,0,0.6)]" },
-        { label: "War Room Blitz", icon: Terminal, href: "/chat?q=war", color: "text-rose-500", bg: "bg-rose-500", shadow: "shadow-[0_0_12px_rgba(244,63,94,0.6)]" },
-        { label: "PMF Validation", icon: Shield, href: "/chat?q=pmf", color: "text-emerald-400", bg: "bg-emerald-400", shadow: "shadow-[0_0_12px_rgba(52,211,153,0.6)]" },
-        { label: "Outbound AI", icon: Send, href: "/chat?q=outreach", color: "text-cyan-400", bg: "bg-cyan-400", shadow: "shadow-[0_0_12px_rgba(34,211,238,0.6)]" },
-        { label: "Lead Triage", icon: Target, href: "/chat?q=score", color: "text-amber-400", bg: "bg-amber-400", shadow: "shadow-[0_0_12px_rgba(251,191,36,0.6)]" },
-        { label: "Active Integrations", icon: Network, href: "/chat?q=integrations", color: "text-indigo-400", bg: "bg-indigo-400", shadow: "shadow-[0_0_12px_rgba(129,140,248,0.6)]" },
+        { label: "Command Core", icon: Command, href: "/chat", exact: true, color: "text-core-orange", bg: "bg-zinc-800", shadow: "shadow-[0_0_12px_rgba(255,107,0,0.6)]" },
+        { label: "War Room Blitz", icon: Terminal, href: "/chat?q=war", color: "text-rose-500", bg: "bg-neutral-800", shadow: "shadow-[0_0_12px_rgba(244,63,94,0.6)]" },
+        { label: "PMF Validation", icon: Shield, href: "/chat?q=pmf", color: "text-emerald-400", bg: "bg-zinc-800", shadow: "shadow-[0_0_12px_rgba(52,211,153,0.6)]" },
+        { label: "Outbound AI", icon: Send, href: "/chat?q=outreach", color: "text-cyan-400", bg: "bg-zinc-800", shadow: "shadow-[0_0_12px_rgba(34,211,238,0.6)]" },
+        { label: "Lead Triage", icon: Target, href: "/chat?q=score", color: "text-amber-400", bg: "bg-stone-800", shadow: "shadow-[0_0_12px_rgba(251,191,36,0.6)]" },
+        { label: "Active Integrations", icon: Network, href: "/chat?q=integrations", color: "text-indigo-400", bg: "bg-zinc-800", shadow: "shadow-[0_0_12px_rgba(129,140,248,0.6)]" },
     ]
 
     return (
         <div
             className={cn(
-                "flex flex-col py-4 bg-[#121212] border border-white/10 shrink-0 z-50 transition-all duration-300 ease-out group/sidebar m-4 max-h-[calc(100vh-2rem)] my-auto rounded-[2.5rem] shadow-2xl relative gap-2",
+                "flex flex-col py-4 bg-zinc-800 border border-white/10 shrink-0 z-50 transition-all duration-300 ease-out group/sidebar m-4 max-h-[calc(100vh-2rem)] my-auto rounded-[2.5rem] shadow-2xl relative gap-2",
                 isExpanded ? "w-72 px-4 items-start" : "w-[68px] items-center"
             )}
             onMouseEnter={() => setIsExpanded(true)}
@@ -59,8 +59,8 @@ export default function PMSidebar() {
         >
             {/* Logo area */}
             <div className={cn("flex items-center px-0 w-full", isExpanded ? "justify-start px-2 gap-3" : "justify-center")}>
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 cursor-pointer shrink-0 hover:bg-white/5">
-                    <Image src="/forge-logo.png" alt="Forge Logo" width={32} height={32} className="w-8 h-8 object-contain mix-blend-screen contrast-125" />
+                <div className="w-10 h-10 flex items-center justify-center transition-all duration-300 cursor-pointer shrink-0 hover:bg-white/5">
+                    <Image src="/logo.jpg" alt="AssembleOne Logo" width={32} height={32} className="w-9 h-9 object-contain rounded-md" />
                 </div>
                 <div className={cn(
                     "flex flex-col overflow-hidden transition-all duration-300",
@@ -72,7 +72,7 @@ export default function PMSidebar() {
             </div>
 
             {/* Nav Items */}
-            <div className="flex-1 overflow-y-auto custom-scrollbar flex flex-col gap-1 w-full items-center">
+            <div className="flex-1 overflow-y-auto scrollbar-hide flex flex-col gap-1 w-full items-center">
                 {navItems.map((item) => {
                     const isActive = (item as any).exact
                         ? pathname === item.href
@@ -116,7 +116,7 @@ export default function PMSidebar() {
 
                                 {/* Tooltip on Hover (Collapsed Only) */}
                                 {!isExpanded && (
-                                    <div className="absolute left-16 px-3 py-1.5 bg-[#1A1A1A] border border-white/10 rounded-lg text-xs font-medium text-white opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-[60] shadow-xl">
+                                    <div className="absolute left-16 px-3 py-1.5 bg-zinc-800 border border-white/10 rounded-lg text-xs font-medium text-white opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-[60] shadow-xl">
                                         {item.label}
                                     </div>
                                 )}

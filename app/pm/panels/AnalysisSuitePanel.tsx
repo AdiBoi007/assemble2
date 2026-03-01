@@ -30,8 +30,8 @@ export default function AnalysisSuitePanel({ onClose }: { onClose: () => void })
             {/* Header */}
             <div className="px-6 py-5 border-b border-white/[0.06] flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-rose-500/15 border border-rose-500/30 flex items-center justify-center">
-                        <BarChart3 className="w-5 h-5 text-rose-400" />
+                    <div className="w-10 h-10 rounded-xl bg-neutral-500/15 border border-neutral-500/30 flex items-center justify-center">
+                        <BarChart3 className="w-5 h-5 text-neutral-400" />
                     </div>
                     <div>
                         <h2 className="text-sm font-semibold text-white">Analysis Suite</h2>
@@ -49,7 +49,7 @@ export default function AnalysisSuitePanel({ onClose }: { onClose: () => void })
                     <button
                         key={t.key}
                         onClick={() => setTab(t.key)}
-                        className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-[11px] font-medium transition-all whitespace-nowrap ${tab === t.key ? 'bg-rose-500/15 text-rose-400 border border-rose-500/30' : 'text-white/40 hover:text-white/60 hover:bg-white/[0.04]'
+                        className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-[11px] font-medium transition-all whitespace-nowrap ${tab === t.key ? 'bg-neutral-500/15 text-neutral-400 border border-neutral-500/30' : 'text-white/40 hover:text-white/60 hover:bg-white/[0.04]'
                             }`}
                     >
                         <t.icon className="w-3.5 h-3.5" />
@@ -119,12 +119,12 @@ function DecisionTab() {
 
             {/* Strengths / Weaknesses */}
             <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-3">
-                    <p className="text-[10px] text-emerald-400 font-medium mb-1.5">✅ Strengths</p>
+                <div className="rounded-xl border border-white/20 bg-white/5 p-3">
+                    <p className="text-[10px] text-zinc-300 font-medium mb-1.5">✅ Strengths</p>
                     {d.strengths.map((s, i) => <p key={i} className="text-[10px] text-white/40 mb-0.5">{s}</p>)}
                 </div>
-                <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-3">
-                    <p className="text-[10px] text-amber-400 font-medium mb-1.5">⚠️ Weaknesses</p>
+                <div className="rounded-xl border border-white/20 bg-white/5 p-3">
+                    <p className="text-[10px] text-stone-300 font-medium mb-1.5">⚠️ Weaknesses</p>
                     {d.weaknesses.map((w, i) => <p key={i} className="text-[10px] text-white/40 mb-0.5">{w}</p>)}
                 </div>
             </div>
@@ -135,7 +135,7 @@ function DecisionTab() {
 /* ─── Communication Tab ─────────────────────────────────────────────────────── */
 function CommunicationTab() {
     const c = DEMO_COMMUNICATION_SCORE
-    const quoteColors: Record<string, string> = { strong: 'border-emerald-500/30 bg-emerald-500/5', adequate: 'border-amber-500/20 bg-amber-500/5', weak: 'border-red-500/20 bg-red-500/5' }
+    const quoteColors: Record<string, string> = { strong: 'border-white/30 bg-white/5', adequate: 'border-white/20 bg-white/5', weak: 'border-neutral-500/20 bg-neutral-500/5' }
 
     return (
         <div className="space-y-5">
@@ -144,8 +144,8 @@ function CommunicationTab() {
                     <h3 className="text-sm font-semibold text-white">{c.candidateName} — Communication</h3>
                     <p className="text-[11px] text-white/40 mt-0.5">Overall: {c.overallScore}/100</p>
                 </div>
-                <div className="w-14 h-14 rounded-full border-2 border-rose-500/30 flex items-center justify-center">
-                    <span className="text-[18px] font-bold text-rose-400">{c.overallScore}</span>
+                <div className="w-14 h-14 rounded-full border-2 border-neutral-500/30 flex items-center justify-center">
+                    <span className="text-[18px] font-bold text-neutral-400">{c.overallScore}</span>
                 </div>
             </div>
 
@@ -158,7 +158,7 @@ function CommunicationTab() {
                             <span className="text-[11px] text-white/60 font-mono font-bold">{dim.score}/{dim.maxScore}</span>
                         </div>
                         <div className="h-1.5 rounded-full bg-white/[0.06] overflow-hidden mb-2">
-                            <div className="h-full rounded-full bg-gradient-to-r from-rose-500/60 to-rose-500/20" style={{ width: `${dim.score}%` }} />
+                            <div className="h-full rounded-full bg-gradient-to-r from-zinc-500/60 to-zinc-500/20" style={{ width: `${dim.score}%` }} />
                         </div>
                         <div className="flex flex-wrap gap-1">
                             {dim.examples.map((ex, i) => <span key={i} className="text-[9px] text-white/30 bg-white/[0.04] px-1.5 py-0.5 rounded">{ex}</span>)}
@@ -180,12 +180,12 @@ function CommunicationTab() {
 
             {/* Strengths / Areas */}
             <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-3">
-                    <p className="text-[10px] text-emerald-400 font-medium mb-1.5">✅ Strengths</p>
+                <div className="rounded-xl border border-white/20 bg-white/5 p-3">
+                    <p className="text-[10px] text-zinc-300 font-medium mb-1.5">✅ Strengths</p>
                     {c.topStrengths.map((s, i) => <p key={i} className="text-[10px] text-white/40 mb-0.5">{s}</p>)}
                 </div>
-                <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-3">
-                    <p className="text-[10px] text-amber-400 font-medium mb-1.5">📈 Improve</p>
+                <div className="rounded-xl border border-white/20 bg-white/5 p-3">
+                    <p className="text-[10px] text-stone-300 font-medium mb-1.5">📈 Improve</p>
                     {c.areasForImprovement.map((a, i) => <p key={i} className="text-[10px] text-white/40 mb-0.5">{a}</p>)}
                 </div>
             </div>
@@ -216,7 +216,7 @@ function BenchmarkTab() {
                 <p className="text-[10px] text-white/30 uppercase tracking-wider mb-1">Overall Percentile</p>
                 <p className="text-[32px] font-bold text-white/80">P{b.overallPercentile}</p>
                 <div className="h-2 rounded-full bg-white/[0.06] overflow-hidden mt-2 mx-8">
-                    <div className="h-full rounded-full bg-gradient-to-r from-emerald-500/60 to-emerald-500/20" style={{ width: `${b.overallPercentile}%` }} />
+                    <div className="h-full rounded-full bg-gradient-to-r from-white/60 to-white/20" style={{ width: `${b.overallPercentile}%` }} />
                 </div>
             </div>
 
@@ -237,7 +237,7 @@ function BenchmarkTab() {
                                 <div className="absolute top-0 h-full w-px bg-white/10" style={{ left: '77%' }} />
                                 <div className="absolute top-0 h-full w-px bg-white/10" style={{ left: '100%' }} />
                                 {/* Candidate marker */}
-                                <div className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-rose-400 border-2 border-[#0A0A0A]" style={{ left: `${Math.min(Math.max(position, 0), 100)}%` }} />
+                                <div className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-neutral-800 border-2 border-[#0A0A0A]" style={{ left: `${Math.min(Math.max(position, 0), 100)}%` }} />
                             </div>
                             <div className="flex justify-between">
                                 <span className="text-[8px] text-white/20">P25</span>
@@ -292,14 +292,14 @@ function CheatTab() {
                     <p className="text-[10px] text-white/30 mb-1">Overall Confidence</p>
                     <p className="text-[24px] font-bold text-white/80">{r.overallConfidence}%</p>
                     <div className="h-1.5 rounded-full bg-white/[0.06] overflow-hidden mt-1">
-                        <div className="h-full rounded-full bg-amber-500/50" style={{ width: `${r.overallConfidence}%` }} />
+                        <div className="h-full rounded-full bg-white/50" style={{ width: `${r.overallConfidence}%` }} />
                     </div>
                 </div>
                 <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-3 text-center">
                     <p className="text-[10px] text-white/30 mb-1">AI Usage Probability</p>
-                    <p className="text-[24px] font-bold text-amber-400">{r.aiUsageProbability}%</p>
+                    <p className="text-[24px] font-bold text-stone-300">{r.aiUsageProbability}%</p>
                     <div className="h-1.5 rounded-full bg-white/[0.06] overflow-hidden mt-1">
-                        <div className="h-full rounded-full bg-red-500/50" style={{ width: `${r.aiUsageProbability}%` }} />
+                        <div className="h-full rounded-full bg-neutral-500/50" style={{ width: `${r.aiUsageProbability}%` }} />
                     </div>
                 </div>
             </div>
@@ -327,7 +327,7 @@ function CheatTab() {
                                 <span className="text-[9px] text-white/20">{sig.signalType}</span>
                             </div>
                             <div className="rounded-lg bg-white/[0.03] p-2 mt-2">
-                                <p className="text-[9px] text-blue-400/60 font-medium mb-0.5">💡 Recommendation</p>
+                                <p className="text-[9px] text-zinc-300/60 font-medium mb-0.5">💡 Recommendation</p>
                                 <p className="text-[9px] text-white/40">{sig.recommendation}</p>
                             </div>
                         </div>

@@ -43,7 +43,7 @@ export function FeaturesSection() {
       <div className="px-8">
         <h4 className="mx-auto max-w-5xl text-center text-3xl font-medium tracking-tight text-white lg:text-5xl lg:leading-tight">
           One Goal. Every Function of Your Company,{" "}
-          <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-zinc-400 to-zinc-400 bg-clip-text text-transparent">
             Handled by Agents
           </span>
         </h4>
@@ -101,12 +101,12 @@ export const SkeletonOne = () => {
   const lines = [
     { text: "▸ Analyzing idea: 'AI invoice tool for freelancers'", color: "text-neutral-400", delay: 0 },
     { text: "▸ Generating product spec...", color: "text-neutral-400", delay: 0.3 },
-    { text: "▸ Scaffolding Next.js + Tailwind app", color: "text-emerald-400", delay: 0.6 },
-    { text: "▸ Writing InvoiceEditor component (done)", color: "text-emerald-400", delay: 0.9 },
-    { text: "▸ Connecting Stripe payment API", color: "text-emerald-400", delay: 1.2 },
-    { text: "▸ Setting up Supabase auth", color: "text-yellow-400", delay: 1.5 },
-    { text: "▸ Running build... success ✓", color: "text-emerald-400", delay: 1.8 },
-    { text: "▸ Deploying to edge network...", color: "text-cyan-400", delay: 2.1 },
+    { text: "▸ Scaffolding Next.js + Tailwind app", color: "text-zinc-300", delay: 0.6 },
+    { text: "▸ Writing InvoiceEditor component (done)", color: "text-zinc-300", delay: 0.9 },
+    { text: "▸ Connecting Stripe payment API", color: "text-zinc-300", delay: 1.2 },
+    { text: "▸ Setting up Supabase auth", color: "text-stone-300", delay: 1.5 },
+    { text: "▸ Running build... success ✓", color: "text-zinc-300", delay: 1.8 },
+    { text: "▸ Deploying to edge network...", color: "text-zinc-300", delay: 2.1 },
   ];
 
   return (
@@ -114,9 +114,9 @@ export const SkeletonOne = () => {
       <div className="group mx-auto h-full w-full rounded-lg bg-neutral-950 p-5 shadow-2xl border border-neutral-800">
         {/* Terminal chrome */}
         <div className="flex items-center gap-1.5 mb-4">
-          <div className="w-3 h-3 rounded-full bg-red-500/70" />
-          <div className="w-3 h-3 rounded-full bg-yellow-500/70" />
-          <div className="w-3 h-3 rounded-full bg-emerald-500/70" />
+          <div className="w-3 h-3 rounded-full bg-neutral-500/70" />
+          <div className="w-3 h-3 rounded-full bg-white/70" />
+          <div className="w-3 h-3 rounded-full bg-white/70" />
           <span className="ml-3 text-xs text-neutral-500 font-mono">build_agent.run()</span>
         </div>
         {/* Animated lines */}
@@ -137,7 +137,7 @@ export const SkeletonOne = () => {
         <div className="mt-6">
           <div className="h-1.5 w-full rounded-full bg-neutral-800 overflow-hidden">
             <motion.div
-              className="h-full bg-emerald-500 rounded-full"
+              className="h-full bg-zinc-800 rounded-full"
               initial={{ width: "0%" }}
               animate={{ width: "92%" }}
               transition={{ duration: 2.5, ease: "easeOut", delay: 0.5 }}
@@ -156,11 +156,11 @@ export const SkeletonOne = () => {
 
 export const SkeletonTwo = () => {
   const leads = [
-    { name: "Alex Morgan", co: "BuildFast Inc", status: "Meeting Booked", color: "bg-emerald-900 text-emerald-300" },
-    { name: "Sarah Lin", co: "SaaS Co.", status: "Replied — Interested", color: "bg-blue-900 text-blue-300" },
-    { name: "Raj Patel", co: "Indie Studio", status: "Follow-up 2 Sent", color: "bg-yellow-900 text-yellow-300" },
+    { name: "Alex Morgan", co: "BuildFast Inc", status: "Meeting Booked", color: "bg-zinc-900 text-zinc-300" },
+    { name: "Sarah Lin", co: "SaaS Co.", status: "Replied — Interested", color: "bg-zinc-900 text-zinc-300" },
+    { name: "Raj Patel", co: "Indie Studio", status: "Follow-up 2 Sent", color: "bg-zinc-900 text-stone-300" },
     { name: "Jordan Kim", co: "LaunchLab", status: "Researching Account", color: "bg-neutral-800 text-neutral-400" },
-    { name: "Maya Chen", co: "DevHouse", status: "Meeting Booked", color: "bg-emerald-900 text-emerald-300" },
+    { name: "Maya Chen", co: "DevHouse", status: "Meeting Booked", color: "bg-zinc-900 text-zinc-300" },
   ];
 
   const cardVariants = {
@@ -171,7 +171,7 @@ export const SkeletonTwo = () => {
   return (
     <div className="relative flex h-full flex-col items-start gap-3 overflow-hidden p-4">
       <div className="flex items-center gap-2 mb-1">
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+        <span className="w-1.5 h-1.5 rounded-full bg-zinc-800 animate-pulse" />
         <span className="text-xs text-neutral-500 font-mono">outbound_agent — 3 sequences active</span>
       </div>
       {/* Row 1 */}
@@ -233,7 +233,7 @@ export const SkeletonThree = () => {
     <div className="relative flex h-full flex-col gap-3 p-4">
       <div className="flex items-center justify-between">
         <span className="text-xs text-neutral-500 font-mono">monitor_agent.dashboard()</span>
-        <span className="text-xs text-emerald-400">● Live</span>
+        <span className="text-xs text-zinc-300">● Live</span>
       </div>
       {/* Stat pills */}
       <div className="grid grid-cols-3 gap-2">
@@ -241,7 +241,7 @@ export const SkeletonThree = () => {
           <div key={i} className="rounded-lg bg-neutral-900 border border-neutral-800 p-2 text-center">
             <p className="text-[10px] text-neutral-500">{s.label}</p>
             <p className="text-sm font-bold text-white">{s.value}</p>
-            <p className="text-[10px] text-emerald-500">{s.change}</p>
+            <p className="text-[10px] text-zinc-300">{s.change}</p>
           </div>
         ))}
       </div>
@@ -250,7 +250,7 @@ export const SkeletonThree = () => {
         {bars.map((h, i) => (
           <motion.div
             key={i}
-            className="flex-1 bg-emerald-500 rounded-sm opacity-80"
+            className="flex-1 bg-zinc-800 rounded-sm opacity-80"
             style={{ height: `${h}%` }}
             initial={{ height: 0 }}
             animate={{ height: `${h}%` }}

@@ -213,7 +213,7 @@ export function PortfolioAnalyzer({ url, onExtracted }: PortfolioAnalyzerProps) 
         <div className="h-1.5 bg-muted rounded-full overflow-hidden">
           <div
             className={`h-full transition-all duration-500 ease-out ${
-              isError ? "bg-rose-500" : "bg-gradient-to-r from-cyan-500 to-emerald-500"
+              isError ? "bg-neutral-800" : "bg-gradient-to-r from-zinc-500 to-zinc-500"
             }`}
             style={{ width: `${((currentIndex + 1) / PROGRESS_STEPS.length) * 100}%` }}
           />
@@ -231,22 +231,22 @@ export function PortfolioAnalyzer({ url, onExtracted }: PortfolioAnalyzerProps) 
                 key={step.key}
                 className={`flex flex-col items-center gap-1 transition-all duration-300 ${
                   isFailed
-                    ? "text-rose-400"
+                    ? "text-neutral-400"
                     : isActive
-                      ? "text-cyan-400 scale-110"
+                      ? "text-zinc-300 scale-110"
                       : isComplete
-                        ? "text-emerald-400"
+                        ? "text-zinc-300"
                         : "text-muted-foreground/50"
                 }`}
               >
                 <div
                   className={`p-1.5 rounded-full ${
                     isFailed
-                      ? "bg-rose-400/20 ring-2 ring-rose-400/50"
+                      ? "bg-neutral-800/20 ring-2 ring-zinc-400/50"
                       : isActive
-                        ? "bg-cyan-400/20 ring-2 ring-cyan-400/50"
+                        ? "bg-zinc-800/20 ring-2 ring-white/50"
                         : isComplete
-                          ? "bg-emerald-400/20"
+                          ? "bg-zinc-800/20"
                           : "bg-muted/50"
                   }`}
                 >
@@ -271,7 +271,7 @@ export function PortfolioAnalyzer({ url, onExtracted }: PortfolioAnalyzerProps) 
           {currentStep === "extracting" && (
             <span>
               Extracting projects & skills...
-              {elapsedTime > 5 && <span className="text-amber-400 ml-2">({elapsedTime}s)</span>}
+              {elapsedTime > 5 && <span className="text-stone-300 ml-2">({elapsedTime}s)</span>}
             </span>
           )}
           {currentStep === "done" && "Analysis complete!"}
@@ -285,8 +285,8 @@ export function PortfolioAnalyzer({ url, onExtracted }: PortfolioAnalyzerProps) 
     if (!showHtmlFallback) return null
 
     return (
-      <div className="p-4 bg-muted/30 rounded-lg border border-amber-400/30 space-y-3">
-        <div className="flex items-center gap-2 text-sm font-medium text-amber-400">
+      <div className="p-4 bg-muted/30 rounded-lg border border-white/30 space-y-3">
+        <div className="flex items-center gap-2 text-sm font-medium text-stone-300">
           <FileCode className="h-4 w-4" />
           Manual HTML Paste (Fallback)
         </div>
@@ -295,7 +295,7 @@ export function PortfolioAnalyzer({ url, onExtracted }: PortfolioAnalyzerProps) 
         </p>
         <ol className="text-xs text-muted-foreground list-decimal list-inside space-y-1">
           <li>
-            Open <span className="text-cyan-400">{url}</span> in your browser
+            Open <span className="text-zinc-300">{url}</span> in your browser
           </li>
           <li>Right-click and select "View Page Source" (or press Ctrl+U / Cmd+Option+U)</li>
           <li>Select all (Ctrl+A / Cmd+A) and copy (Ctrl+C / Cmd+C)</li>
@@ -338,15 +338,15 @@ export function PortfolioAnalyzer({ url, onExtracted }: PortfolioAnalyzerProps) 
   }
 
   const qualityColor = {
-    high: "text-emerald-400 bg-emerald-400/10 border-emerald-400/30",
-    medium: "text-amber-400 bg-amber-400/10 border-amber-400/30",
-    low: "text-rose-400 bg-rose-400/10 border-rose-400/30",
+    high: "text-zinc-300 bg-zinc-800/10 border-white/30",
+    medium: "text-stone-300 bg-stone-800/10 border-white/30",
+    low: "text-neutral-400 bg-neutral-800/10 border-neutral-500/30",
   }
 
   const tierColor = {
-    owned_artifact: "text-emerald-400",
-    linked_artifact: "text-cyan-400",
-    third_party: "text-amber-400",
+    owned_artifact: "text-zinc-300",
+    linked_artifact: "text-zinc-300",
+    third_party: "text-stone-300",
     claim_only: "text-muted-foreground",
   }
 
@@ -360,7 +360,7 @@ export function PortfolioAnalyzer({ url, onExtracted }: PortfolioAnalyzerProps) 
 
   if (!canAnalyze) {
     return (
-      <div className="text-xs text-amber-400 p-3 border border-amber-400/30 rounded-lg flex items-center gap-2">
+      <div className="text-xs text-stone-300 p-3 border border-white/30 rounded-lg flex items-center gap-2">
         <AlertTriangle className="h-3 w-3" />
         Enter a valid URL starting with http:// or https://
       </div>
@@ -418,7 +418,7 @@ export function PortfolioAnalyzer({ url, onExtracted }: PortfolioAnalyzerProps) 
       {loading && <ProgressIndicator />}
 
       {error && !loading && (
-        <div className="flex items-center gap-2 text-xs text-rose-400 p-2 bg-rose-400/10 rounded">
+        <div className="flex items-center gap-2 text-xs text-neutral-400 p-2 bg-neutral-800/10 rounded">
           <AlertTriangle className="h-3 w-3" />
           {error}
         </div>
@@ -543,7 +543,7 @@ export function PortfolioAnalyzer({ url, onExtracted }: PortfolioAnalyzerProps) 
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-cyan-400 hover:underline flex items-center gap-1"
+                      className="text-xs text-zinc-300 hover:underline flex items-center gap-1"
                     >
                       {link.platform}
                       <ExternalLink className="h-2 w-2" />
@@ -556,7 +556,7 @@ export function PortfolioAnalyzer({ url, onExtracted }: PortfolioAnalyzerProps) 
             {extraction.warnings.length > 0 && (
               <div className="space-y-1">
                 {extraction.warnings.map((warning, i) => (
-                  <div key={i} className="flex items-start gap-2 text-xs text-amber-400">
+                  <div key={i} className="flex items-start gap-2 text-xs text-stone-300">
                     <AlertTriangle className="h-3 w-3 mt-0.5 shrink-0" />
                     {warning}
                   </div>

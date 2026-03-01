@@ -20,13 +20,13 @@ interface StatCardProps {
 
 export function StatCard({ title, value, trend, trendDirection, icon: Icon, data, color }: StatCardProps) {
     const isPositive = trendDirection === 'up'
-    const trendColor = isPositive ? 'text-emerald-400' : 'text-rose-400'
+    const trendColor = isPositive ? 'text-zinc-300' : 'text-neutral-400'
     const TrendIcon = isPositive ? ArrowUpRight : ArrowDownRight
 
     return (
         <motion.div
             whileHover={{ y: -2 }}
-            className="group relative overflow-hidden rounded-2xl bg-[#0A0A0E] border border-white/[0.06] p-5 shadow-lg hover:shadow-xl hover:border-white/[0.12] transition-all duration-300"
+            className="group relative overflow-hidden rounded-2xl bg-zinc-800 border border-white/[0.06] p-5 shadow-lg hover:shadow-xl hover:border-white/[0.12] transition-all duration-300"
         >
             <div className={`absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-40 transition-opacity ${color}`}>
                 <Icon className="w-12 h-12" />
@@ -72,7 +72,7 @@ export function StatCard({ title, value, trend, trendDirection, icon: Icon, data
 // ─── 2. Velocity Chart (Main Area) ───────────────────────────────────────────
 export function VelocityChart({ data }: { data: any[] }) {
     return (
-        <div className="rounded-2xl bg-[#0A0A0E] border border-white/[0.06] p-6 shadow-lg h-full relative overflow-hidden flex flex-col">
+        <div className="rounded-2xl bg-zinc-800 border border-white/[0.06] p-6 shadow-lg h-full relative overflow-hidden flex flex-col">
             <div className="flex items-center justify-between mb-6 relative z-10">
                 <div>
                     <h3 className="text-lg font-bold text-white">Talent Velocity</h3>
@@ -80,11 +80,11 @@ export function VelocityChart({ data }: { data: any[] }) {
                 </div>
                 <div className="flex items-center gap-2">
                     <div className="flex items-center gap-1.5">
-                        <div className="w-2 h-2 rounded-full bg-indigo-500" />
+                        <div className="w-2 h-2 rounded-full bg-zinc-800" />
                         <span className="text-[10px] text-white/60 uppercase">Apps</span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                        <div className="w-2 h-2 rounded-full bg-emerald-500" />
+                        <div className="w-2 h-2 rounded-full bg-zinc-800" />
                         <span className="text-[10px] text-white/60 uppercase">Hires</span>
                     </div>
                 </div>
@@ -113,11 +113,11 @@ export function VelocityChart({ data }: { data: any[] }) {
                                         <div className="bg-black/90 border border-white/10 p-3 rounded-lg shadow-xl backdrop-blur-md">
                                             <p className="text-white font-bold mb-2">{label}</p>
                                             <div className="space-y-1">
-                                                <p className="text-indigo-400 text-xs flex justify-between gap-4">
+                                                <p className="text-zinc-300 text-xs flex justify-between gap-4">
                                                     <span>Applications:</span>
                                                     <span className="font-mono">{payload[0].value}</span>
                                                 </p>
-                                                <p className="text-emerald-400 text-xs flex justify-between gap-4">
+                                                <p className="text-zinc-300 text-xs flex justify-between gap-4">
                                                     <span>Hires:</span>
                                                     <span className="font-mono">{payload[1].value}</span>
                                                 </p>
@@ -142,7 +142,7 @@ export function PipelineFunnel({ stages }: { stages: { label: string; count: num
     const maxVal = Math.max(...stages.map(s => s.count))
 
     return (
-        <div className="rounded-2xl bg-[#0A0A0E] border border-white/[0.06] p-6 shadow-lg h-full flex flex-col">
+        <div className="rounded-2xl bg-zinc-800 border border-white/[0.06] p-6 shadow-lg h-full flex flex-col">
             <div className="flex items-center justify-between mb-6">
                 <div>
                     <h3 className="text-lg font-bold text-white">Live Pipeline</h3>
@@ -178,9 +178,9 @@ export function PipelineFunnel({ stages }: { stages: { label: string; count: num
 // ─── 4. Alert / Anomaly Row ────────────────────────────────────────────────
 export function AnomalyRow({ type, message, time }: { type: 'critical' | 'warning' | 'info', message: string, time: string }) {
     const styles = {
-        critical: { bg: 'bg-rose-500/10', border: 'border-rose-500/20', text: 'text-rose-400', icon: AlertTriangle },
-        warning: { bg: 'bg-amber-500/10', border: 'border-amber-500/20', text: 'text-amber-400', icon: Zap },
-        info: { bg: 'bg-blue-500/10', border: 'border-blue-500/20', text: 'text-blue-400', icon: Activity },
+        critical: { bg: 'bg-neutral-500/10', border: 'border-neutral-500/20', text: 'text-neutral-400', icon: AlertTriangle },
+        warning: { bg: 'bg-white/10', border: 'border-white/20', text: 'text-stone-300', icon: Zap },
+        info: { bg: 'bg-white/10', border: 'border-white/20', text: 'text-zinc-300', icon: Activity },
     }
     const style = styles[type]
     const Icon = style.icon
@@ -203,7 +203,7 @@ export function AnomalyRow({ type, message, time }: { type: 'critical' | 'warnin
 export function CandidateSpotlight({ name, role, score, match, avatar }: { name: string, role: string, score: number, match: number, avatar: string }) {
     return (
         <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center gap-4 hover:border-white/[0.12] transition-colors group cursor-pointer">
-            <div className="w-10 h-10 rounded-full bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center font-bold text-indigo-400 group-hover:bg-indigo-500/30 transition-colors">
+            <div className="w-10 h-10 rounded-full bg-white/20 border border-white/30 flex items-center justify-center font-bold text-zinc-300 group-hover:bg-white/30 transition-colors">
                 {avatar}
             </div>
             <div className="flex-1 min-w-0">
@@ -211,7 +211,7 @@ export function CandidateSpotlight({ name, role, score, match, avatar }: { name:
                 <p className="text-xs text-white/50 truncate">{role}</p>
             </div>
             <div className="flex flex-col items-end gap-1">
-                <div className="px-2 py-0.5 rounded text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold font-mono">
+                <div className="px-2 py-0.5 rounded text-[10px] bg-white/10 text-zinc-300 border border-white/20 font-bold font-mono">
                     {score}/100
                 </div>
                 <div className="text-[10px] text-white/30 font-mono">

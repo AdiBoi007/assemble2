@@ -38,17 +38,17 @@ export default function PerformanceIntelPanel({ onClose }: { onClose: () => void
     const [tab, setTab] = useState<Tab>('performance')
 
     return (
-        <div className="h-full flex flex-col bg-[#030303] text-white selection:bg-violet-500/30">
+        <div className="h-full flex flex-col bg-zinc-800 text-white selection:bg-white/30">
             {/* Header */}
-            <div className="px-8 py-6 border-b border-white/[0.06] flex items-center justify-between bg-[#030303]/80 backdrop-blur-md sticky top-0 z-20">
+            <div className="px-8 py-6 border-b border-white/[0.06] flex items-center justify-between bg-zinc-800/80 backdrop-blur-md sticky top-0 z-20">
                 <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-500/20 to-fuchsia-600/10 border border-violet-500/20 flex items-center justify-center shadow-[0_0_25px_rgba(139,92,246,0.15)]">
-                        <Activity className="w-6 h-6 text-violet-400" />
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-white/20 to-white/10 border border-white/20 flex items-center justify-center shadow-[0_0_25px_rgba(139,92,246,0.15)]">
+                        <Activity className="w-6 h-6 text-zinc-300" />
                     </div>
                     <div>
                         <h2 className="text-lg font-bold text-white tracking-tight">Performance Intel</h2>
                         <div className="flex items-center gap-2 mt-0.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-zinc-800 animate-pulse" />
                             <p className="text-[11px] text-white/40 uppercase tracking-widest font-mono">People Analytics Active</p>
                         </div>
                     </div>
@@ -64,15 +64,15 @@ export default function PerformanceIntelPanel({ onClose }: { onClose: () => void
                     <button
                         key={t.key}
                         onClick={() => setTab(t.key)}
-                        className={`group relative flex items-center gap-2 pb-3 text-sm font-medium transition-colors ${tab === t.key ? 'text-violet-400' : 'text-white/40 hover:text-white/80'
+                        className={`group relative flex items-center gap-2 pb-3 text-sm font-medium transition-colors ${tab === t.key ? 'text-zinc-300' : 'text-white/40 hover:text-white/80'
                             }`}
                     >
-                        <t.icon className={`w-4 h-4 ${tab === t.key ? 'text-violet-400' : 'text-white/40 group-hover:text-white/60'}`} />
+                        <t.icon className={`w-4 h-4 ${tab === t.key ? 'text-zinc-300' : 'text-white/40 group-hover:text-white/60'}`} />
                         {t.label}
                         {tab === t.key && (
                             <motion.div
                                 layoutId="active-perf-tab"
-                                className="absolute bottom-0 left-0 right-0 h-0.5 bg-violet-400 shadow-[0_0_10px_rgba(139,92,246,0.5)]"
+                                className="absolute bottom-0 left-0 right-0 h-0.5 bg-zinc-800 shadow-[0_0_10px_rgba(139,92,246,0.5)]"
                             />
                         )}
                     </button>
@@ -130,8 +130,8 @@ function PerformanceTab() {
                             key={e.employeeId}
                             onClick={() => setSel(i)}
                             className={`w-full flex items-center gap-3 p-3 rounded-xl border transition-all ${sel === i
-                                ? 'bg-violet-500/10 border-violet-500/30 shadow-[0_0_15px_rgba(139,92,246,0.1)]'
-                                : 'bg-[#0A0A0C] border-white/5 hover:bg-white/5'
+                                ? 'bg-white/10 border-white/30 shadow-[0_0_15px_rgba(139,92,246,0.1)]'
+                                : 'bg-zinc-800 border-white/5 hover:bg-white/5'
                                 }`}
                         >
                             <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center text-sm font-bold text-white">
@@ -149,12 +149,12 @@ function PerformanceTab() {
                 <div className="flex-1 space-y-6">
                     {/* Top Row: Score & Radar */}
                     <div className="grid grid-cols-3 gap-6">
-                        <div className="col-span-1 rounded-3xl border border-white/10 bg-[#08080A] p-6 flex flex-col items-center justify-center relative overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-b from-violet-500/10 to-transparent opacity-50" />
+                        <div className="col-span-1 rounded-3xl border border-white/10 bg-zinc-800 p-6 flex flex-col items-center justify-center relative overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent opacity-50" />
                             <div className="relative z-10 text-center">
                                 <div className="text-6xl font-bold text-white mb-2">{emp.overallScore}</div>
-                                <div className="text-xs font-bold text-violet-400 uppercase tracking-widest mb-4">Overall Score</div>
-                                <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold ${emp.trend === 'rising' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-rose-500/10 text-rose-400'
+                                <div className="text-xs font-bold text-zinc-300 uppercase tracking-widest mb-4">Overall Score</div>
+                                <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold ${emp.trend === 'rising' ? 'bg-white/10 text-zinc-300' : 'bg-neutral-500/10 text-neutral-400'
                                     }`}>
                                     {emp.trend === 'rising' ? <TrendingUp className="w-3 h-3" /> : <TrendingUp className="w-3 h-3 rotate-180" />}
                                     {emp.trendDelta}% vs last qtr
@@ -162,7 +162,7 @@ function PerformanceTab() {
                             </div>
                         </div>
 
-                        <div className="col-span-2 rounded-3xl border border-white/10 bg-[#08080A] p-4 relative">
+                        <div className="col-span-2 rounded-3xl border border-white/10 bg-zinc-800 p-4 relative">
                             <h4 className="absolute top-6 left-6 text-xs font-bold text-white/40 uppercase tracking-widest">Performance Dimensions</h4>
                             <div className="w-full h-[250px]">
                                 <ResponsiveContainer width="100%" height="100%">
@@ -179,7 +179,7 @@ function PerformanceTab() {
                     </div>
 
                     {/* Weekly Trend */}
-                    <div className="rounded-3xl border border-white/10 bg-[#08080A] p-6">
+                    <div className="rounded-3xl border border-white/10 bg-zinc-800 p-6">
                         <div className="flex justify-between items-center mb-4">
                             <h4 className="text-xs font-bold text-white/40 uppercase tracking-widest">12-Week Performance Trend</h4>
                         </div>
@@ -220,20 +220,20 @@ function PromotionTab() {
         <div className="grid grid-cols-3 gap-6">
             {/* Left Profile */}
             <div className="space-y-6">
-                <div className="rounded-3xl border border-white/10 bg-[#08080A] p-8 text-center relative overflow-hidden">
+                <div className="rounded-3xl border border-white/10 bg-zinc-800 p-8 text-center relative overflow-hidden">
                     <div className="relative z-10">
-                        <div className="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-3xl font-bold text-white mb-4 shadow-lg shadow-cyan-500/20">
+                        <div className="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-zinc-400 to-zinc-500 flex items-center justify-center text-3xl font-bold text-white mb-4 shadow-lg shadow-cyan-500/20">
                             {p.name.charAt(0)}
                         </div>
                         <h3 className="text-xl font-bold text-white">{p.name}</h3>
                         <p className="text-sm text-white/40 mt-1">{p.currentLevel} → {p.targetLevel}</p>
-                        <div className="mt-6 inline-flex px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-wide">
+                        <div className="mt-6 inline-flex px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-zinc-300 text-xs font-bold uppercase tracking-wide">
                             {p.readinessLabel} ({p.readinessScore}%)
                         </div>
                     </div>
                 </div>
 
-                <div className="rounded-3xl border border-white/10 bg-[#08080A] p-6">
+                <div className="rounded-3xl border border-white/10 bg-zinc-800 p-6">
                     <h4 className="text-xs font-bold text-white/40 uppercase tracking-widest mb-4">Evidence</h4>
                     <div className="space-y-4">
                         {p.evidenceAreas.map(e => (
@@ -243,7 +243,7 @@ function PromotionTab() {
                                     <span className="text-white font-mono">{e.score}%</span>
                                 </div>
                                 <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
-                                    <div className="h-full bg-cyan-400 rounded-full" style={{ width: `${e.score}%` }} />
+                                    <div className="h-full bg-zinc-800 rounded-full" style={{ width: `${e.score}%` }} />
                                 </div>
                             </div>
                         ))}
@@ -253,7 +253,7 @@ function PromotionTab() {
 
             {/* Right Comparison */}
             <div className="col-span-2 space-y-6">
-                <div className="rounded-3xl border border-white/10 bg-[#08080A] p-6 h-[400px] relative">
+                <div className="rounded-3xl border border-white/10 bg-zinc-800 p-6 h-[400px] relative">
                     <h4 className="absolute top-6 left-6 text-xs font-bold text-white/40 uppercase tracking-widest">Candidate vs L6 Average</h4>
                     <ResponsiveContainer width="100%" height="100%">
                         <RadarChart cx="50%" cy="50%" outerRadius="70%" data={radarData}>
@@ -267,10 +267,10 @@ function PromotionTab() {
                     </ResponsiveContainer>
                 </div>
 
-                <div className="rounded-3xl border border-violet-500/20 bg-violet-500/5 p-6 flex gap-4">
-                    <Zap className="w-5 h-5 text-violet-400 shrink-0" />
+                <div className="rounded-3xl border border-white/20 bg-white/5 p-6 flex gap-4">
+                    <Zap className="w-5 h-5 text-zinc-300 shrink-0" />
                     <div>
-                        <h4 className="text-sm font-bold text-violet-400 mb-1">AI Recommendation</h4>
+                        <h4 className="text-sm font-bold text-zinc-300 mb-1">AI Recommendation</h4>
                         <p className="text-xs text-white/70 leading-relaxed">{p.recommendation}</p>
                     </div>
                 </div>
@@ -283,7 +283,7 @@ function AlertsTab() {
     return (
         <div className="grid grid-cols-2 gap-4">
             {DEMO_UNDERPERFORMANCE_ALERTS.map(alert => (
-                <div key={alert.id} className="rounded-3xl border border-white/10 bg-[#08080A] p-6 hover:border-red-500/30 transition-colors group">
+                <div key={alert.id} className="rounded-3xl border border-white/10 bg-zinc-800 p-6 hover:border-neutral-500/30 transition-colors group">
                     <div className="flex justify-between items-start mb-6">
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center font-bold text-white/50">
@@ -294,7 +294,7 @@ function AlertsTab() {
                                 <p className="text-xs text-white/40">{alert.role}</p>
                             </div>
                         </div>
-                        <div className={`px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider border ${alert.riskLevel === 'critical' ? 'bg-red-500/10 text-red-400 border-red-500/20' : 'bg-amber-500/10 text-amber-400 border-amber-500/20'
+                        <div className={`px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider border ${alert.riskLevel === 'critical' ? 'bg-neutral-500/10 text-neutral-400 border-neutral-500/20' : 'bg-white/10 text-stone-300 border-white/20'
                             }`}>
                             {alert.riskLevel} Risk
                         </div>
@@ -334,12 +334,12 @@ function CoachingTab() {
         <div className="grid grid-cols-3 gap-6">
             <div className="col-span-2 space-y-4">
                 {DEMO_COACHING.map(c => (
-                    <div key={c.id} className="rounded-2xl border border-white/10 bg-[#08080A] p-6 hover:bg-white/[0.02] transition-colors cursor-pointer group">
+                    <div key={c.id} className="rounded-2xl border border-white/10 bg-zinc-800 p-6 hover:bg-white/[0.02] transition-colors cursor-pointer group">
                         <div className="flex justify-between items-start">
                             <div className="flex gap-4">
-                                <div className="w-1 h-full min-h-[40px] rounded-full bg-gradient-to-b from-violet-500 to-fuchsia-500" />
+                                <div className="w-1 h-full min-h-[40px] rounded-full bg-gradient-to-b from-zinc-500 to-zinc-500" />
                                 <div>
-                                    <h4 className="font-bold text-white mb-1 group-hover:text-violet-400 transition-colors">{c.scenario}</h4>
+                                    <h4 className="font-bold text-white mb-1 group-hover:text-zinc-300 transition-colors">{c.scenario}</h4>
                                     <p className="text-xs text-white/40">{c.category} • {c.urgency} priority</p>
                                 </div>
                             </div>
@@ -349,7 +349,7 @@ function CoachingTab() {
                 ))}
             </div>
 
-            <div className="rounded-3xl border border-white/10 bg-[#08080A] p-6 flex flex-col items-center justify-center">
+            <div className="rounded-3xl border border-white/10 bg-zinc-800 p-6 flex flex-col items-center justify-center">
                 <h4 className="text-xs font-bold text-white/40 uppercase tracking-widest mb-4">Focus Areas</h4>
                 <div className="w-[180px] h-[180px]">
                     <ResponsiveContainer width="100%" height="100%">
@@ -378,7 +378,7 @@ function PeersTab() {
 
     return (
         <div className="space-y-8">
-            <div className="flex items-center gap-6 p-6 rounded-3xl border border-white/10 bg-[#08080A]">
+            <div className="flex items-center gap-6 p-6 rounded-3xl border border-white/10 bg-zinc-800">
                 <div className="flex-1">
                     <h3 className="text-xl font-bold text-white">{r.name} - Peer Feedback 360</h3>
                     <p className="text-sm text-white/40 mt-1">{r.feedbackCount} signals across {r.period}</p>
@@ -390,7 +390,7 @@ function PeersTab() {
             </div>
 
             <div className="grid grid-cols-2 gap-6">
-                <div className="rounded-3xl border border-white/10 bg-[#08080A] p-6">
+                <div className="rounded-3xl border border-white/10 bg-zinc-800 p-6">
                     <h4 className="text-xs font-bold text-white/40 uppercase tracking-widest mb-6">Theme Frequency</h4>
                     <div className="h-[250px]">
                         <ResponsiveContainer width="100%" height="100%">
@@ -427,13 +427,13 @@ function MobilityTab() {
             {DEMO_MOBILITY.map(m => {
                 const radarData = m.skillOverlap.map(s => ({ subject: s.skill, A: s.current, B: s.required, fullMark: 100 }))
                 return (
-                    <div key={m.id} className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#08080A] p-6">
+                    <div key={m.id} className="relative overflow-hidden rounded-3xl border border-white/10 bg-zinc-800 p-6">
                         <div className="flex items-center justify-between mb-6">
                             <div>
                                 <h4 className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Role Fit</h4>
                                 <h3 className="text-lg font-bold text-white">{m.recommendedRole}</h3>
                             </div>
-                            <div className="text-2xl font-bold text-emerald-400">{m.matchScore}%</div>
+                            <div className="text-2xl font-bold text-zinc-300">{m.matchScore}%</div>
                         </div>
 
                         <div className="h-[200px] w-full mb-6 relative">
@@ -467,23 +467,23 @@ function CapabilityTab() {
 
     return (
         <div className="space-y-6">
-            <div className="p-6 rounded-3xl border border-white/10 bg-[#08080A] flex justify-between items-center">
+            <div className="p-6 rounded-3xl border border-white/10 bg-zinc-800 flex justify-between items-center">
                 <div>
                     <h3 className="text-xl font-bold text-white mb-1">{cm.teamName} Capability Map</h3>
                     <p className="text-sm text-white/40">{cm.headcount} team members assessed</p>
                 </div>
                 <div className="flex gap-4">
                     <div className="flex items-center gap-2 text-xs text-white/40">
-                        <span className="w-2 h-2 rounded-full bg-emerald-400" /> Core
+                        <span className="w-2 h-2 rounded-full bg-zinc-800" /> Core
                     </div>
                     <div className="flex items-center gap-2 text-xs text-white/40">
-                        <span className="w-2 h-2 rounded-full bg-violet-400" /> Emerging
+                        <span className="w-2 h-2 rounded-full bg-zinc-800" /> Emerging
                     </div>
                 </div>
             </div>
 
             <div className="grid grid-cols-3 gap-6">
-                <div className="col-span-2 rounded-3xl border border-white/10 bg-[#08080A] p-6">
+                <div className="col-span-2 rounded-3xl border border-white/10 bg-zinc-800 p-6">
                     <h4 className="text-xs font-bold text-white/40 uppercase tracking-widest mb-6">Proficiency by Skill</h4>
                     <div className="h-[350px]">
                         <ResponsiveContainer width="100%" height="100%">
@@ -504,18 +504,18 @@ function CapabilityTab() {
                     </div>
                 </div>
 
-                <div className="rounded-3xl border border-white/10 bg-[#08080A] p-6">
+                <div className="rounded-3xl border border-white/10 bg-zinc-800 p-6">
                     <h4 className="text-xs font-bold text-white/40 uppercase tracking-widest mb-4">Critical Skill Gaps</h4>
                     <div className="space-y-4">
                         {cm.skillGaps.map((g, i) => (
                             <div key={i} className="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
                                 <div className="flex justify-between items-center mb-2">
                                     <span className="text-xs font-bold text-white/70">{g.skill}</span>
-                                    <span className="text-[10px] font-mono text-red-400 bg-red-500/10 px-1.5 py-0.5 rounded border border-red-500/20">-{g.gap} FTE</span>
+                                    <span className="text-[10px] font-mono text-neutral-400 bg-neutral-500/10 px-1.5 py-0.5 rounded border border-neutral-500/20">-{g.gap} FTE</span>
                                 </div>
                                 <div className="flex gap-1 h-1.5 rounded-full overflow-hidden bg-white/5">
-                                    <div className="h-full bg-emerald-500" style={{ width: `${(g.current / g.needed) * 100}%` }} />
-                                    <div className="h-full bg-red-500/50" style={{ width: `${(g.gap / g.needed) * 100}%` }} />
+                                    <div className="h-full bg-zinc-800" style={{ width: `${(g.current / g.needed) * 100}%` }} />
+                                    <div className="h-full bg-neutral-500/50" style={{ width: `${(g.gap / g.needed) * 100}%` }} />
                                 </div>
                             </div>
                         ))}

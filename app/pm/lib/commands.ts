@@ -16,7 +16,7 @@ export const SLASH_COMMANDS: SlashCommand[] = [
         description: "Deep dive analysis on current candidate",
         icon: Search,
         action: ({ setPanel }) => setPanel("analysis"),
-        color: "text-indigo-400"
+        color: "text-zinc-300"
     },
     {
         id: "draft",
@@ -24,7 +24,7 @@ export const SLASH_COMMANDS: SlashCommand[] = [
         description: "Draft outreach email to candidate",
         icon: Mail,
         action: ({ setInput }) => setInput("Draft a high-conversion outreach email for Alex Rivero focused on our engineering culture."),
-        color: "text-emerald-400"
+        color: "text-zinc-300"
     },
     {
         id: "rubric",
@@ -32,7 +32,7 @@ export const SLASH_COMMANDS: SlashCommand[] = [
         description: "Open scoring rubric",
         icon: FileText,
         action: ({ setPanel }) => setPanel("rubric"),
-        color: "text-blue-400"
+        color: "text-zinc-300"
     },
     {
         id: "market",
@@ -40,7 +40,7 @@ export const SLASH_COMMANDS: SlashCommand[] = [
         description: "View market compensation data",
         icon: Globe,
         action: ({ setPanel }) => setPanel("market"),
-        color: "text-amber-400"
+        color: "text-stone-300"
     },
     {
         id: "bias",
@@ -48,7 +48,7 @@ export const SLASH_COMMANDS: SlashCommand[] = [
         description: "Run bias detection check",
         icon: Shield,
         action: ({ setPanel }) => setPanel("bias"),
-        color: "text-red-400"
+        color: "text-neutral-400"
     },
     {
         id: "simulate",
@@ -56,6 +56,6 @@ export const SLASH_COMMANDS: SlashCommand[] = [
         description: "Run Work Simulation scenario",
         icon: Activity,
         action: ({ setPanel }) => setPanel("work-sim"),
-        color: "text-purple-400"
+        color: "text-zinc-300"
     }
 ]
