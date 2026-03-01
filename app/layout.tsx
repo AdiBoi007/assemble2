@@ -29,8 +29,8 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "FORGE — Proof-first hiring",
-  description: "Rank candidates with auditable evidence in under 60 seconds.",
+  title: "Your Entire Company, Run by AI Agents | AssembleOne",
+  description: "AssembleOne turns your business idea into a running company. AI agents build your product, launch it, drive traffic, do sales, and monitor revenue — all without hiring a team.",
   generator: 'v0.app'
 }
 

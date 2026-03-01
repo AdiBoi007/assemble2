@@ -6,6 +6,18 @@ import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import HeroSection from "@/components/HeroSection"
+import { FeaturesSection } from "@/components/FeaturesSection"
+import {
+  Navbar,
+  NavBody,
+  NavItems,
+  MobileNav,
+  MobileNavHeader,
+  MobileNavToggle,
+  MobileNavMenu,
+  NavbarButton,
+} from "@/components/ui/resizable-navbar"
 import {
   ArrowRight,
   Check,
@@ -160,23 +172,23 @@ const INTEGRATIONS: { name: string; Logo: IntegrationLogo; color: string }[] = [
 ]
 
 const STATS = [
-  { value: "40%", label: "Increase in Pipeline Velocity" },
-  { value: "3x", label: "More Qualified Meetings Booked" },
-  { value: "<2h", label: "Average Time to Launch Campaign" },
-  { value: "24/7", label: "Autonomous Pipeline Generation" },
+  { value: "10x", label: "Faster Time from Idea to Live Product" },
+  { value: "3x", label: "More Revenue Channels Activated by Agents" },
+  { value: "<24h", label: "Average Time from Goal to Deployed MVP" },
+  { value: "24/7", label: "Agents Working While You Sleep" },
 ]
 
 const FORGE_VS_CRM = [
-  { feature: "Autonomous Agent Execution", forge: true, ats: false },
-  { feature: "Real-time PMF Signal Analysis", forge: true, ats: false },
-  { feature: "Simulated Scenario Planning", forge: true, ats: false },
-  { feature: "AI-powered Account Scraping", forge: true, ats: "partial" },
-  { feature: "Automated Multi-Channel Sequences", forge: true, ats: false },
-  { feature: "Deep Market Trend Radar", forge: true, ats: false },
-  { feature: "Predictive Churn Modeling", forge: true, ats: false },
-  { feature: "Manual Data Entry", forge: false, ats: true },
-  { feature: "Basic Contact Storage", forge: true, ats: true },
-  { feature: "Sales Forecasting", forge: true, ats: true },
+  { feature: "Product Building (No-Code)", forge: true, ats: false },
+  { feature: "Product-Market Fit Validation", forge: true, ats: false },
+  { feature: "Go-to-Market Strategy", forge: true, ats: false },
+  { feature: "Outbound Sales Execution", forge: true, ats: "partial" },
+  { feature: "Marketing Campaign Management", forge: true, ats: false },
+  { feature: "Competitor & Market Monitoring", forge: true, ats: false },
+  { feature: "Revenue & Growth Forecasting", forge: true, ats: false },
+  { feature: "Requires a Full Engineering Team", forge: false, ats: true },
+  { feature: "Requires Dedicated Sales Hire", forge: true, ats: true },
+  { feature: "High Monthly Burn Rate", forge: true, ats: true },
 ]
 
 const INTELLIGENCE_MODULES = [
@@ -189,20 +201,20 @@ const INTELLIGENCE_MODULES = [
 
 const AUTOMATION_TIERS = [
   {
-    tier: "Fully Autonomous",
+    tier: "Full Autopilot",
     multiplier: "1.0x",
-    description: "Agents research, draft, and execute campaigns with zero human input.",
+    description: "Agents build, launch, sell, and iterate your entire company with zero human input.",
     color: "text-emerald-400",
   },
   {
-    tier: "Human-in-the-Loop",
+    tier: "Founder Approval Mode",
     multiplier: "0.7x",
-    description: "Agents prepare all materials, requiring 1-click human approval.",
+    description: "Agents prepare everything — you approve before anything goes live.",
     color: "text-blue-400",
   },
-  { tier: "Assisted Copilot", multiplier: "0.4x", description: "AI suggests next best actions and drafts templates.", color: "text-amber-400" },
-  { tier: "Data Enrichment", multiplier: "0.15x", description: "Automated scraping and profile building.", color: "text-orange-400" },
-  { tier: "Manual Operations", multiplier: "0x", description: "Traditional manual sales efforts.", color: "text-red-400" },
+  { tier: "Co-Pilot Mode", multiplier: "0.4x", description: "Agents suggest what to build and who to target; you stay hands-on with execution.", color: "text-amber-400" },
+  { tier: "Research Mode", multiplier: "0.15x", description: "Agents gather market data, competitor insights, and lead intelligence for you.", color: "text-orange-400" },
+  { tier: "DIY Mode", multiplier: "0x", description: "You handle everything manually; agents are on standby.", color: "text-red-400" },
 ]
 
 // Animated counter component
@@ -283,6 +295,20 @@ function FloatingElement({ children, delay = 0 }: { children: React.ReactNode; d
 export default function EcosystemLandingPage() {
   const [activeTab, setActiveTab] = useState<"sdrs" | "founders">("sdrs")
   const [hoveredIntegration, setHoveredIntegration] = useState<string | null>(null)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  const navItems = [
+    {
+      name: "Central Agent",
+      link: "/chat",
+      icon: <Sparkles className="w-3.5 h-3.5" />,
+      highlight: true,
+    },
+    { name: "How it Works", link: "#how-it-works" },
+    { name: "For SDRs", link: "#for-sdrs" },
+    { name: "For Founders", link: "#for-founders" },
+    { name: "Integrations", link: "#integrations" },
+  ]
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -291,106 +317,89 @@ export default function EcosystemLandingPage() {
       <div className="fixed inset-0 radial-glow pointer-events-none" />
 
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center">
-              <Image src="/forge-logo.png" alt="FORGE" width={28} height={28} />
+      <Navbar>
+        {/* Desktop Navigation */}
+        <NavBody>
+          <Link href="/" className="relative z-20 mr-4 flex items-center space-x-2.5 px-2 py-1">
+            <div className="w-9 h-9 rounded-xl bg-white flex items-center justify-center">
+              <Image src="/forge-logo.png" alt="AssembleOne" width={24} height={24} />
             </div>
-            <span className="text-xl font-black tracking-tight">FORGE</span>
-          </div>
-          <div className="hidden md:flex items-center gap-8">
-            <Link href="/chat" className="text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1.5 bg-emerald-500/10 px-3 py-1.5 rounded-full border border-emerald-500/20">
-              <Sparkles className="w-3.5 h-3.5" />
-              Central Agent
-            </Link>
-            <a href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              How it Works
-            </a>
-            <a href="#for-sdrs" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              For SDRs
-            </a>
-            <a href="#for-founders" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              For Founders
-            </a>
-            <a href="#integrations" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Integrations
-            </a>
-          </div>
+            <span className="text-lg font-black tracking-tight text-foreground">AssembleOne</span>
+          </Link>
+          <NavItems items={navItems} />
           <div className="flex items-center gap-3">
-            <Button variant="ghost" size="sm" asChild>
-              <Link href="/pm">Sign In</Link>
-            </Button>
-            <Button size="sm" className="bg-white text-black hover:bg-white/90" asChild>
-              <Link href="/pm">Deploy Agent</Link>
-            </Button>
+            <NavbarButton href="/pm" variant="secondary">Sign In</NavbarButton>
+            <NavbarButton href="/pm" variant="primary">Deploy Agent</NavbarButton>
           </div>
-        </div>
-      </nav>
+        </NavBody>
+
+        {/* Mobile Navigation */}
+        <MobileNav>
+          <MobileNavHeader>
+            <Link href="/" className="flex items-center space-x-2.5">
+              <div className="w-9 h-9 rounded-xl bg-white flex items-center justify-center">
+                <Image src="/forge-logo.png" alt="AssembleOne" width={24} height={24} />
+              </div>
+              <span className="text-lg font-black tracking-tight text-foreground">AssembleOne</span>
+            </Link>
+            <MobileNavToggle
+              isOpen={isMobileMenuOpen}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            />
+          </MobileNavHeader>
+
+          <MobileNavMenu
+            isOpen={isMobileMenuOpen}
+            onClose={() => setIsMobileMenuOpen(false)}
+          >
+            {navItems.map((item, idx) => (
+              <a
+                key={`mobile-link-${idx}`}
+                href={item.link}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`relative text-sm ${
+                  item.highlight
+                    ? "text-emerald-400 font-semibold flex items-center gap-1.5"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {item.icon}
+                <span className="block">{item.name}</span>
+              </a>
+            ))}
+            <div className="flex w-full flex-col gap-3 pt-4">
+              <NavbarButton
+                href="/pm"
+                onClick={() => setIsMobileMenuOpen(false)}
+                variant="secondary"
+                className="w-full"
+              >
+                Sign In
+              </NavbarButton>
+              <NavbarButton
+                href="/pm"
+                onClick={() => setIsMobileMenuOpen(false)}
+                variant="primary"
+                className="w-full"
+              >
+                Deploy Agent
+              </NavbarButton>
+            </div>
+          </MobileNavMenu>
+        </MobileNav>
+      </Navbar>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          {/* Badge */}
-          <div className="flex justify-center mb-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border/60 bg-card/50 backdrop-blur-sm">
-              <Sparkles className="w-4 h-4 text-amber-400" />
-              <span className="text-sm">The Future of Autonomous Pipeline</span>
-            </div>
-          </div>
+      <HeroSection />
 
-          {/* Main headline */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-center leading-[0.9] tracking-tight mb-6">
-            <span className="block">Outbound Sold by</span>
-            <span className="block bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-500 bg-clip-text text-transparent">
-              Neural Agents
-            </span>
-          </h1>
-
-          <p className="text-xl md:text-2xl text-muted-foreground text-center max-w-3xl mx-auto mb-12 leading-relaxed">
-            FORGE transforms growth with intelligent automation. Agents research, validate PMF, and execute autonomous sequences. Scale revenue, not headcount.
-          </p>
-
-          {/* CTA Buttons - Two Portals */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <Button size="lg" className="h-14 px-8 text-lg bg-white text-black hover:bg-white/90 group" asChild>
-              <Link href="/chat">
-                <Target className="w-5 h-5 mr-2" />
-                Deploy Agent
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" className="h-14 px-8 text-lg border-2 group bg-transparent" asChild>
-              <Link href="/pm/dashboard">
-                <BarChart3 className="w-5 h-5 mr-2" />
-                View Dashboard
-                <ArrowUpRight className="w-5 h-5 ml-2 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </Link>
-            </Button>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            {STATS.map((stat, i) => (
-              <div
-                key={stat.label}
-                className="text-center p-6 rounded-2xl border border-border/40 bg-card/30 backdrop-blur-sm hover:border-border/80 transition-all duration-300"
-              >
-                <div className="text-4xl md:text-5xl font-black mb-2">
-                  <AnimatedCounter target={stat.value} />
-                </div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Features Bento Grid */}
+      <FeaturesSection />
 
       {/* Logos Marquee */}
       <section id="integrations" className="py-12 border-y border-border/40 overflow-hidden">
         <div className="mb-6 text-center">
           <p className="text-sm text-muted-foreground uppercase tracking-widest">
-            Seamlessly integrates with your stack
+            Connects to every tool your company needs to run
           </p>
         </div>
         <div className="flex items-center gap-8 animate-marquee">
@@ -414,9 +423,9 @@ export default function EcosystemLandingPage() {
       <section id="how-it-works" className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black mb-4">How FORGE Works</h2>
+            <h2 className="text-4xl md:text-5xl font-black mb-4">How AssembleOne Works</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              A complete ecosystem connecting verified talent with evidence-driven hiring
+              A complete operating system that builds, launches, and scales your company — all from a single goal prompt
             </p>
           </div>
 
@@ -424,19 +433,21 @@ export default function EcosystemLandingPage() {
           <div className="mb-20">
             <div className="max-w-4xl mx-auto p-8 rounded-3xl border border-border/60 bg-card/50 backdrop-blur-sm">
               <div className="text-center mb-8">
-                <h3 className="text-2xl font-black mb-2">The FORGE Algorithm</h3>
-                <p className="text-muted-foreground">Every candidate scored with the same transparent formula</p>
+                <h3 className="text-2xl font-black mb-2">The Founder OS Engine</h3>
+                <p className="text-muted-foreground">Your goal, broken down and executed by autonomous agents</p>
               </div>
 
               <div className="bg-black/50 rounded-2xl p-6 mb-8 border border-border/40">
                 <code className="text-2xl md:text-3xl font-mono text-center block">
-                  <span className="text-emerald-400">FORGE</span>
-                  <span className="text-muted-foreground"> = </span>
-                  <span className="text-blue-400">CS</span>
-                  <span className="text-muted-foreground"> × </span>
-                  <span className="text-amber-400">XS</span>
-                  <span className="text-muted-foreground"> + </span>
-                  <span className="text-violet-400">LV</span>
+                  <span className="text-emerald-400">GOAL</span>
+                  <span className="text-muted-foreground"> → </span>
+                  <span className="text-blue-400">BUILD</span>
+                  <span className="text-muted-foreground"> → </span>
+                  <span className="text-amber-400">LAUNCH</span>
+                  <span className="text-muted-foreground"> → </span>
+                  <span className="text-cyan-400">SELL</span>
+                  <span className="text-muted-foreground"> → </span>
+                  <span className="text-violet-400">SCALE</span>
                 </code>
               </div>
 
@@ -446,11 +457,11 @@ export default function EcosystemLandingPage() {
                     <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center">
                       <ShieldCheck className="w-4 h-4 text-emerald-400" />
                     </div>
-                    <span className="font-black text-emerald-400">CS</span>
+                    <span className="font-black text-emerald-400">BUILD</span>
                   </div>
-                  <div className="text-sm font-semibold mb-1">Capability Score</div>
+                  <div className="text-sm font-semibold mb-1">Product Creation</div>
                   <div className="text-xs text-muted-foreground">
-                    Verified skills from GitHub, portfolio, challenges. Higher weight for real artifacts.
+                    AI agents vibe-code your product, set up infrastructure, and deploy it — no technical skills needed from you.
                   </div>
                 </div>
                 <div className="p-4 rounded-xl bg-black/30 border border-amber-500/30">
@@ -458,11 +469,11 @@ export default function EcosystemLandingPage() {
                     <div className="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center">
                       <Users className="w-4 h-4 text-amber-400" />
                     </div>
-                    <span className="font-black text-amber-400">XS</span>
+                    <span className="font-black text-amber-400">LAUNCH</span>
                   </div>
-                  <div className="text-sm font-semibold mb-1">Context Score</div>
+                  <div className="text-sm font-semibold mb-1">Go-to-Market</div>
                   <div className="text-xs text-muted-foreground">
-                    Teamwork, communication, adaptability, ownership signals from work history.
+                    Agents write your positioning, set up your landing page copy, and execute your go-to-market the moment your product is ready.
                   </div>
                 </div>
                 <div className="p-4 rounded-xl bg-black/30 border border-violet-500/30">
@@ -470,11 +481,11 @@ export default function EcosystemLandingPage() {
                     <div className="w-8 h-8 rounded-lg bg-violet-500/20 flex items-center justify-center">
                       <TrendingUp className="w-4 h-4 text-violet-400" />
                     </div>
-                    <span className="font-black text-violet-400">LV</span>
+                    <span className="font-black text-violet-400">SELL</span>
                   </div>
-                  <div className="text-sm font-semibold mb-1">Learning Velocity</div>
+                  <div className="text-sm font-semibold mb-1">Revenue Generation</div>
                   <div className="text-xs text-muted-foreground">
-                    Bonus for growth trajectory, recent skill adoption, and upskilling patterns.
+                    Outbound agents prospect leads, write personalized sequences, and book meetings — continuously, without a sales hire.
                   </div>
                 </div>
               </div>
@@ -483,7 +494,7 @@ export default function EcosystemLandingPage() {
 
           {/* Automation Tiers */}
           <div className="mb-20">
-            <h3 className="text-2xl font-black text-center mb-8">Agent Autonomy Levels</h3>
+            <h3 className="text-2xl font-black text-center mb-8">Choose How Much You Stay in Control</h3>
             <div className="max-w-4xl mx-auto space-y-3">
               {AUTOMATION_TIERS.map((tier, i) => (
                 <div
@@ -523,9 +534,9 @@ export default function EcosystemLandingPage() {
       <section className="py-24 px-6 border-t border-border/40">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black mb-4">One Ecosystem, Two Experiences</h2>
+            <h2 className="text-4xl md:text-5xl font-black mb-4">One Platform, Every Function of Your Company</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Whether you're hiring top talent or proving your skills, FORGE has you covered
+              Whether you're a non-tech founder with an idea or a developer ready to scale, AssembleOne runs your entire operation
             </p>
           </div>
 
@@ -538,7 +549,7 @@ export default function EcosystemLandingPage() {
                   }`}
               >
                 <Users className="w-4 h-4 inline mr-2" />
-                For SDRs
+                For Solo Founders
               </button>
               <button
                 onClick={() => setActiveTab("founders")}
@@ -546,7 +557,7 @@ export default function EcosystemLandingPage() {
                   }`}
               >
                 <GraduationCap className="w-4 h-4 inline mr-2" />
-                For Founders
+                For Non-Tech Builders
               </button>
             </div>
           </div>
@@ -556,17 +567,17 @@ export default function EcosystemLandingPage() {
             <div id="for-sdrs" className="animate-fade-in">
               <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
                 <div>
-                  <h3 className="text-3xl font-black mb-6">Stop Prospecting. Start Closing.</h3>
+                  <h3 className="text-3xl font-black mb-6">Stop Managing. Start Building.</h3>
                   <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                    Traditional sales relies on manual lists and spray-and-pray emails. FORGE gives you autonomous agents that research accounts, validate PMF, and execute hyper-personalized sequences.
+                    Traditional startups require a full team — engineers, PMs, marketers, salespeople. AssembleOne gives you autonomous agents that code your product, validate product-market fit, run your marketing, and close your first customers — before you hire anyone.
                   </p>
                   <div className="space-y-4 mb-8">
                     {[
-                      "AI agents scan X/HackerNews for live buying signals",
-                      "Automated deep-dive research on target accounts",
-                      "Self-optimizing outreach campaigns",
-                      "Review confidence scores before sending",
-                      "Export warm leads directly to your pipeline",
+                      "Describe your idea in plain language — agents create your product spec and start coding",
+                      "Agents autonomously deploy your app, set up your domain, and write your landing page",
+                      "AI monitors traffic, user behavior, and revenue in real time",
+                      "Outbound agents find your ideal customers and run personalized email sequences",
+                      "Marketing agents run and optimize paid campaigns across channels automatically",
                     ].map((item, i) => (
                       <div key={i} className="flex items-start gap-3">
                         <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0 mt-0.5">
@@ -587,12 +598,12 @@ export default function EcosystemLandingPage() {
                 {/* Agent Feature Cards */}
                 <div className="grid grid-cols-2 gap-4">
                   {[
-                    { icon: Target, title: "Signal Radar", desc: "Live intent monitoring" },
-                    { icon: Eye, title: "Account X-Ray", desc: "Deep org chart analysis" },
-                    { icon: Brain, title: "PMF Scorer", desc: "Validate market fit" },
-                    { icon: FileCheck, title: "Auto-Drafts", desc: "Personalized cold emails" },
-                    { icon: BarChart3, title: "Funnel Analytics", desc: "Track agent performance" },
-                    { icon: Lock, title: "Safe Mode", desc: "Human-in-the-loop approvals" },
+                    { icon: Target, title: "Idea → Code", desc: "Prompt to deployed product" },
+                    { icon: Eye, title: "Auto Deploy", desc: "Live on the web in hours" },
+                    { icon: Brain, title: "Market Radar", desc: "Live buyer intent signals" },
+                    { icon: FileCheck, title: "Outbound Agent", desc: "Autonomous email sequences" },
+                    { icon: BarChart3, title: "Growth Engine", desc: "Traffic + revenue monitoring" },
+                    { icon: Lock, title: "Founder Mode", desc: "You approve before agents act" },
                   ].map((feature, i) => (
                     <div
                       key={feature.title}
@@ -705,20 +716,20 @@ export default function EcosystemLandingPage() {
       <section className="py-24 px-6 border-t border-border/40">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black mb-4">FORGE vs Traditional CRM</h2>
+            <h2 className="text-4xl md:text-5xl font-black mb-4">AssembleOne vs Building a Startup Team</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Most platforms store static data. FORGE executes intelligent action.
+              Most founders need 5+ hires to run a company. AssembleOne replaces every function with an autonomous agent.
             </p>
           </div>
 
           <div className="rounded-3xl border border-border/60 bg-card/50 backdrop-blur-sm overflow-hidden">
             {/* Header */}
             <div className="grid grid-cols-3 border-b border-border/40">
-              <div className="p-6 font-semibold">Feature</div>
+              <div className="p-6 font-semibold">Capability</div>
               <div className="p-6 text-center font-black text-emerald-400 border-x border-border/40 bg-emerald-500/5">
-                FORGE Agents
+                AssembleOne Agents
               </div>
-              <div className="p-6 text-center font-semibold text-muted-foreground">Traditional CRM</div>
+              <div className="p-6 text-center font-semibold text-muted-foreground">Traditional Startup Team</div>
             </div>
 
             {/* Rows */}
@@ -756,10 +767,9 @@ export default function EcosystemLandingPage() {
       <section id="integrations" className="py-24 px-6 border-t border-border/40">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black mb-4">Integrates With Everything</h2>
+            <h2 className="text-4xl md:text-5xl font-black mb-4">Connects to Every Tool Your Business Runs On</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              FORGE connects to your existing tools. Pull candidate data from job boards, sync with your ATS, export
-              anywhere.
+              AssembleOne connects to the tools your company already uses. Pull data from anywhere, deploy to any platform, and let agents operate your full stack automatically.
             </p>
           </div>
 
@@ -780,7 +790,7 @@ export default function EcosystemLandingPage() {
           </div>
 
           <div className="text-center mt-12">
-            <p className="text-muted-foreground mb-4">Don't see your tool? We're adding new integrations every week.</p>
+            <p className="text-muted-foreground mb-4">Don't see your stack? We're connecting new platforms every week.</p>
             <Button variant="outline" size="lg">
               Request Integration
               <ChevronRight className="w-4 h-4 ml-2" />
@@ -793,25 +803,25 @@ export default function EcosystemLandingPage() {
       <section className="py-24 px-6 border-t border-border/40">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black mb-4">Why Top Teams Build on FORGE</h2>
+            <h2 className="text-4xl md:text-5xl font-black mb-4">Why Solo Founders Choose AssembleOne</h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
-                quote: "Our SDR team went from booking 5 meetings a week to 25. The agents handle all the top-of-funnel heavy lifting.",
-                author: "Sarah Chen",
-                role: "VP Sales, TechCorp",
+                quote: "I went from having an idea to a live product with paying users in under two weeks. I never wrote a single line of code or sent a single cold email myself.",
+                author: "Aryan M.",
+                role: "Solo Founder, SaaS Product",
               },
               {
-                quote: "The PMF validation engine saved us months of wasted engineering effort. We now only build what the market is actually buying.",
-                author: "Marcus Johnson",
-                role: "Founder & CEO, StartupXYZ",
+                quote: "AssembleOne replaced what would have been a $30k/month team. The agents built my landing page, found my first 50 leads, and booked 8 discovery calls — all while I was sleeping.",
+                author: "Priya K.",
+                role: "Indie Hacker & Founder",
               },
               {
-                quote: "FORGE's radar found us 3 enterprise deals by picking up on subtle buying signals on X that our competitors completely missed.",
-                author: "Elena Rodriguez",
-                role: "Head of Growth, ScaleUp Inc",
+                quote: "I'm not technical at all. I described what I wanted to build and the agents handled the entire product, marketing site, and outreach. It's like having a co-founder who never sleeps.",
+                author: "James T.",
+                role: "Non-Tech Founder",
               },
             ].map((testimonial, i) => (
               <div key={i} className="p-6 rounded-2xl border border-border/40 bg-card/30">
@@ -834,9 +844,9 @@ export default function EcosystemLandingPage() {
       {/* Final CTA */}
       <section className="py-24 px-6 border-t border-border/40">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-black mb-6">Ready to Automate Growth?</h2>
+          <h2 className="text-4xl md:text-5xl font-black mb-6">Ready to Launch Your Company on Autopilot?</h2>
           <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Join the elite teams replacing manual outbound with neural agents. Deploy your first campaign in under 10 minutes.
+            Join the next wave of solo founders building real companies with zero team. Describe your idea and let agents do the rest — from code to customers.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button size="lg" className="h-16 px-10 text-lg bg-white text-black hover:bg-white/90 group" asChild>
@@ -862,10 +872,10 @@ export default function EcosystemLandingPage() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center">
-              <Image src="/forge-logo.png" alt="FORGE" width={20} height={20} />
+              <Image src="/forge-logo.png" alt="AssembleOne" width={20} height={20} />
             </div>
-            <span className="font-black">FORGE</span>
-            <span className="text-muted-foreground text-sm">Autonomous Growth</span>
+            <span className="font-black">AssembleOne</span>
+            <span className="text-muted-foreground text-sm">Agentic Founder OS</span>
           </div>
           <div className="flex items-center gap-8 text-sm text-muted-foreground">
             <a href="#" className="hover:text-foreground transition-colors">
