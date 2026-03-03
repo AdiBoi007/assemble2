@@ -234,7 +234,7 @@ export default function EcosystemLandingPage() {
           </Link>
           <NavItems items={navItems} />
           <div className="flex items-center gap-3">
-            <NavbarButton href="http://localhost:3002/chat" variant="primary">Preview</NavbarButton>
+            <NavbarButton href="/chat" variant="primary">Preview</NavbarButton>
           </div>
         </NavBody>
 
@@ -273,7 +273,7 @@ export default function EcosystemLandingPage() {
             ))}
             <div className="flex w-full flex-col gap-3 pt-4">
               <Button className="w-full bg-white text-black hover:bg-white/90" asChild>
-                <Link href="http://localhost:3002/chat" onClick={() => setIsMobileMenuOpen(false)}>Preview</Link>
+                <Link href="/chat" onClick={() => setIsMobileMenuOpen(false)}>Preview</Link>
               </Button>
             </div>
           </MobileNavMenu>
