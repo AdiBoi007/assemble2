@@ -1,4 +1,12 @@
-export type AgentMode = "idle" | "pmf_analysis" | "radar" | "pipeline" | "growth_team" | "research_deep_dive" | "outreach_campaign" | "revenue_analytics" | "incubator" | "budget_allocator" | "poaching_hunter" | "objection_handler" | "pricing_optimizer" | "auto_follow_up" | "lead_scoring" | "war_room" | "integrations" | "unknown"
+export type AgentMode =
+    | "idle"
+    | "performance"
+    | "intelligence"
+    | "finance"
+    | "analyst"
+    | "clients"
+    | "automation"
+    | "unknown"
 
 export type AgentTone = "hot" | "cold" | "neutral"
 
@@ -17,272 +25,100 @@ export interface AgentResponse {
     nextAction?: string
 }
 
-// Global simulated memory for the MVP
 export const DEMO_AGENT_CONTEXT: AgentContext = {
-    tier: "Free Beta",
+    tier: "Early Access",
     mrrGoal: "$10k",
     activeStreak: 4,
     lastAction: new Date(),
 }
 
-/**
- * Parses a user's natural language input and determines the appropriate
- * sub-agent or widget mode to display. Includes the "Echo Cascade" hot/cold logic.
- */
 export async function parseCentralAgentIntent(input: string, context = DEMO_AGENT_CONTEXT): Promise<AgentResponse> {
     const lowerInput = input.toLowerCase()
 
-    // ─── 1. Idea Pitch & Goal Setting (The Core Hot/Cold Hook) ───
-    if (lowerInput.includes("idea") || lowerInput.includes("goal") || lowerInput.includes("build") || lowerInput.includes("startup")) {
-        // Pseudo-random hot/cold trigger based on input length mapping to simulate varying responses
-        const isHot = input.length % 2 === 0
-
-        if (isHot) {
-            // DOPAMINE HIT (Hot)
-            return {
-                mode: "pmf_analysis",
-                tone: "hot",
-                message: "Brilliant. Market signals show a massive vacuum in this exact niche right now. Your proposed angle cuts straight past the incumbents. \n\nI've generated a 30-day GTM plan and identified 3 channels where early adopters are bleeding cash for this. Let's execute.",
-                steps: [
-                    "Querying global SaaS market signals...",
-                    "Analyzing competitor feature gaps...",
-                    "Validating TAM & Pricing bandwidths...",
-                    "Generating actionable Execution Blueprint..."
-                ],
-                nextAction: "Approve 30-Day GTM"
-            }
-        } else {
-            // STARVATION/ROAST (Cold)
-            return {
-                mode: "pmf_analysis",
-                tone: "cold",
-                message: "Stop pretending this is a unique angle. 14 other startups tried this exact pivot last quarter and died because they couldn't acquire users under $200 CAC. \n\nYour value prop is painfully weak. I've re-written your pricing tiers to actually make sense, but you need to refine the messaging before we waste time building it.",
-                steps: [
-                    "Scanning Crunchbase for failed archetypes...",
-                    "Calculating theoretical Customer Acquisition Cost (CAC)...",
-                    "Stress-testing the core value proposition...",
-                    "Flagging critical market friction vectors..."
-                ],
-                nextAction: "Rewrite Core Messaging"
-            }
-        }
-    }
-
-    // ─── 2. Active Action Push (Incubator/Execution) ───
-    if (lowerInput.includes("execute") || lowerInput.includes("launch") || lowerInput.includes("experiment") || lowerInput.includes("action")) {
+    // ─── F1: Co-Worker / General ───
+    if (lowerInput.includes("focus") || lowerInput.includes("what should i") || lowerInput.includes("priority") || lowerInput.includes("help me") || lowerInput.includes("what to do")) {
         return {
-            mode: "incubator",
-            tone: "hot",
-            message: `Initiating momentum loop. You're on a ${context.activeStreak}-day build streak. I've launched the A/B pricing experiment and queued 50 cold DMs for the primary audience.\n\nDon't drop the ball now. Review the copy and hit deploy.`,
-            steps: [
-                "Awakening Experiment Agent...",
-                "Drafting 50 dynamic cold outreach variants...",
-                "Configuring Stripe A/B test webhooks...",
-                "Synchronizing with LinkedIn automation queue..."
-            ],
-            nextAction: "Review & Deploy DMs"
-        }
-    }
-
-    // ─── 2B. Deploy DMs (Outreach Trigger) ───
-    if (lowerInput.includes("review & deploy dms") || lowerInput.includes("deploy dms") || lowerInput.includes("outreach") || lowerInput.includes("campaign")) {
-        return {
-            mode: "auto_follow_up",
-            tone: "hot",
-            message: "Campaign Authorized. Dispatching 50 highly personalized cold DMs through the LinkedIn proxy queue. I will track recipient sentiment in real-time and orchestrate the follow-up sequences automatically.",
-            steps: [
-                "Acquiring LinkedIn OAuth tokens...",
-                "Injecting dynamic variables into 50 templates...",
-                "Dispatching initial cold outbound batch...",
-                "Initializing sentiment tracking webhooks..."
-            ],
-            nextAction: "View Live Campaign"
-        }
-    }
-
-    // ─── 3. Analytics / Revenue Agent ───
-    if (lowerInput.includes("analytics") || lowerInput.includes("churn") || lowerInput.includes("revenue")) {
-        return {
-            mode: "revenue_analytics",
-            tone: "cold",
-            message: `You're missing your ${context.mrrGoal} MRR goal target by a long shot because of a 45% drop-off at the proposal stage. Let's fix this friction point immediately before you bleed out the remaining leads.`,
-            steps: [
-                "Triggering Analytics Agent...",
-                "Syncing real-time Stripe billing data...",
-                "Analyzing product usage metrics via API...",
-                "Running predictive churn models (Confidence: 87%)...",
-                "Extrapolating EOM revenue targets..."
-            ],
-            nextAction: "View Friction Points"
-        }
-    }
-
-    // ─── 3B. Budget & Forecast ───
-    if (lowerInput.includes("budget") || lowerInput.includes("forecast") || lowerInput.includes("runway") || lowerInput.includes("allocation")) {
-        return {
-            mode: "budget_allocator",
-            tone: "hot",
-            message: "I've run the neural projection on your current MRR trajectory. We're on pace for $12k in 90 days. I've calculated the optimal capital allocation split to maximize your 14 months of runway.",
-            steps: [
-                "Modeling 90-day trajectory...",
-                "Analyzing historical channel ROAS...",
-                "Generating optimal capital efficiency split..."
-            ],
-            nextAction: "Approve AI Spend"
-        }
-    }
-
-    // ─── 3C. Competitor Poaching Scanner ───
-    if (lowerInput.includes("poach") || lowerInput.includes("competitor") || lowerInput.includes("steal") || lowerInput.includes("rival")) {
-        return {
-            mode: "poaching_hunter",
-            tone: "hot",
-            message: "I've isolated 142 high-intent leads currently using your competitors. Scanning social signals and contract renewal dates. 3 targets are red-hot for an immediate aggressive outreach sequence. Let's poach them.",
-            steps: [
-                "Scraping competitor G2 & Capterra reviews...",
-                "Analyzing LinkedIn posts for churn intent...",
-                "Cross-referencing ZoomInfo renewal dates...",
-                "Isolating Top 3 high-intent targets..."
-            ],
-            nextAction: "Generate Snipe Outreach"
-        }
-    }
-
-    // ─── 3D. Objection Handler & Battlecards ───
-    if (lowerInput.includes("objection") || lowerInput.includes("pushback") || lowerInput.includes("expensive") || lowerInput.includes("rebuttal")) {
-        return {
-            mode: "objection_handler",
-            tone: "cold",
-            message: "Losing deals on price means you haven't established value. I've analyzed Deel's hidden fee structure. Here is the exact turn sequence to reframe the objection into a severe compliance risk for them.",
-            steps: [
-                "Analyzing prospect's objection vectors...",
-                "Querying competitor battlecard database...",
-                "Generating multi-stage psychological reframe...",
-                "Drafting exact script response..."
-            ],
-            nextAction: "Load Next Rebuttal"
-        }
-    }
-
-    // ─── 3E. Pricing Optimizer ───
-    if (lowerInput.includes("price") || lowerInput.includes("pricing") || lowerInput.includes("tier") || lowerInput.includes("package")) {
-        return {
-            mode: "pricing_optimizer",
-            tone: "hot",
-            message: "Your current ACV is severely optimized for acquisition, not retention. I've run a pricing elasticity simulation on your active user base. Unbundling the Enterprise tier will result in an immediate 49% revenue uplift.",
-            steps: [
-                "Simulating price elasticity on active cohorts...",
-                "Benchmarking against competitor GTM pricing...",
-                "Analyzing feature adoption rates...",
-                "Generating optimized tier recommendations..."
-            ],
-            nextAction: "Deploy New Pricing"
-        }
-    }
-
-    // ─── 3F. Auto-Follow-Up Sequences ───
-    if (lowerInput.includes("follow") || lowerInput.includes("sequence") || lowerInput.includes("drip") || lowerInput.includes("touch")) {
-        return {
-            mode: "auto_follow_up",
+            mode: "performance",
             tone: "neutral",
-            message: "I am actively managing 14 automated drip sequences across 842 prospects. I've flagged a 18.4% open-to-reply velocity on 'The Breakup Reversal' variant. Displaying live multi-touch pipeline activity now.",
-            steps: [
-                "Syncing external email provider APIs...",
-                "Aggregating cross-channel thread status...",
-                "Calculating real-time reply sentiment...",
-                "Prioritizing 'Hot' execution loops..."
-            ],
-            nextAction: "Pause Cold Sequences"
+            message: "Based on your current data, here are your top 3 priorities for this week:\n\n1. SaaS Tool B — health score dropped to 23/100. Root cause: Email Step 3 dead (1.2% open rate).\n2. Client pipeline is thin — only 4 leads in 'Contacted' stage. Need 20+ for healthy outbound.\n3. MRR is flat this week — no new activations in 5 days.\n\nI'd recommend starting with the Product Intelligence panel. Want me to open the deep-dive on Tool B?",
+            steps: ["Scanning all active products...", "Checking pipeline health...", "Analyzing revenue trajectory..."],
+            nextAction: "Open Product Intelligence"
         }
     }
 
-    // ─── 3G. Lead Scoring & Prioritization ───
-    if (lowerInput.includes("score") || lowerInput.includes("prioritize") || lowerInput.includes("hottest") || lowerInput.includes("rank") || lowerInput.includes("lead")) {
+    // ─── F2: Performance Dashboard ───
+    if (lowerInput.includes("dashboard") || lowerInput.includes("performance") || lowerInput.includes("health") || lowerInput.includes("overview") || lowerInput.includes("show me everything")) {
         return {
-            mode: "lead_scoring",
+            mode: "performance",
+            tone: "neutral",
+            message: "Opening your Performance Dashboard. Here's the quick summary:\n\n• Total MRR: $3,240 (+6% WoW)\n• Active Customers: 28 (-1 this week)\n• Conversion Rate: 3.1% (↓ from 4.2%)\n• 3 products tracked — 1 critical, 1 warning, 1 healthy\n\nProduct health grid and KPI panel are now live on the right.",
+            steps: ["Loading product health scores...", "Pulling MRR from Stripe...", "Fetching conversion data..."],
+            nextAction: "View Client Pipeline"
+        }
+    }
+
+    // ─── F3: Product Intelligence ───
+    if (lowerInput.includes("why") || lowerInput.includes("dropping") || lowerInput.includes("sales") || lowerInput.includes("conversion") || lowerInput.includes("intelligence") || lowerInput.includes("diagnose") || lowerInput.includes("root cause") || lowerInput.includes("product")) {
+        return {
+            mode: "intelligence",
             tone: "hot",
-            message: "I've ingested and scored 2,450 active leads across CRM, Marketing, and Product usage data. Filtering for the exact top 5% conversion probability. These 3 accounts are exhibiting extreme buying intent right now.",
-            steps: [
-                "Running algorithmic lead scoring model...",
-                "Cross-referencing implicit & explicit intent triggers...",
-                "Isolating Top 5% conversion probability cohort...",
-                "Ranking accounts for immediate outbound..."
-            ],
-            nextAction: "Execute Outbound on Top 3"
+            message: "Running root cause analysis on SaaS Tool B now.\n\nAnalysis complete — Sales dropped 41% in 5 days. Here's what I found:\n\n#1 Email Step 3 is dead — 1.2% open rate (benchmark: 22%)\n#2 Landing page bounce rate increased 18% after last deploy\n#3 No new traffic source in 7 days\n\nI've prepared 3 fix paths. Review and approve on the right →",
+            steps: ["Scanning email sequence metrics...", "Analyzing landing page performance...", "Checking traffic sources...", "Ranking root causes by likelihood..."],
+            nextAction: "Approve Fix Path #1"
         }
     }
 
-    // ─── 3H. War Room Deep-Dive (Chain Commands) ───
-    if (lowerInput.includes("war") || lowerInput.includes("assault") || lowerInput.includes("blitz") || lowerInput.includes("macro")) {
+    // ─── F4: Finance Analyzer ───
+    if (lowerInput.includes("mrr") || lowerInput.includes("arr") || lowerInput.includes("revenue") || lowerInput.includes("finance") || lowerInput.includes("churn") || lowerInput.includes("money") || lowerInput.includes("burn") || lowerInput.includes("runway") || lowerInput.includes("p&l") || lowerInput.includes("profit")) {
         return {
-            mode: "war_room",
+            mode: "finance",
+            tone: "neutral",
+            message: "Finance report loaded.\n\nMRR: $3,240 | ARR: $38,880\nChurn this month: 2 customers (-$340 MRR)\nNet new revenue: +$680\nRunway: 14.2 months at current burn\n\nAt your current growth rate of 6% WoW, you'll hit $10K MRR by June 2026. Finance Analyzer is open on the right for the full breakdown.",
+            steps: ["Pulling Stripe revenue data...", "Calculating churn rate...", "Running 90-day projection..."],
+            nextAction: "View Cash Flow Projection"
+        }
+    }
+
+    // ─── F5: Business Analyst ───
+    if (lowerInput.includes("competitor") || lowerInput.includes("market") || lowerInput.includes("pmf") || lowerInput.includes("business") || lowerInput.includes("trend") || lowerInput.includes("strategy") || lowerInput.includes("growth") || lowerInput.includes("analyst")) {
+        return {
+            mode: "analyst",
+            tone: "neutral",
+            message: "Business intelligence report ready.\n\nPMF Score: 61/100 — you're in the early traction zone. Retention cohort D30 is 68% which is above median for your category.\n\nCompetitor alert: Acme Corp changed pricing 3 days ago — moved from $49 to $79/mo, creating an opportunity at the $39 price point.\n\nFull competitor intel and PMF scorecard are open on the right.",
+            steps: ["Monitoring 5 tracked competitors...", "Calculating PMF score from behavioral data...", "Scanning market trend signals..."],
+            nextAction: "Generate Growth Strategy"
+        }
+    }
+
+    // ─── F6: Client Finder ───
+    if (lowerInput.includes("find") || lowerInput.includes("lead") || lowerInput.includes("client") || lowerInput.includes("prospect") || lowerInput.includes("outbound") || lowerInput.includes("founder") || lowerInput.includes("icp") || lowerInput.includes("pipeline")) {
+        const hasLocation = lowerInput.includes("sydney") || lowerInput.includes("london") || lowerInput.includes("new york") || lowerInput.includes("sf")
+        const location = hasLocation ? lowerInput.includes("sydney") ? "Sydney" : "London" : "your target market"
+        return {
+            mode: "clients",
             tone: "hot",
-            message: "CHAIN COMMAND INITIATED. Deploying 4 parallel sub-agents to execute the Q4 Pipeline Dominance protocol. I am taking control of pricing, outbound, competitor poaching, and lead triage simultaneously.",
-            steps: [
-                "Authorizing absolute system permissions...",
-                "Cloning primary agent instance into 4 isolated threads...",
-                "Deploying Poaching, Drip, Pricing, and Scoring nodes...",
-                "Locking global state into War Room view..."
-            ],
-            nextAction: "Halt All Operations"
+            message: `Client Finder running — searching LinkedIn, AngelList, Product Hunt, and GitHub for SaaS founders in ${location} who recently raised pre-seed.\n\nFound 34 matches. Scored and ranked by ICP fit. Top 3 are 90+ score — exhibiting strong buying signals (job posts, competitor reviews, fundraising news).\n\nClient finder panel is open on the right. Select leads and launch outbound in one click.`,
+            steps: ["Searching LinkedIn + AngelList...", "Detecting buying signals...", "Scoring against your ICP...", "Enriching with emails and company data..."],
+            nextAction: "Launch Outbound Campaign"
         }
     }
 
-    // ─── 4. Integrations Hub ───
-    if (lowerInput.includes("integration") || lowerInput.includes("connect") || lowerInput.includes("sync") || lowerInput.includes("tool") || lowerInput.includes("stripe") || lowerInput.includes("linkedin")) {
+    // ─── F7: Automation Engine ───
+    if (lowerInput.includes("automat") || lowerInput.includes("chain") || lowerInput.includes("trigger") || lowerInput.includes("permission") || lowerInput.includes("tool access") || lowerInput.includes("pause") || lowerInput.includes("audit") || lowerInput.includes("slack") || lowerInput.includes("notify") || lowerInput.includes("briefing")) {
         return {
-            mode: "integrations",
+            mode: "automation",
             tone: "neutral",
-            message: "I am actively managing 18 data pipelines across your enterprise architecture. Total data throughput is 2.4 TB/month. Validating OAuth tokens and sync health now.",
-            steps: [
-                "Pinging macro-integration endpoints...",
-                "Validating API keys and OAuth status...",
-                "Calculating read/write data frequency...",
-                "Rendering active systems topography..."
-            ],
-            nextAction: "Run Deep Diagnostic"
+            message: "Automation Engine is active. Current status:\n\n• 3 automation chains running\n• Slack: Full Execute enabled\n• Email platform: Notify only\n• Stripe: Read Only\n\nLast action: Sent weekly revenue briefing to #founders at 9:00 AM Monday.\n\nChain builder and permission controls are open on the right.",
+            steps: ["Loading automation chains...", "Checking tool permissions...", "Pulling 24h audit log..."],
+            nextAction: "Create New Chain"
         }
     }
 
-    // ─── 5. Trend Radar ───
-    if (lowerInput.includes("trend") || lowerInput.includes("market") || lowerInput.includes("radar")) {
-        return {
-            mode: "radar",
-            tone: "neutral",
-            message: "Scanning social channels and developer hubs. I'm picking up a significant spike in discussions around legacy infrastructure pain. Here is the Live Radar.",
-            steps: [
-                "Connecting to X/HN social firehoses...",
-                "Semantic analysis of keyword volume...",
-                "Filtering noise and identifying trend vectors..."
-            ]
-        }
-    }
-
-    // ─── 5. Pipeline & Sub-Agents (Legacy Fallbacks with updated tones) ───
-    if (lowerInput.includes("pipeline") || lowerInput.includes("sales")) {
-        return {
-            mode: "pipeline",
-            tone: "neutral",
-            message: "Pulling real-time data from your CRM. We have 48 active leads currently processing.",
-            steps: ["Syncing bidirectional CRM state...", "Identifying funnel bottlenecks..."]
-        }
-    }
-
-    if (lowerInput.includes("status") || lowerInput.includes("team")) {
-        return {
-            mode: "growth_team",
-            tone: "neutral",
-            message: "Here is the current status of your AI Growth Team. The Research and Experiment agents are currently running active operations.",
-            steps: ["Pinging neural agents...", "Retrieving active telemetry data..."]
-        }
-    }
-
-    // ─── Default Fallback ───
+    // ─── Default / Wake-up ───
     return {
-        mode: "unknown",
-        tone: "cold",
-        message: "Stop deflecting. Based on our goal of hitting $10k MRR, you should be deploying the Research agent to find new leads, or configuring an Outreach campaign. Define a clear growth mandate.",
-        steps: ["Analyzing user intent...", "Intent unclear or passive."],
-        nextAction: "Set Daily Objective"
+        mode: "idle",
+        tone: "neutral",
+        message: "Good to see you. Here's where your business stands right now:\n\n• MRR: $3,240 (+6% this week)\n• 1 product needs urgent attention (health: 23/100)\n• Client pipeline: 4 active leads\n• PMF Score: 61/100\n\nTry:\n→ 'Why are my sales dropping?'\n→ 'Find 20 SaaS founders in Sydney'\n→ 'Show me my MRR and churn'\n→ 'What should I focus on this week?'",
+        steps: ["Initializing Co-Worker context...", "Loading business snapshot..."],
     }
 }

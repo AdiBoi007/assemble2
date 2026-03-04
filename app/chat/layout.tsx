@@ -1,5 +1,4 @@
 import React from "react"
-import PMSidebar from "@/app/pm/components/PMSidebar"
 
 export default function ChatLayout({
     children,
@@ -8,7 +7,6 @@ export default function ChatLayout({
 }) {
     return (
         <div className="h-screen flex bg-black text-white overflow-hidden font-sans">
-            <PMSidebar />
             {children}
         </div>
     )
