@@ -19,10 +19,11 @@ import { BusinessAnalyst } from "@/components/assemble/BusinessAnalyst"
 import { ClientFinder } from "@/components/assemble/ClientFinder"
 import { AutomationEngine } from "@/components/assemble/AutomationEngine"
 import { GlobalInfluence } from "@/components/assemble/GlobalInfluence"
+import { SocialMediaAgent } from "@/components/assemble/SocialMediaAgent"
 
 const font = Comfortaa({ subsets: ["latin"], display: "swap" })
 
-type ViewMode = "coworker" | "performance" | "intelligence" | "finance" | "analyst" | "clients" | "automation" | "global"
+type ViewMode = "coworker" | "performance" | "intelligence" | "finance" | "analyst" | "clients" | "automation" | "global" | "social"
 type ChatMessage = {
     role: "user" | "agent"
     content: string
@@ -50,6 +51,7 @@ const VIEW_LABELS: Record<ViewMode, string> = {
     clients: "Client Finder",
     automation: "Automation Engine",
     global: "Global Product Influence",
+    social: "Social Media Agent",
 }
 
 const agentModeToView: Record<string, ViewMode> = {
@@ -60,6 +62,7 @@ const agentModeToView: Record<string, ViewMode> = {
     clients: "clients",
     automation: "automation",
     global: "global",
+    social: "social",
 }
 
 function AssembleAppCore() {
@@ -142,6 +145,7 @@ function AssembleAppCore() {
             case "clients": return <ClientFinder />
             case "automation": return <AutomationEngine />
             case "global": return <GlobalInfluence />
+            case "social": return <SocialMediaAgent />
             default: return (
                 <div className="h-full flex flex-col items-center justify-center gap-8 p-8">
                     <motion.div
@@ -174,6 +178,10 @@ function AssembleAppCore() {
                 </div>
             )
         }
+    }
+
+    if (panelView === "clients") {
+        return <ClientFinder />
     }
 
     return (
@@ -308,8 +316,7 @@ function AssembleAppCore() {
                                     panelView === "intelligence" ? "F3 · Root Cause AI" :
                                         panelView === "finance" ? "F4 · Revenue Intelligence" :
                                             panelView === "analyst" ? "F5 · Business Strategy" :
-                                                panelView === "clients" ? "F6 · Lead Engine" :
-                                                    "F7 · Execution Layer"}
+                                                "F6 · Execution Layer"}
                         </p>
                     </div>
                     <div className="flex items-center gap-2">
